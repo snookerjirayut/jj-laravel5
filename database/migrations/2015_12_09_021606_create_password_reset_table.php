@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePasswordResetsTable extends Migration
+class CreatePasswordResetTable extends Migration
 {
     /**
      * Run the migrations.
@@ -17,6 +17,7 @@ class CreatePasswordResetsTable extends Migration
             $table->string('token')->index();
             $table->timestamp('created_at');
         });
+
     }
 
     /**
