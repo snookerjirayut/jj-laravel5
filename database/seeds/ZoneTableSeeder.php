@@ -29,6 +29,7 @@ class ZoneTableSeeder extends Seeder
             'price_type1' => 200,
             'price_type2' => 150
         ]);
+        
         DB::table('zone')->insert([
             'name' => 'ของเก่าอะไหล่รถยนต์',
             'code' => 'I',

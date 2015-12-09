@@ -26,7 +26,7 @@ class CreateUserTable extends Migration
             $table->string('cardID' , 13)->nullable();
             $table->integer('role');
             $table->string('image')->nullable();
-            $table->string('favorite')->nullable();
+            $table->text('favorite')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
