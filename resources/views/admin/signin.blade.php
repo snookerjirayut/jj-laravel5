@@ -17,7 +17,7 @@
         </div>
     @endif
 
-    <form method="post" action="/admin/signin/valid">
+    <form method="post" action="{{url('')}}/admin/signin/valid">
         <input type="text" name="email" >
         <input type="password" name="password" >
         <button type="submit">Submit</button>

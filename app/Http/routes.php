@@ -27,7 +27,10 @@ Route::group(['middleware' => 'auth'] , function(){
 	Route::delete('/booking/destroy', 'BookingController@destroy');
 });
 
+Route::get('/admin', 'Backend\HomeController@index');
 Route::get('/admin/signin', 'Backend\HomeController@signin');
+Route::get('/admin/signout', 'Backend\HomeController@signout');
+
 Route::post('/admin/signin/valid', 'Backend\HomeController@check');
 
 Route::group(['middleware' => 'role:admin'] , function(){

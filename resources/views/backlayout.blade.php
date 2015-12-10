@@ -8,9 +8,13 @@
 
         <link href="/css/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="/css/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+
+        @yield('style')
+
         <link href="/css/style-admin.css" rel="stylesheet">
 
         <script src="/js/jquery.min.js" ></script>
+        <script src="/js/moment/min/moment.min.js" ></script>
         <script src="/css/bootstrap/dist/js/bootstrap.min.js" ></script>
 
 
@@ -66,7 +70,7 @@
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#">Dashboard</a></li>
             <li><a href="#">Settings</a></li>
-            <li><a href="#">Profile</a></li>
+            <li><a href="{{url('/admin/signout')}}">Signout</a></li>
             <li><a href="#">Help</a></li>
           </ul>
           <form class="navbar-form navbar-right">
@@ -83,7 +87,7 @@
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
             <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
-            <li><a href="calendar">Calendar</a></li>
+            <li><a href="{{url('/admin/calendar')}}">Calendar</a></li>
             <li><a href="#">Reports</a></li>
             <li><a href="#">Analytics</a></li>
             <li><a href="#">Export</a></li>

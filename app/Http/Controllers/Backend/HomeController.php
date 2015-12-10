@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Validator;
 use Auth;
+use App\User;
 
 
 class HomeController extends Controller
@@ -19,6 +20,14 @@ class HomeController extends Controller
      */
     public function index()
     {
+        if(Auth::check()){
+            if(Auth::user()->role < 90){
+                Auth::logout();
+                return redirect()->intended('/admin/signin?role=lessadmin');
+            } 
+        }else{
+            return redirect()->intended('/admin/signin?auth=fail');
+        }
         return view('admin.home');
     }
 
@@ -27,7 +36,13 @@ class HomeController extends Controller
         return view('admin.signin');
     }
 
-     public function check(Request $request)
+    public function signout()
+    {
+        Auth::logout();
+        return redirect()->intended('/admin/signin');
+    }
+
+    public function check(Request $request)
     {
         $rules = array(
                 'email' =>'required|email',
@@ -35,16 +50,17 @@ class HomeController extends Controller
         );
 
         $validator = Validator::make($request->all(), $rules);
-        if ($validator->fails()) return redirect('/admin/signin')->withErrors($validator , 'auth');
+        if ($validator->fails()) return redirect('/admin/signin?a')->withErrors($validator , 'auth');
         
         $email = $request->input('email');
         $password = $request->input('password');
-
-        if(Auth::attempt(['email' => $email, 'password' => $password, 'active' => 1, 'isAdmin' => 1 ] )){
-            return redirect()->intended('/admin/home');
+        
+       if(Auth::attempt(['email' => $email, 'password' => $password, 'active' => 1, 'isAdmin' => 1 ] )){
+            //var_dump('role', Auth::user());
+            return redirect()->intended('/admin/');
         }
-
-       return redirect()->intended('/admin/signin')->withErrors('Please check your email or password again.');
+       // var_dump(Auth::user());
+       return redirect()->intended('/admin/signin?e')->withErrors('Please check your email or password again.');
     }
 
     /**
