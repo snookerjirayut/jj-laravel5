@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Validator;
+use Auth;
+
 
 class HomeController extends Controller
 {
@@ -16,7 +19,32 @@ class HomeController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.home');
+    }
+
+    public function signin()
+    {
+        return view('admin.signin');
+    }
+
+     public function check(Request $request)
+    {
+        $rules = array(
+                'email' =>'required|email',
+                'password' => 'required'
+        );
+
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) return redirect('/admin/signin')->withErrors($validator , 'auth');
+        
+        $email = $request->input('email');
+        $password = $request->input('password');
+
+        if(Auth::attempt(['email' => $email, 'password' => $password, 'active' => 1, 'isAdmin' => 1 ] )){
+            return redirect()->intended('/admin/home');
+        }
+
+       return redirect()->intended('/admin/signin')->withErrors('Please check your email or password again.');
     }
 
     /**

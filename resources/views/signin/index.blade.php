@@ -1,0 +1,17 @@
+@extends('welcome')
+
+@if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+<form method="post" action="/signin/valid">
+	<input type="text" name="email" >
+	<input type="password" name="password" >
+	<button type="submit">Submit</button>
+</form>

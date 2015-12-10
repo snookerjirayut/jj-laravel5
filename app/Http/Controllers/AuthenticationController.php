@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Auth;
+use Validator;
+use App\User;
 
 class AuthenticationController extends Controller
 {
@@ -19,6 +21,11 @@ class AuthenticationController extends Controller
     public function index()
     {
         //
+    }
+
+    public function signin()
+    {
+        return view('signin.index');
     }
 
     /**
@@ -49,14 +56,33 @@ class AuthenticationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function validate(Request $request)
+    public function check(Request $request)
     {
+        $rules = array(
+                'email' =>'required|email',
+                'password' => 'required'
+        );
+
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) return redirect('/signin')->withErrors($validator , 'auth');
+        
         $email = $request->input('email');
         $password = $request->input('password');
 
-        if(){
-
+        if(Auth::attempt(['email' => $email, 'password' => $password, 'active' => 1 ] )){
+            $user = Auth::user();
+            
+            var_dump(Auth::user());
+            return redirect()->intended('/booking');
         }
+
+       return redirect()->intended('/signin')->withErrors('Please check your email or password again.');
+    }
+
+    public function signout(){
+        Auth::logout();
+        return redirect()->intended('/signin');
+
     }
 
     /**
