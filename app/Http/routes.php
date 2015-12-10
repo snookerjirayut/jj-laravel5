@@ -1,5 +1,7 @@
 <?php
 
+use App\Zone;
+use Illuminate\Http\Response;
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -30,6 +32,11 @@ Route::group(['middleware' => 'auth'] , function(){
 Route::get('/admin', 'Backend\HomeController@index');
 Route::get('/admin/signin', 'Backend\HomeController@signin');
 Route::get('/admin/signout', 'Backend\HomeController@signout');
+
+Route::get('/admin/get/zone', function(){
+	$zone = Zone::where('active', 1 )->get();
+	return response()->json($zone);
+});
 
 Route::post('/admin/signin/valid', 'Backend\HomeController@check');
 
