@@ -9,7 +9,7 @@
         <link href="/css/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="/css/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
 
-        @yield('style')
+        
 
         <link href="/css/style-admin.css" rel="stylesheet">
 
@@ -20,9 +20,8 @@
 
         <script src="/js/angular/angular.min.js" ></script>
         <script src="/js/angular/ui-bootstrap-tpls.js" ></script>
-        <script src="/js/app.js"></script>
-        @yield('script')
-
+        
+        @yield('style')
         <style>
             html, body {
                 height: 100%;
@@ -81,8 +80,6 @@
       </div>
     </nav>
 
-
-
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
@@ -105,6 +102,7 @@
 
     </div>{{-- end container-fluid --}}
 </div>
-
+    <script src="/js/app.js"></script>
+    @yield('script')
     </body>
 </html>

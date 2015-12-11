@@ -65,9 +65,7 @@ input[type=checkbox]:checked + label .check:before {
 }
 /* Fix for Bootstrap 3 with Angular UI Bootstrap */
 
-.modal { 
-  display: block;
-}
+
 
 /* Custom dialog/modal headers */
 
@@ -82,3 +80,6 @@ input[type=checkbox]:checked + label .check:before {
 /* Ease Display */
 
 .pad { padding: 25px; }
+.modal.in .modal-dialog {
+  min-width: 70%;
+}
