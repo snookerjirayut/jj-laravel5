@@ -17,9 +17,10 @@ elixir(function(mix) {
 
     mix.copy('resources/assets/vendor/jquery/dist/jquery.min.js', 'public/js/jquery.min.js');
     mix.copy('resources/assets/vendor/angular/', 'public/js/angular/');
+    mix.copy('resources/assets/vendor/angular-bootstrap/ui-bootstrap-tpls.js', 'public/js/angular/ui-bootstrap-tpls.js');
     mix.copy('resources/assets/vendor/fullcalendar/dist', 'public/js/calendar/');
     mix.copy('resources/assets/vendor/moment/src/moment.js', 'public/js/');
-     mix.copy('resources/assets/vendor/moment/', 'public/js/moment');
+    mix.copy('resources/assets/vendor/moment/', 'public/js/moment');
 
 	mix.copy('resources/assets/vendor/app/', 'public/js/');
 

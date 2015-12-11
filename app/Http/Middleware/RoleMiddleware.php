@@ -48,6 +48,13 @@ class RoleMiddleware
      */
     public function handle($request, Closure $next, $role)
     {
+        if($this->user == null){
+            if ($request->ajax()) {
+                return response('Unauthorized.', 401);
+            } else {
+               return redirect()->intended('/admin/signin');
+            }
+        }
         if ($this->user->role != $role) {
             // Redirect...
             //var_dump('role>>'.$role);

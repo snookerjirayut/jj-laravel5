@@ -19,6 +19,7 @@
 
 
         <script src="/js/angular/angular.min.js" ></script>
+        <script src="/js/angular/ui-bootstrap-tpls.js" ></script>
         <script src="/js/app.js"></script>
         @yield('script')
 

@@ -1,6 +1,7 @@
 <?php
 
 use App\Zone;
+use App\Calendar;
 use Illuminate\Http\Response;
 /*
 |--------------------------------------------------------------------------
@@ -38,12 +39,23 @@ Route::get('/admin/get/zone', function(){
 	return response()->json($zone);
 });
 
+Route::get('/admin/get/calendar', function(){
+	//$fecha = new DateTime($date);
+	//$events = Calendar::where('opened_at', 'like', $fecha->format('Y-m').'%' )->where('active' , '1')->groupBy('opened_at')->get();
+	$events = Calendar::where('active' , '1')->groupBy('opened_at')->get();
+	return response()->json($events);
+});
+
 Route::post('/admin/signin/valid', 'Backend\HomeController@check');
+
 
 Route::group(['middleware' => 'role:admin'] , function(){
 	Route::get('/admin/home', 'Backend\HomeController@index');
+
 	Route::get('/admin/calendar', 'Backend\CalendarController@index');
-	Route::post('/admin/create', 'Backend\HomeController@store');
+	Route::post('/admin/calendar/save', 'Backend\CalendarController@store');
+
+	/*Route::post('/admin/create', 'Backend\HomeController@store');
 	Route::put('/admin/update', 'Backend\HomeController@update');
-	Route::delete('/admin/destroy', 'Backend\HomeController@destroy');
+	Route::delete('/admin/destroy', 'Backend\HomeController@destroy');*/
 });
