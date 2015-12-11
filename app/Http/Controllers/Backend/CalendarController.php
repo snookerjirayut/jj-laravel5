@@ -114,6 +114,8 @@ class CalendarController extends Controller
             if(isset($open->value)){
                 if($open->value){
                     $calendar = Calendar::where('id' , $open->id)->get()->first();
+                    //var_dump($open->id);
+                    if($calendar == null ){ $calendar = new Calendar(); }
                     $calendar->code = $open->code;
                     $calendar->zoneID = $open->id;
                     $calendar->name = $open->name;
