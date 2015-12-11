@@ -89,7 +89,7 @@
 						<div class="form-group">
 							<label>Close</label>
 							<input type="text" ng-model="input.open[$index].close" class="form-control" 
-							id="input_close_<% $index %>" readonly>
+							id="input_close_<% $index %>" name="input_close_<% $index %>" readonly>
 						</div>
 				</div>
 		      </div>
@@ -230,7 +230,7 @@
 				eventClick: function(calEvent, jsEvent, view){
 					$scope.mode.save = false; 
 					$scope.reset();
-					alert('Event start on: ' + calEvent.start.format());
+					//alert('Event start on: ' + calEvent.start.format());
 					var dateStr = calEvent.start.format();
 					
 					$http.get('/admin/get/calendar/'+dateStr).success(function(d){
@@ -240,6 +240,7 @@
 							if(temp.length > 0){
 							 zoneItem.value = true; 
 							 zoneItem.close = (temp[0].maxLock - temp[0].availableLock);
+							 zoneItem.calendarID = temp[0].id;
 							 $('#input_close_'+index).removeAttr('readonly');
 							}
 						});
@@ -270,10 +271,10 @@
 		
 		$(document).ready(function() {
 		    // page is now ready, initialize the calendar...
-		    /*$('#myModal').on('hidden.bs.modal', function (e) {
-			  // do something...
-			  $scope.reset();
-			});*/
+		    //input_close_?
+		    $('input[name^=\'input_close\']').on(function(){
+		    	alert('aaa');
+		    });
 		});
 	
 	}]);

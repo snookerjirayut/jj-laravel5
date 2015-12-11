@@ -113,9 +113,10 @@ class CalendarController extends Controller
             $open = (object) $arr[$i];
             if(isset($open->value)){
                 if($open->value){
-                    $calendar = Calendar::where('id' , $open->id)->get()->first();
-                    //var_dump($open->id);
-                    if($calendar == null ){ $calendar = new Calendar(); }
+                    if(!isset($open->calendarID))
+                        $open->calendarID = 0;
+                    $calendar = Calendar::where('id' , $open->calendarID)->get()->first();
+                    if(!isset($calendar)){ $calendar = new Calendar(); }
                     $calendar->code = $open->code;
                     $calendar->zoneID = $open->id;
                     $calendar->name = $open->name;
@@ -129,6 +130,8 @@ class CalendarController extends Controller
                     $calendar->created_at = date("Y-m-d H:i:s");
                     $calendar->save();
                     $count++;
+                }else{
+                      if(isset($open->calendarID)){ $calendar = Calendar::where('id' , $open->calendarID)->delete(); }
                 }
             }
         }
