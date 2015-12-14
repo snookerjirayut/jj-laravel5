@@ -9,8 +9,6 @@
         <link href="/css/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="/css/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
 
-        
-
         <link href="/css/style-admin.css" rel="stylesheet">
 
         <script src="/js/jquery.min.js" ></script>

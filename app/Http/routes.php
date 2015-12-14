@@ -15,6 +15,11 @@ use Illuminate\Http\Response;
 */
 
 Route::get('/', function () {
+	if(!\Auth::check()){
+		return redirect()->intended('/signin');
+	}else{
+		return redirect()->intended('/booking');
+	}
     return view('welcome');
 });
 
@@ -28,6 +33,10 @@ Route::group(['middleware' => 'auth'] , function(){
 	Route::post('/booking/create', 'BookingController@store');
 	Route::put('/booking/update', 'BookingController@update');
 	Route::delete('/booking/destroy', 'BookingController@destroy');
+
+	Route::post('/booking/search', 'BookingController@search');
+	Route::get('/booking/calendar/day/get', 'BookingController@getDay');
+	Route::get('/booking/calendar/zone/get/{date}', 'BookingController@getZone');
 });
 
 Route::get('/admin', 'Backend\HomeController@index');

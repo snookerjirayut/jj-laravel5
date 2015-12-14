@@ -69,10 +69,9 @@ class AuthenticationController extends Controller
         $email = $request->input('email');
         $password = $request->input('password');
 
-        if(Auth::attempt(['email' => $email, 'password' => $password, 'active' => 1 ] )){
+        if(Auth::attempt(['email' => $email, 'password' => $password, 'active' => 1 ,'isAdmin' => 0] )){
             $user = Auth::user();
-            
-            var_dump(Auth::user());
+            //var_dump(Auth::user());
             return redirect()->intended('/booking');
         }
 
