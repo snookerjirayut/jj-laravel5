@@ -16,6 +16,76 @@ body{
 	height: 100%;
 }
 
+.book-tbl {
+  position: relative;
+  display: inline-flex;
+  width: 100%;
+  margin-top: 2%;
+  padding-bottom: 20px;
+}
+
+.book-tbl > ul li {
+	display: block;
+	float: left;
+	margin: 0 2px;
+}
+.book-tbl > ul > li > label {
+	display: inline-block;
+	position: relative;
+	width: 58px;
+	color: #fff;
+	background: #FBCF61;
+	text-align: center;
+	line-height: 40px;
+	cursor: pointer;
+	overflow: hidden;
+	transition: all 0.25s ease 0s;
+  	-webkit-transition: all 0.25s
+}
+
+.book-tbl > ul > li > label:hover {
+	background: #00B4F1;
+}
+
+.book-tbl > ul > li > label:active {
+	transition: 0; 
+  -webkit-transition: 0;
+	-webkit-filter: brightness(.8);
+}
+
+
+.book-tbl > ul > li >  label:active {
+	transition: 0; 
+  -webkit-transition: 0;
+	-webkit-filter: brightness(.8);
+}
+
+.book-tbl > ul > li >  input {
+	display: none;
+}
+
+.book-tbl > ul > li > input:checked + label {
+	background: #FF7541;
+	color: #fff;
+}
+
+.book-tbl > ul > li > input:checked + label {
+	animation: boom .5s;
+  -webkit-animation: boom .5s;
+}
+
+@keyframes boom {
+	25% { transform: scale(1.25); }
+}
+@-webkit-keyframes boom {
+	25% { -webkit-transform: scale(1.25); }
+}
+.book-tbl > ul > li > input:disabled + label {
+	color: #fff;
+	background: #f00;
+	cursor: not-allowed;
+}
+
 .circleBase {
 	width: 100px;
 	height: 100px;
