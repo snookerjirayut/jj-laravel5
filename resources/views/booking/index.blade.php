@@ -1,5 +1,5 @@
 @extends('welcome')
-@section('title', 'Signin')
+@section('title', 'Booking')
 @section('content')
 
 <?php 
@@ -25,7 +25,7 @@
 </div>
 
 <!-- ROW -->
-<section ng-controller="BookingController" ng-init="init()">
+<section ng-controller="BookingController" ng-init="init()" id="BookingController">
 	<div class="row" style="margin-right:0;margin-left:0;margin-bottom:20px;">
 		<div class="col-sm-12">
 
@@ -70,9 +70,26 @@
 		</div>
 	</div>
 
-	<div class="row">
-		<button class="btn btn-success" ng-click="booking()" ng-hide="ui.booking">booking</button>
+	<div class="row" ng-hide="ui.panalPrice" style="margin-right:0;margin-left:0">
+		<p>@<% input.date %></p>
+		<ul ng-repeat="item in list.item">
+			<li>ล๊อค <% item.name %> , ราคา <% item.price %> , จำนวน  <% item.amount %> ล๊อค</li>
+		</ul>
+		<div class="form-inline">
+			<div class="form-group right">
+				<input type="text" ng-model="input.totalPrice" class="form-control left" readonly>
+				<label style="padding:6px;">บาท</label>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-3 col-sm-offset-4">
+				<button class="btn btn-success btn-block" ng-click="booking()" >booking</button>
+			</div>
+		</div>
+
 	</div>
+	
 
 </section>
 
@@ -106,48 +123,82 @@
 		$scope.list.zoneBlock = [];
 		$scope.list.zoneBlockDisable = ["D-29" , "D-10" , "E-10", "E-11" , "E-12", "I-10", "I-11" , "I-12"];
 		$scope.input = {};
+		$scope.input.totalPrice = 0;
 		$scope.ui = {};
 		$scope.ui.booking = true;
 		$scope.ui.zone = true;
 		$scope.ui.number = true;
 		$scope.ui.button = true;
+		$scope.ui.panalPrice = true;
 
 		$scope.parentIndex = 0;
 		$scope.childIndex = 0;
 
-		$scope.checkValue = function(id ,$event){
-			//alert(id);
-			Object.prototype.getKeyByValue = function( value ) {
-		    for( var prop in this ) {
-			    if( this.hasOwnProperty( prop ) ) {
-			        if( this[ prop ] === value )
-			            return prop;
-			        }
-			    }
+		$scope.booking = function(){
+			$scope.input.products = $scope.list.item;
+			console.log($scope.input);
+			if($scope.list.item != null){
+				$http.post('/booking/create',$scope.input).success(function(d){
+					console.log(d);
+					if(d.result){
+						if(confirm('ทำการจองพื้นที่สำเร็จ ต้องการทำการจองอีกครั้ง')){
+							$scope.search();
+						}else{
+							window.location = '/checking';
+						}
+					}
+				});
 			}
-
-			var a = $scope.input.checked;
-			console.log('id > ', id);
-			var filOut = a.getKeyByValue(false);
-			if(filOut != null){
-				//console.log('filOut > ', filOut);
-				delete  $scope.input.checked[filOut];
-				//console.log('after filOut >> ',$scope.input.checked);
-			}
-
-			if(Object.keys(a).length > $scope.input.number){
-				alert('limit '+$scope.input.number+' block.');
-				//uncheck 
-				//$($event.target).attr("ng-checked" , false);
-				delete $scope.input.checked[id];
-				//console.log('after delete >> ',$scope.input.checked);
-				return false;
-			}
-
 		}
 
-		$scope.booking = function(){
-			console.log($scope.input.checked , 'number >>' , $scope.input.number);
+		$scope.showPrice = function(){
+			var arr_item = [];
+			if($scope.input.checked == null) return;
+			var arr_code = Object.keys($scope.input.checked);
+			@if(\Auth::user()->role == 1)
+			var aprice = $scope.list.zoneCode[0].price_type1;
+			@else 
+			var aprice = $scope.list.zoneCode[0].price_type2;
+			@endif 
+			$scope.input.totalPrice = 0;
+			
+				arr_code.forEach(function(ele , index){
+					var acode = ele.substring(0 , 1);
+					$scope.input.totalPrice += aprice;
+					arr_item.push({id:index , code:acode ,name : ele, price :aprice ,amount:1 });
+				});
+			
+
+			console.log(arr_item);
+			$scope.list.item = arr_item;
+			$scope.ui.panalPrice = false;
+		}
+
+		$scope.checkValue = function(id ,$event){
+			
+			var a = $scope.input.checked;
+			if(Object.keys(a).length > 0){
+				Object.keys(a).forEach(function(ele ,index){
+					if(!$scope.input.checked[ele]){ 
+						delete $scope.input.checked[ele];
+						//console.log('in >>', index , ele , $scope.input.checked[ele] , $scope.input.checked);
+					}
+				});
+			}
+			
+			
+			if(Object.keys(a).length > $scope.input.number){
+				alert('limit '+$scope.input.number+' block.');
+				delete $scope.input.checked[id];
+			}
+
+			if(Object.keys(a).length == $scope.input.number) {
+				$scope.ui.booking = false;
+			}
+
+			console.log($scope.input.checked);
+			$scope.showPrice();
+
 		}
 
 		$scope.init = function(){
@@ -171,6 +222,10 @@
 
 		$scope.search = function(){
 			//validate
+			$scope.input.checked = {};
+			$scope.list.item = [];
+			$scope.ui.panalPrice= true;
+
 			$http.post('/booking/search' , $scope.input).success(function(d){
 				//console.log(d);
 				if(d.result){
@@ -183,7 +238,7 @@
 						}
 						$scope.list.zoneBlock[index] = arr;
 					});
-					console.log('block' , $scope.list.zoneBlock);
+					//console.log('block' , $scope.list.zoneBlock);
 				}
 			});
 		}
@@ -191,11 +246,28 @@
 		$scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
 		    //you also get the actual event object
 		    //do stuff, execute functions -- whatever...
-		    $scope.list.zoneBlockDisable.forEach(function(element, index, array){
-				//console.log(element);
-				$('input#'+element).prop("disabled", true);
-			});
+		    $scope.blockDisable();
+		   
 		});
+
+		$scope.setTimeout = function(time){
+			 setTimeout(function(){
+		    	$scope.blockDisable();
+		    }, (1000*time));
+		}
+
+		$scope.blockDisable = function(){
+			$http.post('/booking/calendar/block/get', $scope.input).success(function(d){
+				if(d != null){
+					//console.log('get blockDisable >>',d);
+					$scope.list.zoneBlockDisable = d;
+					$scope.list.zoneBlockDisable.forEach(function(element, index, array){
+						$('input#'+element.zoneNumber).prop("disabled", true);
+					});
+					$scope.setTimeout(10);
+				}
+			});
+		}
 
 		$scope.openUI = function(){
 			if($scope.input.zoneName != null || $scope.input.zoneName != "?") $scope.ui.number = false;

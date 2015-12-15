@@ -86,6 +86,10 @@ body{
 	cursor: not-allowed;
 }
 
+#BookingController{
+	margin-bottom: 30px;
+}
+
 .circleBase {
 	width: 100px;
 	height: 100px;
