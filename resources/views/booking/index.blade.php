@@ -255,11 +255,15 @@
 		$scope.blockDisable = function(){
 			$http.post('/booking/calendar/block/get', $scope.input).success(function(d){
 				if(d != null){
-					//console.log('get blockDisable >>',d);
+					console.log($scope.input.checked);
 					$scope.list.zoneBlockDisable = d;
 					$scope.list.zoneBlockDisable.forEach(function(element, index, array){
+						Object.keys($scope.input.checked).forEach(function(ele){
+							if(ele == element.zoneNumber) delete $scope.input.checked[ele];
+						});
 						$('input#'+element.zoneNumber).prop("disabled", true);
 					});
+
 					$scope.setTimeout(10);
 				}
 			});
