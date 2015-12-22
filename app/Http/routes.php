@@ -39,6 +39,8 @@ Route::group(['middleware' => 'auth'] , function(){
 	Route::get('/booking/calendar/zone/get/{date}', 'BookingController@getZone');
 	Route::post('/booking/calendar/block/get', 'BookingController@getBlock');
 
+	Route::get('/booking/summary/{id}', 'BookingController@summary');
+
 	Route::post('/checkin', 'CheckinController@index');
 
 });

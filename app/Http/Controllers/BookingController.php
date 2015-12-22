@@ -7,6 +7,7 @@ use Validator;
 use App\Calendar;
 use App\Booking;
 use App\Zone;
+use App\User;
 use App\BookingDetail;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -34,6 +35,22 @@ class BookingController extends Controller
     public function create()
     {
         //
+    }
+
+    public function summary($id)
+    {
+        if($id == null){ return redirect()->intended('/'); }
+        $booking = Booking::where('code'  , $id)->get()->first();
+        $detail = BookingDetail::where('bookingCode' , $id )->get();
+        foreach ($detail as $key => $value) {
+            # code...
+            $zone = Zone::where('code' ,$value->zoneCode )->get()->first();
+            $detail->zoneName =  $zone->name;
+        }
+
+        $user = User::where('id' , $booking->userID)->get()->first();
+
+        return view('booking.summary' , ['booking' => $booking , 'detail' => $detail , 'user' => $user ]);
     }
 
     /**
@@ -104,7 +121,7 @@ class BookingController extends Controller
 
         if($count == count($products_arr)){
             return response()->json(array('result'=>true , 'message'=>'success' 
-                , 'booking' => $booking->id , 'detail' => $detail_result   
+                , 'bookingCode' => $booking->code , 'detail' => $detail_result   
             ));
         }
         return response()->json(array('result'=>false , 'message'=>'booking create fails.'));

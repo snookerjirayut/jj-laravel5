@@ -71,7 +71,7 @@
 	</div>
 
 	<div class="row" ng-hide="ui.panalPrice" style="margin-right:0;margin-left:0">
-		<p>@<% input.date %></p>
+		<p>เช่าล๊อคของวันที่ <% input.date %></p>
 		<ul ng-repeat="item in list.item">
 			<li>ล๊อค <% item.name %> , ราคา <% item.price %> , จำนวน  <% item.amount %> ล๊อค</li>
 		</ul>
@@ -141,11 +141,7 @@
 				$http.post('/booking/create',$scope.input).success(function(d){
 					console.log(d);
 					if(d.result){
-						if(confirm('ทำการจองพื้นที่สำเร็จ ต้องการทำการจองอีกครั้ง')){
-							$scope.search();
-						}else{
-							window.location = '/checking';
-						}
+						window.location = '/booking/summary/'+d.bookingCode;
 					}
 				});
 			}
