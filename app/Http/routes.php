@@ -41,7 +41,8 @@ Route::group(['middleware' => 'auth'] , function(){
 
 	Route::get('/booking/summary/{id}', 'BookingController@summary');
 
-	Route::post('/checkin', 'CheckinController@index');
+	Route::get('/checkin', 'CheckinController@index');
+	Route::post('/checkin/get', 'CheckinController@feed');
 
 });
 

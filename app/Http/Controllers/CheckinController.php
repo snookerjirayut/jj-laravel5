@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use Auth;
+
+use App\Booking;
+use App\Zone;
+use App\User;
+use App\BookingDetail;
+
 class CheckinController extends Controller
 {
     /**
@@ -17,6 +24,31 @@ class CheckinController extends Controller
     public function index()
     {
         return view('checkin.index');
+    }
+
+    public function feed(Request $request){
+        if(!Auth::check()) return response()->json(array('result'=>false , 'message'=>'user is not define.'));
+        $user = Auth::user();
+
+        $pageSize = $request->input('pageSize');
+        $currentPage = $request->input('currentPage');
+
+        $skip = ($currentPage - 1 ) * $pageSize;
+
+        $booking = Booking::where('userID' , $user->id )->where('status','BK')->orderBy('id', 'desc')
+        ->skip($skip)->take($pageSize)->get();
+        //var_dump($skip ,  $pageSize);
+        $count = Booking::where('userID' , $user->id )->where('status','BK')->count();
+
+        foreach ($booking  as $key => $value) {
+            # code...
+             $temp = bookingDetail::where('bookingID' , $value->id)->get();
+             //$temp->miliseconds = $temp->sale_at;
+             $value->bookingDetail = $temp;
+
+        }
+        if($booking == null)return response()->json(array('result'=>false , 'message'=>'booking is null.' , 'data' => $booking , 'total' => $count ));
+        return response()->json(array('result'=>true , 'message'=>'success.' , 'data' => $booking , 'total' => $count ));
     }
 
     /**

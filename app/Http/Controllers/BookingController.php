@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Validator;
+
 use App\Calendar;
 use App\Booking;
 use App\Zone;
