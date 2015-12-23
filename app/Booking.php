@@ -33,8 +33,8 @@ class Booking extends Model
 
     public function getCanCheckInAttribute(){
         $date_sale = new DateTime($this->sale_at);
-        $date_now = new DateTime("now");
-        //$date_now = new DateTime("2015-12-26");
+        //$date_now = new DateTime("now");
+        $date_now = new DateTime("2015-12-26");
 
         $interval = date_diff($date_now , $date_sale);
         $str =  $interval->format('%R%d');

@@ -16,17 +16,17 @@
 			  </div>
 			  <div class="media-left active" ng-if="booking.canCheckIn">
 			    <h2 class="lock-number-booking">
-			    	<a href="#" ng-click="checkin()">
+			    	<a href="#" ng-click="checkin($index , booking.code)">
 			    		<i class="glyphicon glyphicon-map-marker"></i>BK
 			    	</a>
 			    </h2>
 			  </div>
 			  <div class="media-body">
 			    <h4 class="media-heading"><strong>ID :</strong> <% booking.code %></h4>
-			    Sale at : <% booking.miliseconds | date:'EEEE dd MMMM yyyy' %>
+			    <strong>Sale at : </strong><% booking.miliseconds | date:'EEE dd MMMM yyyy' %>
 			    <div ng-repeat="detail in booking.bookingDetail">
 			    	<div class="col-sm-1 box-child">
-			    		<p class="">&nbsp;<% detail.zoneNumber %></p>
+			    		<p class="text-bold">&nbsp;<% detail.zoneNumber %></p>
 			    	</div>
 			    </div>
 			  </div>
@@ -81,8 +81,18 @@
 			return day;
 		}
 
-		$scope.checkin = function(){
-			alert('test');
+		$scope.checkin = function(index , code){
+			//alert('test');
+			if(index == null) return ;
+			var param = $scope.list.bookings[index];
+			$http.put('/checkin/save/'+code , param).success(function(d){
+				console.log(d);
+				if(d.result){
+					alert('ID '+code+' check-in is success.');
+					$scope.nextPage();
+				}
+			});
+
 		}
 
 	}]);

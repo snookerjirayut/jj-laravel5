@@ -14,7 +14,9 @@ header{
 body{
 	height: 100%;
 }
-
+.text-bold{
+	font-weight: bold;
+}
 .book-tbl {
   position: relative;
   display: inline-flex;

@@ -43,6 +43,7 @@ Route::group(['middleware' => 'auth'] , function(){
 
 	Route::get('/checkin', 'CheckinController@index');
 	Route::post('/checkin/get', 'CheckinController@feed');
+	Route::put('/checkin/save/{id}', 'CheckinController@update');
 
 });
 

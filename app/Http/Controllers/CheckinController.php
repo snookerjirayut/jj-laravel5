@@ -8,11 +8,15 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Auth;
+use Validator;
 
 use App\Booking;
 use App\Zone;
 use App\User;
 use App\BookingDetail;
+
+use DateTime;
+use DateTimeZone;
 
 class CheckinController extends Controller
 {
@@ -51,49 +55,7 @@ class CheckinController extends Controller
         return response()->json(array('result'=>true , 'message'=>'success.' , 'data' => $booking , 'total' => $count ));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
+    
     /**
      * Update the specified resource in storage.
      *
@@ -103,7 +65,45 @@ class CheckinController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if($id == null) return response()->json(array('result'=>false , 'message'=>'Booking id can not be null.'));
+        
+         $rules = array(
+                'id' =>'required',
+                'code' =>'required',
+                'canCheckIn' => 'required|boolean:true',
+                'bookingDetail' => 'required|array'
+        );
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) return response()->json(array('result'=>false , 'message'=>'invalid input field.'));
+
+
+        $date = new DateTime();
+        $date->setTimezone(new DateTimeZone('Asia/Bangkok'));
+
+        $booking = Booking::where('code' , $id)->first();
+        $booking->status = 'CN';
+        $booking->checkin_at =  $date->format('Y-m-d H:i:s');
+        $result = $booking->save();
+        if(!$result) return response()->json(array('result'=>false , 'message'=>'Booking id $id check-in has error.')); 
+
+        $detail = $request->input('bookingDetail');
+        //var_dump($detail);
+        $count = 0;
+        foreach ($detail as $key => $value) {
+            # code...
+            $val = (object)$value;
+            $obj = BookingDetail::where('id' , $val->id)->first();
+            $obj->status = 'CN';
+            $obj->checkin_at =  $date->format('Y-m-d H:i:s');
+            if($obj->save()) $count++;
+           // var_dump($val);
+        }
+        if($count != count($detail)){
+             return response()->json(array('result'=>false , 'message'=>'false.'));
+        }
+
+        return response()->json(array('result'=>true , 'message'=>'success.'));
+
     }
 
     /**
