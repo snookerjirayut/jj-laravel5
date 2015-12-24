@@ -193,23 +193,37 @@ div.media-left.active .lock-number-booking a:hover{
 
 #checking .box-child{
 		width: 50px;
-		height: 40px;
+		height: auto;
 		padding: 0;
 		/*border:1px solid #ccc;*/
 }
+.box-payment-status{
+	position: relative;
+	float: none;
+	clear: left;
+}
+
 	
 #checking  .media{
 		margin-top: 40px;
 		padding-left: 10%;
 }
 #checking  .media-body{
-		padding: 5px;
+		padding: 1px;
+		line-height: 1em;
 }
 
-
-
-
-
+.clear-left{
+	clear: left;
+	float: none;
+	display: block;
+	position: relative;
+}
+.media-right.payement{
+	padding-top: 30px;
+	font-size: 1.2em;
+	font-weight: bold;
+}
 
 @media screen and (max-width: 765px) {
 	#checking .box-child{
@@ -225,7 +239,7 @@ div.media-left.active .lock-number-booking a:hover{
 	}
 
 	#checking .media .media-body{
-		line-height: 2em;
+		line-height: 1.2em;
 	}
 
 	.row.relative{

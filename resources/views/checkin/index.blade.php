@@ -11,24 +11,35 @@
 			<div class="media">
 			  <div class="media-left disable" ng-if="!booking.canCheckIn">
 			    <h2 class="lock-number-booking">
-			    	<i class="glyphicon glyphicon-map-marker"></i>BK
+			    	<i class="glyphicon glyphicon-map-marker"></i><% booking.status %>
 			    </h2>
 			  </div>
 			  <div class="media-left active" ng-if="booking.canCheckIn">
 			    <h2 class="lock-number-booking">
 			    	<a href="#" ng-click="checkin($index , booking.code)">
-			    		<i class="glyphicon glyphicon-map-marker"></i>BK
+			    		<i class="glyphicon glyphicon-map-marker"></i><% booking.status %>
 			    	</a>
 			    </h2>
 			  </div>
 			  <div class="media-body">
-			    <h4 class="media-heading"><strong>ID :</strong> <% booking.code %></h4>
-			    <strong>Sale at : </strong><% booking.miliseconds | date:'EEE dd MMMM yyyy' %>
-			    <div ng-repeat="detail in booking.bookingDetail">
+			    <h5 class="media-heading"><strong>ID :</strong> <% booking.code %></h5>
+			    <h5><strong>Sale at : </strong><% booking.miliseconds | date:'EEE dd MMMM yyyy' %></h5>
+			    
+			    <div ng-repeat="detail in booking.bookingDetail" id="box-number-<% $index  %>" >
 			    	<div class="col-sm-1 box-child">
-			    		<p class="text-bold">&nbsp;<% detail.zoneNumber %></p>
+			    		<p>&nbsp;<% detail.zoneNumber %></p>
 			    	</div>
 			    </div>
+			    <div class="box-payment-status">
+				    <h5>
+				    	<span ng-if="booking.payment == 0" class="text-danger">wait payment.</span>
+				    	<span ng-if="booking.payment == 1" class="text-info">uploaded slip.</span>
+				    	<span ng-if="booking.payment == 2" class="text-success">payment success.</span>
+				    </h5>
+			    </div>
+			  </div>
+			  <div class="media-right payement">
+			  	<% booking.totalPrice |  number:2 %>&nbsp;฿
 			  </div>
 			</div>
 		</div>

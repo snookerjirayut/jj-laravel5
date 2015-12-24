@@ -85,7 +85,7 @@ class BookingController extends Controller
             'userCode' => $user->code , 
             'quantity' =>  $request->input('number'),
             'totalPrice' =>  $request->input('totalPrice'),
-            'code' => $date->format('Ymd-His').'-'.$user->id,
+            'code' => $date->format('Ymd-His').''.$user->id,
             'productName' => $request->input('productName'),
             'status' => 'BK'
         ]);

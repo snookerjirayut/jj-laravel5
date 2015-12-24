@@ -62,7 +62,7 @@
                         @if(\Auth::check())
                         <ul class="nav navbar-nav navbar-right menu-right">
                             <li><a href="/booking">จองพื้นที่</a></li>
-                            <li><a href="#">เช็คอิน</a></li>
+                            <li><a href="/checkin">เช็คอิน</a></li>
                             <li><a href="#">แจ้งโอน</a></li>
                         </ul>
                         @else
