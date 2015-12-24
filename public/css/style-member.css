@@ -160,6 +160,14 @@ footer{
 	width: 100%;
 	background: #5cb85c;*/
 }
+.box-booking-summary{
+	border:1px solid #5cb85c;
+	padding: 3%;
+}
+.box-booking-button{
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
 
 .media-left > .lock-number-booking{
 		width: 90px;

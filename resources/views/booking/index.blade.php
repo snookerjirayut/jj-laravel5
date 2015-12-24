@@ -6,13 +6,13 @@
 	$user = \Auth::user();
 ?>
 <!-- HEAD -->
-<div class="row">
+{{-- <div class="row">
 	<div class="col-sm-3 col-sm-offset-4" style="margin-bottom:20px;">
 	@if(isset($user->image))
 		<img src="{{$user->image}}" class="profile" alt="profile" class="img-circle">
 	@else
 		<div class="circleBase">
-			{{-- <h2>{{ substr($user->name, 0 , 1) }}</h2> --}}
+			
 		</div>
 	@endif
 	<h4 class="text-center">{{$user->name}}</h4>
@@ -22,7 +22,7 @@
 		<p class="text-center"><small>ผู้ค้าประจำ</small></p>
 	@endif
 	</div>
-</div>
+</div> --}}
 
 <!-- ROW -->
 <section ng-controller="BookingController" ng-init="init()" id="BookingController">
@@ -30,66 +30,66 @@
 		<div class="col-sm-12">
 
 			<div class="col-sm-3">
-				<label>Day</label>
+				<label>วันที่จอง</label>
 				<select ng-options="day.opened_at as day.name for day in list.days track by day.opened_at" ng-model="input.date" 
 				class="form-control" ng-change="getZone()"></select>
 			</div>
 			<div class="col-sm-3">
-				<label>Zone</label>
+				<label>เลือกโซน</label>
 				<select ng-options="zone.name as zone.name for zone in list.zones track by zone.name" 
 				ng-model="input.zoneName" ng-disabled="ui.zone" ng-change="openUI()"
 				class="form-control"></select>
 			</div>
 			<div class="col-sm-3">
-				<label>Product Name</label>
+				<label>ระบุสินค้า</label>
 				<input name="productName" ng-model="input.productName" ng-disabled="ui.number" class="form-control">
 			</div>
 			<div class="col-sm-2">
-				<label>Number</label>
+				<label>จำนวนล็อค</label>
 				<select ng-options="number.id as number.name for number in list.numbers track by number.id" ng-model="input.number" 
 				class="form-control" ng-disabled="ui.number"></select>
 			</div>
 			<div class="col-sm-1">
 				<label>&nbsp;</label>
-				<button class="btn btn-info" ng-click="search()" ng-disabled="input.number == null">Search</button>
+				<button class="btn btn-info" ng-click="search()" ng-disabled="input.number == null">ตกลง</button>
 			</div>
 
 		</div>
 	</div>
 	<div class="row" style="margin-right:0;margin-left:0;">
-		<div class="book-tbl" ng-repeat="zoneCode in list.zoneCode" ng-init="parentIndex = $index" 
-		on-finish-render="ngRepeatFinished">
-			<ul>
-				<li ng-repeat="block in list.zoneBlock[parentIndex]">
-					<input id="<% block.id %>" type="checkbox" 
-						ng-model="input.checked[block.id]" ng-checked="block.check" 
-						ng-click="checkValue(block.id , $event)"/>
-					<label for="<% block.id %>"><% block.id %></label>
-				</li>
+		<div class="col-sm-8">
+			<div class="book-tbl" ng-repeat="zoneCode in list.zoneCode" ng-init="parentIndex = $index" 
+				on-finish-render="ngRepeatFinished">
+				<ul>
+					<li ng-repeat="block in list.zoneBlock[parentIndex]">
+						<input id="<% block.id %>" type="checkbox" 
+							ng-model="input.checked[block.id]" ng-checked="block.check" 
+							ng-click="checkValue(block.id , $event)"/>
+						<label for="<% block.id %>"><% block.id %></label>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-sm-4 box-booking-summary">
+			<h4 class="text-center">เช่าล๊อคของวันที่ <% input.date %></h4>
+			<ul ng-repeat="item in list.item">
+				<li>ล๊อค <% item.name %> , ราคา <% item.price %> , จำนวน  <% item.amount %> ล็อค</li>
 			</ul>
+			<div class="form-inline text-center">
+				<label style="padding:6px;">ยอดชำระ <% input.totalPrice | number:2 %> บาท</label>
+			</div>
+			<div class="row">
+				<div class="col-sm-8 col-sm-offset-2 box-booking-button">
+					<button class="btn btn-success btn-block" ng-click="booking()" >จองพื้นที่</button>
+				</div>
+			</div>	
+
 		</div>
+		
 	</div>
 
-	<div class="row" ng-hide="ui.panalPrice" style="margin-right:0;margin-left:0">
-		<p>เช่าล๊อคของวันที่ <% input.date %></p>
-		<ul ng-repeat="item in list.item">
-			<li>ล๊อค <% item.name %> , ราคา <% item.price %> , จำนวน  <% item.amount %> ล๊อค</li>
-		</ul>
-		<div class="form-inline">
-			<div class="form-group right">
-				<input type="text" ng-model="input.totalPrice" class="form-control left" readonly>
-				<label style="padding:6px;">บาท</label>
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-sm-3 col-sm-offset-4">
-				<button class="btn btn-success btn-block" ng-click="booking()" >booking</button>
-			</div>
-		</div>
-
-	</div>
-	
+	{{-- <div class="row" ng-hide="ui.panalPrice" style="margin-right:0;margin-left:0"></div>
+	 --}}
 
 </section>
 
