@@ -13,6 +13,7 @@
         <script src="/css/bootstrap/dist/js/bootstrap.min.js" ></script>
         <!-- Angular core JS -->
         <script src="/js/angular/angular.min.js" ></script>
+         <script src="/js/angular-i18n/angular-locale_th-th.js" ></script>
         <script src="/js/angular/ui-bootstrap-tpls.js" ></script>
         <style>
             html, body {

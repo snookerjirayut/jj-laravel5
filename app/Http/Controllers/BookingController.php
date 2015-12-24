@@ -181,7 +181,8 @@ class BookingController extends Controller
         $days = Calendar::select('opened_at')->where('active' , 1 )->groupBy('opened_at')->get();
         foreach ($days as $key => $value) {
             # code...
-            $value->name = date("D j F Y", strtotime($value->opened_at));
+            $value->name = strtotime($value->opened_at)*1000;
+            
         }
         return response()->json($days);
     }

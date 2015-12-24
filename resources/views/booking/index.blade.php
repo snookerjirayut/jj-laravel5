@@ -31,7 +31,8 @@
 
 			<div class="col-sm-3">
 				<label>วันที่จอง</label>
-				<select ng-options="day.opened_at as day.name for day in list.days track by day.opened_at" ng-model="input.date" 
+				<select ng-options="day.opened_at as day.name | date:'EEEE dd MMMM y'
+				for day in list.days track by day.opened_at" ng-model="input.date" 
 				class="form-control" ng-change="getZone()"></select>
 			</div>
 			<div class="col-sm-3">
