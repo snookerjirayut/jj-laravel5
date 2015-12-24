@@ -23,7 +23,7 @@
 			  </div>
 			  <div class="media-body">
 			    <h5 class="media-heading"><strong>ID :</strong> <% booking.code %></h5>
-			    <h5><strong>Sale at : </strong><% booking.miliseconds | date:'EEE dd MMMM yyyy' %></h5>
+			    <h5><strong>Sale at : </strong><% booking.miliseconds | date:'EEEE dd MMMM yyyy' %></h5>
 			    
 			    <div ng-repeat="detail in booking.bookingDetail" id="box-number-<% $index  %>" >
 			    	<div class="col-sm-1 box-child">

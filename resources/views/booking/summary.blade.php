@@ -52,14 +52,14 @@
 	  <div class="media-body">
 	    <h4 class="media-heading">โซน {{ $detail->zoneName }}</h4>
 	    ราคา {{ $obj->price }} บาท 
-	    จำนวน 1 ล๊อค
+	    จำนวน 1 ล็อค
 	  </div>
 	</div>
 @endforeach
 
 	<div class="row buttom">
 		<div class="col-sm-6 text-left"><p><strong>จำนวนรวม : </strong>{{ count($detail) }} ล๊อค</p></div>
-		<div class="col-sm-6 text-right"><p><strong>ราคารวม : </strong>{{ $booking->totalPrice }} บาท</p></div>
+		<div class="col-sm-6 text-right"><p><strong>ราคารวม : </strong>{{number_format($booking->totalPrice, 2, '.', '')   }} บาท</p></div>
 	</div>
 
 	<div class="row buttom last">

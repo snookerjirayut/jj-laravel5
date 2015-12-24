@@ -74,7 +74,7 @@
 		<div class="col-sm-4 box-booking-summary">
 			<h4 class="text-center">เช่าล๊อคของวันที่ <% input.date %></h4>
 			<ul ng-repeat="item in list.item">
-				<li>ล๊อค <% item.name %> , ราคา <% item.price %> , จำนวน  <% item.amount %> ล็อค</li>
+				<li>ล็อค <% item.name %> , ราคา <% item.price | number:2 %> , จำนวน  <% item.amount %> ล็อค</li>
 			</ul>
 			<div class="form-inline text-center">
 				<label style="padding:6px;">ยอดชำระ <% input.totalPrice | number:2 %> บาท</label>
