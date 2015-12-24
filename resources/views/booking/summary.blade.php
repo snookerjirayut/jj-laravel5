@@ -51,8 +51,9 @@
 	  </div>
 	  <div class="media-body">
 	    <h4 class="media-heading">โซน {{ $detail->zoneName }}</h4>
-	    ราคา {{ $obj->price }} บาท 
-	    จำนวน 1 ล็อค
+	    ราคา {{ number_format($obj->price, 2, '.', '') }} บาท 
+	    จำนวน 1 ล็อค <br>
+	    {{ $booking->type == 1 ? "ชำระผ่านการโอน" : "ชำระ ณ วันขายสินค้า" }}
 	  </div>
 	</div>
 @endforeach

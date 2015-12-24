@@ -71,19 +71,35 @@
 				</ul>
 			</div>
 		</div>
-		<div class="col-sm-4 box-booking-summary">
-			<h4 class="text-center">เช่าล๊อคของวันที่ <% input.date %></h4>
-			<ul ng-repeat="item in list.item">
-				<li>ล็อค <% item.name %> , ราคา <% item.price | number:2 %> , จำนวน  <% item.amount %> ล็อค</li>
-			</ul>
-			<div class="form-inline text-center">
-				<label style="padding:6px;">ยอดชำระ <% input.totalPrice | number:2 %> บาท</label>
-			</div>
-			<div class="row">
-				<div class="col-sm-8 col-sm-offset-2 box-booking-button">
-					<button class="btn btn-success btn-block" ng-click="booking()" >จองพื้นที่</button>
+		<div class="col-sm-4 box-booking-summary" ng-show="input.checked != null">
+			
+			<div >
+				<h5 class="text-center">เช่าล๊อคของวันที่ <% input.date  | date:'EEEE dd MMMM y' %></h5>
+				<hr>
+				<div class="col-sm-12 box-booking-item" ng-repeat="item in list.item" >
+					<div class="col-sm-8 text-left"><i class="glyphicon glyphicon-plus"></i> 
+						No. <% item.name %> จำนวน  <% item.amount %> ล็อค
+					</div> 
+					<div class="col-sm-4 text-right"><% item.price | number:2 %> <small>บาท</small></div>
 				</div>
-			</div>	
+				<div class="col-sm-12">
+					<hr>
+					<div class="text-center"> <small>วิธีการชำระเงิน</small> </div>
+					<div class="col-sm-8 col-sm-offset-2">
+						<select ng-options="type.id as type.name for type in list.type track by type.id" 
+						ng-model="input.type" class="form-control input-sm" ></select>
+					</div>
+				</div>
+				<div class="col-sm-12 text-center box-booking-total">
+					<label>ยอดชำระ <% input.totalPrice | number:2 %> บาท</label>
+				</div>
+				
+				<div class="col-sm-8 col-sm-offset-2 box-booking-button">
+					<button class="btn btn-success btn-block" 
+					ng-click="booking()" ng-disabled="ui.buttonBooking">จองพื้นที่</button>
+				</div>
+				
+			</div>
 
 		</div>
 		
@@ -120,9 +136,10 @@
 		$scope.list = {};
 		$scope.list.days = [];
 		$scope.list.numbers = [{id:1, name:1},{id:2, name:2},{id:3, name:3}]; 
+		$scope.list.type = [{id:1, name:'ชำระผ่านธนาคาร'},{id:2, name:'ชำระ ณ วันที่ขายสินค้า'}]
 		$scope.list.zoneCode = [];
 		$scope.list.zoneBlock = [];
-		$scope.list.zoneBlockDisable = ["D-29" , "D-10" , "E-10", "E-11" , "E-12", "I-10", "I-11" , "I-12"];
+		$scope.list.zoneBlockDisable = [];
 		$scope.input = {};
 		$scope.input.totalPrice = 0;
 		$scope.ui = {};
@@ -131,12 +148,14 @@
 		$scope.ui.number = true;
 		$scope.ui.button = true;
 		$scope.ui.panalPrice = true;
+		$scope.ui.buttonBooking = true;
 
 		$scope.parentIndex = 0;
 		$scope.childIndex = 0;
 
 		$scope.booking = function(){
 			$scope.input.products = $scope.list.item;
+			if($scope.input.type == null){ alert('กรุณาเลือกวิธีการชำระเงิน'); return; }
 			console.log($scope.input);
 			if($scope.list.item != null){
 				$http.post('/booking/create',$scope.input).success(function(d){
@@ -147,6 +166,7 @@
 				});
 			}
 		}
+
 
 		$scope.showPrice = function(){
 			var arr_item = [];
@@ -191,6 +211,7 @@
 
 			if(Object.keys(a).length == $scope.input.number) {
 				$scope.ui.booking = false;
+				$scope.ui.buttonBooking =false;
 			}
 
 			console.log($scope.input.checked);

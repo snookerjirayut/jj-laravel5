@@ -87,7 +87,8 @@ class BookingController extends Controller
             'totalPrice' =>  $request->input('totalPrice'),
             'code' => $date->format('Ymd-His').''.$user->id,
             'productName' => $request->input('productName'),
-            'status' => 'BK'
+            'status' => 'BK',
+            'type' => $request->input('type')
         ]);
 
         if($booking == null)return response()->json(array('result'=>false , 'message'=>'booking create fails.'));
