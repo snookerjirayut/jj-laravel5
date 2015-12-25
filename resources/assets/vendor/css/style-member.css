@@ -28,8 +28,12 @@ label.checkbox{
 	font-size: 0.8em;
 
 }
+.max-width{
+	max-width: 100%;
+}
 #hello{
 	min-height: 100%;
+	margin-top: 5%;
 
 }
 #footer{

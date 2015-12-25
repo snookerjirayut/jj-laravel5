@@ -42,7 +42,7 @@ class CheckinController extends Controller
         $booking = Booking::where('userID' , $user->id )->whereNotIn('status', ['RM'])->orderBy('id', 'desc')
         ->skip($skip)->take($pageSize)->get();
         //var_dump($skip ,  $pageSize);
-        $count = Booking::where('userID' , $user->id )->where('status' , ['RM'])->count();
+        $count = Booking::where('userID' , $user->id )->whereNotIn('status' , ['RM'])->count();
 
         foreach ($booking  as $key => $value) {
             # code...

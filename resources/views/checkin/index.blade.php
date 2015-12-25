@@ -66,12 +66,13 @@
 
 		$scope.input = {}; 
 		$scope.input.total = 0;
-		$scope.input.pageSize = 10;
+		$scope.input.pageSize = 3;
 		$scope.input.currentPage = 1;
 
 		$scope.init = function(){
 			$('#nav-bar li').eq(1).addClass('active');
 			$http.post('/checkin/get' , $scope.input).success(function(d){
+				console.log(d);
 				if(d.result){
 					$scope.list.bookings = d.data;
 					$scope.input.total = d.total;

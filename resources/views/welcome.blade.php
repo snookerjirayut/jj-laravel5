@@ -40,13 +40,16 @@
     
 
     <div class="navbar navbar-default navbar-fixed-top">
+    <div class="col-sm-12 box-header">
+        <img src="/img/header-01.png" class="img-resposive max-width">
+    </div>
     <div class="col-sm-12">
         <ul class="nav nav-pills right">
             @if(\Auth::check()) 
             <li role="presentation" class="disabled">
                 <a href="#"><i class="glyphicon glyphicon-user"></i>&nbsp;{{ \Auth::user()->name  }}</a>
             </li>
-            <li role="presentation" class="disabled">
+            <li role="presentation" class="">
                 <a href="/signout"><i class="glyphicon glyphicon-share-alt"></i>&nbsp;Signout</a>
             </li>
             @endif
