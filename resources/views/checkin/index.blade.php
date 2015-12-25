@@ -70,6 +70,7 @@
 		$scope.input.currentPage = 1;
 
 		$scope.init = function(){
+			$('#nav-bar li').eq(1).addClass('active');
 			$http.post('/checkin/get' , $scope.input).success(function(d){
 				if(d.result){
 					$scope.list.bookings = d.data;

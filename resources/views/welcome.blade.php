@@ -46,7 +46,7 @@
             <li role="presentation" class="disabled">
                 <a href="#"><i class="glyphicon glyphicon-user"></i>&nbsp;{{ \Auth::user()->name  }}</a>
             </li>
-            <li role="presentation">
+            <li role="presentation" class="disabled">
                 <a href="/signout"><i class="glyphicon glyphicon-share-alt"></i>&nbsp;Signout</a>
             </li>
             @endif
@@ -63,7 +63,7 @@
         </div>
         <div class="navbar-collapse collapse">
             @if(\Auth::check())
-            <ul class="nav navbar-nav navbar-right menu-right">
+            <ul class="nav navbar-nav navbar-right menu-right" id="nav-bar">
                 <li><a href="/booking">จองพื้นที่</a></li>
                 <li><a href="/checkin">เช็คอิน</a></li>
                 <li><a href="#">แจ้งโอน</a></li>

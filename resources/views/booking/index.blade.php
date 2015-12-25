@@ -209,6 +209,7 @@
 		}
 
 		$scope.init = function(){
+			$('#nav-bar li:first-child').addClass('active');
 			$http.get('/booking/calendar/day/get').success(function(d){
 				console.log(d);
 				$scope.list.days = d;
