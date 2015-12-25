@@ -28,6 +28,15 @@ label.checkbox{
 	font-size: 0.8em;
 
 }
+#hello{
+	min-height: 100%;
+
+}
+#footer{
+	position: relative;
+	width: 100%;
+	
+}
 .box-booking-item{
 	/*border-top:1px solid #ccc;
 	border-bottom: 1px solid #ccc;*/
