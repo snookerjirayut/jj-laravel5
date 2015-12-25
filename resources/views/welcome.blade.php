@@ -41,7 +41,7 @@
 
     <div class="navbar navbar-default navbar-fixed-top">
     <div class="col-sm-12 box-header">
-        <img src="/img/header-01.png" class="img-resposive max-width">
+        <img src="/img/header-02.png" class="img-resposive max-width">
     </div>
     <div class="col-sm-12">
         <ul class="nav nav-pills right">
