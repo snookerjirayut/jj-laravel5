@@ -40,6 +40,18 @@
     
 
     <div class="navbar navbar-default navbar-fixed-top">
+    <div class="col-sm-12">
+        <ul class="nav nav-pills right">
+            @if(\Auth::check()) 
+            <li role="presentation" class="disabled">
+                <a href="#"><i class="glyphicon glyphicon-user"></i>&nbsp;{{ \Auth::user()->name  }}</a>
+            </li>
+            <li role="presentation">
+                <a href="/signout"><i class="glyphicon glyphicon-share-alt"></i>&nbsp;Signout</a>
+            </li>
+            @endif
+        </ul>
+    </div>
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
