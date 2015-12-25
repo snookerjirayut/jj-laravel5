@@ -260,9 +260,9 @@ div.media-left.active .lock-number-booking a:hover{
 
 .box-inform-upload{
 	border: 2px dashed #5cb85c;
-	width: 350px;
+	width: 250px;
 	display: block;
-	min-height: 350px;
+	min-height: 250px;
 	border-radius: 50%;
 	margin: 20px auto;
 	padding: 13%;
