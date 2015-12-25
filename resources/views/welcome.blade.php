@@ -119,7 +119,7 @@
                 @yield('content')
             </div>
         </div>
-
+        @yield('description')
         <div id="green">
             <div class="container">
                 <div class="row">
