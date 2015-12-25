@@ -6,7 +6,7 @@
 		width: 90px;
 		height: 90px;
 		padding: 10px;
-		padding-top: 25px;
+		padding-top: 20px;
 		margin-top: 0;
 		vertical-align: middle;
 		border:1px solid #ccc;
@@ -16,22 +16,26 @@
 		padding: 15px;
 	}
 	.row.buttom{
-		margin-top: 30px;
+		margin-top: 20px;
 	}
 	.media{
-		    padding-left: 10%;
+		    padding-left: 20%;
 	}
 	.row.buttom.last{
 		margin-top: 20px;
 		margin-bottom: 50px;
 	}
+	p{
+		line-height: 1.4em;
+		margin-bottom : 10px;
+	}
 </style>
 <div class="row">
-<div class="col-sm-8 col-sm-offset-2">	
+<div class="col-sm-8 col-sm-offset-2" ng-controller="SummaryController">	
 	<div class="row">
 		<div class="col-sm-6 text-left">
 			<p><strong>เช่าล๊อคของวันที่ : </strong> 
-			{{   date("D j F Y", strtotime($booking->sale_at))  }} 
+			<% date | date:'EEEE dd MMMM y' %>
 			</p>
 		</div>
 	</div>
@@ -59,7 +63,7 @@
 @endforeach
 
 	<div class="row buttom">
-		<div class="col-sm-6 text-left"><p><strong>จำนวนรวม : </strong>{{ count($detail) }} ล๊อค</p></div>
+		<div class="col-sm-6 text-left"><p><strong>จำนวนรวม : </strong>{{ count($detail) }} ล็อค</p></div>
 		<div class="col-sm-6 text-right"><p><strong>ราคารวม : </strong>{{number_format($booking->totalPrice, 2, '.', '')   }} บาท</p></div>
 	</div>
 
@@ -81,5 +85,18 @@
 	var backToBooking = function(){
 		window.location = '/booking';
 	}
+angular.module("myApp").controller('SummaryController', ['$scope' ,'$http' , function($scope , $http){ 
+
+	$scope.date = {{$booking->miliseconds}};
+
+
+}]);
+
+
+
+
 </script>
+
+
+
 @endsection

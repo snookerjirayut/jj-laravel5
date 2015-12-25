@@ -3,14 +3,14 @@
     <head>
         <title>Green Vintage - @yield('title')</title>
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+        {{-- <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css"> --}}
         <!-- Bootstrap core CSS -->
         <link href="/css/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="/css/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
 
         <script src="/js/jquery.min.js" ></script>
         <script src="/js/moment/min/moment.min.js" ></script>
-        <script src="/css/bootstrap/dist/js/bootstrap.min.js" ></script>
+        <script src="/css/bootstrap/dist/js/bootstrap.js" ></script>
         <!-- Angular core JS -->
         <script src="/js/angular/angular.min.js" ></script>
          <script src="/js/angular-i18n/angular-locale_th-th.js" ></script>
@@ -30,12 +30,43 @@
             }
         </style>
         <link href="/css/style-member.css" rel="stylesheet">
+
+        <link href="/css/main.css" rel="stylesheet">
+        <link href="/css/font-awesome.min.css" rel="stylesheet">
         @yield('style')
 
     </head>
     <body>
-        
-        <div class="container">
+    
+
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/" >Green</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            @if(\Auth::check())
+            <ul class="nav navbar-nav navbar-right menu-right">
+                <li><a href="/booking">จองพื้นที่</a></li>
+                <li><a href="/checkin">เช็คอิน</a></li>
+                <li><a href="#">แจ้งโอน</a></li>
+            </ul>
+            @else
+            <ul class="nav navbar-nav navbar-right menu-right">
+                <li><a href="/signin">เข้าสู่ระบบ</a></li>
+            </ul>
+            @endif
+        </div><!--.nav-collapse -->
+      </div>
+    </div>
+
+
+        {{-- <div class="container">
             <header>
                 <div class="row header-top"></div>
                 <div class="row">
@@ -77,12 +108,39 @@
             </header>
 
             <div class="content">
-               @yield('content')
+               
             </div>
 
-           {{--  <footer>
+          
+        </div> --}}
 
-            </footer> --}}
+        <div id="hello">
+            <div class="container">
+                @yield('content')
+            </div>
+        </div>
+
+        <div id="green">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5 centered">
+                        <img src="/img/iphone.png" alt="">
+                    </div>
+                    
+                    <div class="col-lg-7 centered">
+                        <h3>How to go the Green Vintage?</h3>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="footer">
+                <div class="container">
+                    <div class="row">
+                        <p>Thesis © 2015 | GREEN VINGE MARKET </p>
+                    </div>
+                </div>
         </div>
        
         <script src="/js/app.js"></script>

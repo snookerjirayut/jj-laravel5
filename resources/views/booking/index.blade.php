@@ -5,24 +5,6 @@
 <?php 
 	$user = \Auth::user();
 ?>
-<!-- HEAD -->
-{{-- <div class="row">
-	<div class="col-sm-3 col-sm-offset-4" style="margin-bottom:20px;">
-	@if(isset($user->image))
-		<img src="{{$user->image}}" class="profile" alt="profile" class="img-circle">
-	@else
-		<div class="circleBase">
-			
-		</div>
-	@endif
-	<h4 class="text-center">{{$user->name}}</h4>
-	@if($user->role == 1)
-		<p class="text-center"><small>ผู้ค้าใหม่</small></p>
-	@else 
-		<p class="text-center"><small>ผู้ค้าประจำ</small></p>
-	@endif
-	</div>
-</div> --}}
 
 <!-- ROW -->
 <section ng-controller="BookingController" ng-init="init()" id="BookingController">

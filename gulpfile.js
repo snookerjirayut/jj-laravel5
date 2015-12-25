@@ -17,6 +17,8 @@ elixir(function(mix) {
 
     mix.copy('resources/assets/vendor/jquery/dist/jquery.min.js', 'public/js/jquery.min.js');
     mix.copy('resources/assets/vendor/angular/', 'public/js/angular/');
+    mix.copy('resources/assets/vendor/webfontkit/', 'public/webfontkit');
+    mix.copy('resources/assets/vendor/img/', 'public/img');
     mix.copy('resources/assets/vendor/angular-i18n/', 'public/js/angular-i18n/');
     
     mix.copy('resources/assets/vendor/angular-bootstrap/ui-bootstrap-tpls.js', 'public/js/angular/ui-bootstrap-tpls.js');
