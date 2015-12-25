@@ -7,7 +7,7 @@
 
 	<div class="box-inform-upload">
 		
-	<img src="/img/icon-upload.png" class="img-responsive">
+		<img src="/img/icon-upload.png" class="img-responsive">
 
 	</div>
 
@@ -20,6 +20,9 @@
 
 @endsection
 @section('script')
+<script type="text/javascript">
+	$('#nav-bar li').eq(2).addClass('active');
 
+</script>
 
 @endsection
