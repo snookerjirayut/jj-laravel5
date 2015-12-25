@@ -59,7 +59,7 @@
 				<h5 class="text-center">เช่าล๊อคของวันที่ <% input.date  | date:'EEEE dd MMMM y' %></h5>
 				<hr>
 				<div class="col-sm-12 box-booking-item" ng-repeat="item in list.item" >
-					<div class="col-sm-8 text-left"><i class="glyphicon glyphicon-plus"></i> 
+					<div class="col-sm-8 text-left">
 						No. <% item.name %> จำนวน  <% item.amount %> ล็อค
 					</div> 
 					<div class="col-sm-4 text-right"><% item.price | number:2 %> <small>บาท</small></div>
@@ -67,9 +67,15 @@
 				<div class="col-sm-12">
 					<hr>
 					<div class="text-center"> <small>วิธีการชำระเงิน</small> </div>
-					<div class="col-sm-8 col-sm-offset-2">
-						<select ng-options="type.id as type.name for type in list.type track by type.id" 
-						ng-model="input.type" class="form-control input-sm" ></select>
+					<div class="col-sm-8 col-sm-offset-2 ">
+						<label class="checkbox">
+							<input type="radio" ng-model="input.type" value="1">
+							 &nbsp;&nbsp;&nbsp;ชำระผ่านธนาคาร
+						</label>
+						<label class="checkbox">
+							<input type="radio" ng-model="input.type" value="2">
+							 &nbsp;&nbsp;ชำระ ณ วันที่ขายสินค้า
+						</label>
 					</div>
 				</div>
 				<div class="col-sm-12 text-center box-booking-total">
@@ -124,6 +130,7 @@
 		$scope.list.zoneBlockDisable = [];
 		$scope.input = {};
 		$scope.input.totalPrice = 0;
+		$scope.input.type = 1;
 		$scope.ui = {};
 		$scope.ui.booking = true;
 		$scope.ui.zone = true;
