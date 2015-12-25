@@ -257,6 +257,24 @@ div.media-left.active .lock-number-booking a:hover{
 	font-weight: bold;
 }
 
+
+.box-inform-upload{
+	border: 2px dashed #5cb85c;
+	width: 350px;
+	display: block;
+	min-height: 350px;
+	border-radius: 50%;
+	margin: 20px auto;
+	padding: 13%;
+}
+.btn-upload{
+	margin-top: 10%;
+	width: 70%;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
 @media screen and (max-width: 765px) {
 	#checking .box-child{
 			width: 50px;

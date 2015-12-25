@@ -45,6 +45,10 @@ Route::group(['middleware' => 'auth'] , function(){
 	Route::post('/checkin/get', 'CheckinController@feed');
 	Route::put('/checkin/save/{id}', 'CheckinController@update');
 
+
+
+	Route::get('/inform', 'InformController@index');
+
 });
 
 Route::get('/admin', 'Backend\HomeController@index');
