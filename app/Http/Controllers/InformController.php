@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use Validator;
+use Auth;
+
 class InformController extends Controller
 {
     /**
@@ -19,6 +22,27 @@ class InformController extends Controller
         return view('inform.index');
     }
 
+
+    public function upload(Request $request){
+         $rules = array(
+                'file' =>'required'
+        );
+
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) return response()->json(array('result'=>false , 'message'=>'invalid input field.'));
+
+        $user = Auth::user();
+        $imageName = time().'-'.$user->id.'.'.$request->file('file')->getClientOriginalExtension();
+        //var_dump($imageName);
+
+        $result = $request->file('file')->move(
+            base_path() . '/public/img/upload/', $imageName
+        );
+
+        //var_dump($result);
+
+        return response()->json(array('result'=>true ));
+    }
     /**
      * Show the form for creating a new resource.
      *

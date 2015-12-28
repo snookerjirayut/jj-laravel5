@@ -20,6 +20,7 @@ elixir(function(mix) {
     mix.copy('resources/assets/vendor/webfontkit/', 'public/webfontkit');
     mix.copy('resources/assets/vendor/img/', 'public/img');
     mix.copy('resources/assets/vendor/angular-i18n/', 'public/js/angular-i18n/');
+    mix.copy('resources/assets/vendor/angular-dropzone/lib/angular-dropzone.js', 'public/js/angular/angular-dropzone.js');
     
     mix.copy('resources/assets/vendor/angular-bootstrap/ui-bootstrap-tpls.js', 'public/js/angular/ui-bootstrap-tpls.js');
     mix.copy('resources/assets/vendor/fullcalendar/dist', 'public/js/calendar/');

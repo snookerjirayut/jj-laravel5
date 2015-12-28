@@ -48,6 +48,7 @@ Route::group(['middleware' => 'auth'] , function(){
 
 
 	Route::get('/inform', 'InformController@index');
+	Route::post('/inform/upload', 'InformController@upload');
 
 });
 
