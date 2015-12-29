@@ -10,6 +10,8 @@ use App\Http\Controllers\Controller;
 use Validator;
 use Auth;
 
+use App\Booking;
+
 class InformController extends Controller
 {
     /**
@@ -18,73 +20,41 @@ class InformController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
+       // $user = Auth::user();
+        //$booking = Booking::where('userID' ,  $user->id)->get();
         return view('inform.index');
+    }
+
+    public function feed(){
+        $user = Auth::user();
+        $booking = Booking::where('userID' ,  $user->id)->where('payment' , 0 )->get();
+        return response()->json(array('result'=>true ,'data' => $booking ));
     }
 
 
     public function upload(Request $request){
          $rules = array(
-                'file' =>'required'
+                'file' =>'required',
+                'filename' =>'required',
         );
 
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) return response()->json(array('result'=>false , 'message'=>'invalid input field.'));
+        if($request->input('filename') == null || 
+            $request->input('filename')  == "undefined") return response()->json(array('result'=>false , 'message'=>'กรุณาเลือกวันที่ก่อน'));
 
         $user = Auth::user();
-        $imageName = time().'-'.$user->id.'.'.$request->file('file')->getClientOriginalExtension();
+        $imageName = $request->input('filename').'.'.$request->file('file')->getClientOriginalExtension();
         //var_dump($imageName);
 
         $result = $request->file('file')->move(
             base_path() . '/public/img/upload/', $imageName
         );
 
-        //var_dump($result);
-
-        return response()->json(array('result'=>true ));
+        return response()->json(array('result'=>true , 'filename' => $result->getFilename() ));
     }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+    
 
     /**
      * Update the specified resource in storage.
@@ -95,7 +65,22 @@ class InformController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rules = array(
+                'file' =>'required',
+                'code' =>'required',
+        );
+
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) return response()->json(array('result'=>false , 'message'=>'invalid input field.'));
+
+        $booking = Booking::where('code' , $request->input('code'))->first();
+        $booking->picture = url('').'/img/upload/'.$request->input('file');
+        $booking->payment = 1;
+        if($booking->save()){
+            return response()->json(array('result'=>true , 'message'=>'save success' , 'data'=>$booking ));
+        }
+        return response()->json(array('result'=>false , 'message'=>'save fail.'));
+
     }
 
     /**

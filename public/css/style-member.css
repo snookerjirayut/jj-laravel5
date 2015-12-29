@@ -278,6 +278,16 @@ div.media-left.active .lock-number-booking a:hover{
 	margin-left: auto;
 	margin-right: auto;
 }
+.box-select-date{
+	width: 80%;
+	margin: 10px auto;
+}
+
+/*
+.box-inform-date{
+	margin-top:20px;
+	margin-bottom: 20px;
+}*/
 
 @media screen and (max-width: 765px) {
 	#checking .box-child{

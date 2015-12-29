@@ -232,11 +232,12 @@
 			//validate
 			$scope.input.checked = {};
 			$scope.list.item = [];
-			$scope.ui.panalPrice= true;
+			
 
 			$http.post('/booking/search' , $scope.input).success(function(d){
 				//console.log(d);
 				if(d.result){
+					$scope.ui.panalPrice = true;
 					$scope.list.zoneCode = d.data;
 					$scope.list.zoneCode.forEach(function(element, index, array){
 						var arr = [];
@@ -247,6 +248,10 @@
 						$scope.list.zoneBlock[index] = arr;
 					});
 					//console.log('block' , $scope.list.zoneBlock);
+				}else{ 
+					delete $scope.input.checked;
+					delete $scope.list.item ;
+					alert(d.message); 
 				}
 			});
 		}

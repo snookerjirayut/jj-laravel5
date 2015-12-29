@@ -15,6 +15,8 @@ use App\Http\Controllers\Controller;
 use DateTime;
 use DateTimeZone;
 
+use Auth;
+
 
 class BookingController extends Controller
 {
@@ -171,6 +173,15 @@ class BookingController extends Controller
 
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) return response()->json(array('result'=>false , 'message'=>'invalid input field.'));
+
+        $user = Auth::user();
+
+        $booking_count = Booking::where('sale_at' , $request->input('date'))->where('userID' ,  $user->id)->count();
+        if( $booking_count > 0){
+            return response()->json(array('result'=>false , 'message'=>'บัญชีนี้ได้ทำการจองไปแล้ว กรุณาตรวจสอบใหม่อีกครั้ง'));
+        }
+
+
         $block = Calendar::where('active' , 1 )
             ->where('opened_at' , $request->input('date'))
             ->where('name' , $request->input('zoneName'))->get();
