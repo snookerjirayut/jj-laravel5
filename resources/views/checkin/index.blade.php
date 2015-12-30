@@ -33,8 +33,12 @@
 			    <div class="box-payment-status">
 				    <h5>
 				    	<span ng-if="booking.payment == 0" class="text-danger">wait payment.</span>
-				    	<span ng-if="booking.payment == 1" class="text-info">uploaded slip.</span>
-				    	<span ng-if="booking.payment == 2" class="text-success">payment success.</span>
+				    	<span ng-if="booking.payment == 1" class="text-warning">
+				    		<a href="<% booking.picture %>" target="_blank"><i class="glyphicon glyphicon-picture"></i>
+				    		uploaded slip.</a>
+				    	</span>
+				    	<span ng-if="booking.payment == 2" class="text-success"><a href="<% booking.picture %>" target="_blank">
+				    	<i class="glyphicon glyphicon-picture"></i>payment success.</a></span>
 				    </h5>
 			    </div>
 			  </div>
