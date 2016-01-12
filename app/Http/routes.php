@@ -84,12 +84,18 @@ Route::group(['middleware' => 'role:admin'] , function(){
 	Route::post('/admin/calendar/save', 'Backend\CalendarController@store');
 	Route::post('/admin/calendar/update', 'Backend\CalendarController@update');
 	Route::get('/admin/calendar/delete/{date}', function($date){
-	$events = Calendar::where('opened_at' , $date)->delete();
-	return response()->json($events);
+		$events = Calendar::where('opened_at' , $date)->delete();
+		return response()->json($events);
+	});
+
+	Route::get('/admin/payment', 'Backend\PaymentController@index');
+	Route::get('/admin/payment/date', 'Backend\PaymentController@date');
+	Route::get('/admin/payment/zone/{date}', 'Backend\PaymentController@zone');
+	Route::post('/admin/payment/search', 'Backend\PaymentController@search');
+	
 });
 
 
-	/*Route::post('/admin/create', 'Backend\HomeController@store');
-	Route::put('/admin/update', 'Backend\HomeController@update');
-	Route::delete('/admin/destroy', 'Backend\HomeController@destroy');*/
-});
+
+
+

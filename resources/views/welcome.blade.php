@@ -13,24 +13,15 @@
         <script src="/css/bootstrap/dist/js/bootstrap.js" ></script>
         <!-- Angular core JS -->
         <script src="/js/angular/angular.min.js" ></script>
-         <script src="/js/angular-i18n/angular-locale_th-th.js" ></script>
+        <script src="/js/angular-i18n/angular-locale_th-th.js" ></script>
         <script src="/js/angular/ui-bootstrap-tpls.js" ></script>
         <style>
             html, body {
                 height: 100%;
             }
 
-            body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                display: table;
-                font-weight: 100;
-                font-family: 'Lato';
-            }
         </style>
         <link href="/css/style-member.css" rel="stylesheet">
-
         <link href="/css/main.css" rel="stylesheet">
         <link href="/css/font-awesome.min.css" rel="stylesheet">
         @yield('style')
@@ -88,7 +79,7 @@
         @yield('description')
         
 
-        <div id="footer">
+        <div id="footer" class="footer">
                 <div class="container">
                     <div class="row">
                         <p>Thesis © 2015 | GREEN VINGE MARKET </p>

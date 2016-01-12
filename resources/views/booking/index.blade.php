@@ -60,7 +60,7 @@
 				<hr>
 				<div class="col-sm-12 box-booking-item" ng-repeat="item in list.item" >
 					<div class="col-sm-8 text-left">
-						No. <% item.name %> จำนวน  <% item.amount %> ล็อค
+						No. <% item.name %> *  <% item.amount %> ล็อค
 					</div> 
 					<div class="col-sm-4 text-right"><% item.price | number:2 %> <small>บาท</small></div>
 				</div>

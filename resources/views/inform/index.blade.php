@@ -54,9 +54,12 @@
 		}
 		$scope.save = function(){
 			$http.put('/inform/update/'+$scope.input.code, $scope.input).success(function(data){
-				if(data.reuslt){
+				console.log(data);
+				if(data.result){
 					alert('อัพโหลดเสร็จเรียบร้อย');
 					window.location = '/inform';
+				}else{
+					alert(data.messge);
 				}
 			});
 		}

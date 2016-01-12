@@ -1,5 +1,5 @@
 @extends('backlayout')
-
+@section('title' , 'Calendar')
 @section('style')
 
 @endsection
@@ -29,41 +29,8 @@
 
 	
 	<section ng-controller="CalendarController" ng-init="init()">
-		{{-- <h2><% name %></h2> --}}
+
 		<div id='calendar'></div>
-
-
-		{{-- <div class="row min-height">
-			<div class="col-sm-12 panel panel-default">
-				<div class="panel-heading"><h2>Config!!</h2></div>
-				<div class="form-inline panel-body" >
-					<div class="repeat" ng-repeat="zone in list.zone">
-						<div class="col-sm-6 form-group">
-							<input type="checkbox" ng-model="input.open[$index].value" id="input_<% $index %>" ng-change="removeClass($index)">
-							<label for='input_<% $index %>' tabindex="-1" class="checkbox">
-							  <span class="check"></span>
-							  <% 'Block '+zone.code +' '+zone.name %>
-							</label>
-						</div>
-						<div class="form-group">
-							<label>Max</label>
-							<input type="text" value="<% zone.maxLock %>"  class="form-control" readonly>
-						</div>
-						<div class="form-group">
-							<label>Close</label>
-							<input type="text" ng-model="input.open[$index].close" class="form-control" 
-							id="input_close_<% $index %>" readonly>
-						</div>
-					</div>
-				</div>
-				<div class="panel-footer">
-					<button class="btn btn-success" ng-click="save()" ng-hide="mode.save != true">Save</button>
-			        <button class="btn btn-info" ng-click="update()" ng-hide="mode.save">Update</button>
-					<button class="btn btn-warning" ng-click="reset()">Reset</button>
-				</div>
-			</div>
-
-		</div> --}}
 
 		{{-- modal --}}
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

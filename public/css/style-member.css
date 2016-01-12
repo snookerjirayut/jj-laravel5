@@ -6,6 +6,8 @@ a > i {
 	color: #5cb85c;
 }
 
+
+
 header{
 	min-height: 250px;
 	width: 100%;
@@ -28,19 +30,24 @@ label.checkbox{
 	font-size: 0.8em;
 
 }
+.container{
+	padding-top: 3%;
+}
 .max-width{
 	max-width: 100%;
 }
-#hello{
-	min-height: 100%;
-	margin-top: 5%;
 
-}
-#footer{
-	position: relative;
+/*#footer{
+	position: absolute;
 	width: 100%;
-	
+	bottom: 0;
 }
+*/
+
+#BookingController{
+	min-height:  230px;
+}
+
 .box-booking-item{
 	/*border-top:1px solid #ccc;
 	border-bottom: 1px solid #ccc;*/
@@ -138,7 +145,8 @@ img.profile{
 	background: #5cb85c;
 }
 .container{
-	min-height:100%;
+	/*min-height:100%;*/
+
 	position:relative;
 }
 .content{
@@ -207,6 +215,7 @@ footer{
 		vertical-align: middle;
 		border:1px solid #ccc;
 		text-align: center;
+		background: #fff;
 }
 
 #checking  div.media-left.active .lock-number-booking{

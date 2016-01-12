@@ -6,11 +6,12 @@
 		width: 90px;
 		height: 90px;
 		padding: 10px;
-		padding-top: 20px;
+		padding-top: 25px;
 		margin-top: 0;
 		vertical-align: middle;
 		border:1px solid #ccc;
 		text-align: center;
+		background: #fff;
 	}
 	.media-body{
 		padding: 15px;

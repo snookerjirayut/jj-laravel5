@@ -3,8 +3,9 @@
     <head>
         <title>Backend - @yield('title')</title>
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
-           <!-- Bootstrap core CSS -->
+       
+        <link href='https://fonts.googleapis.com/css?family=Questrial' rel='stylesheet' type='text/css'>
+
 
         <link href="/css/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="/css/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
@@ -18,6 +19,7 @@
 
         <script src="/js/angular/angular.min.js" ></script>
         <script src="/js/angular/ui-bootstrap-tpls.js" ></script>
+        <script src="/js/angular-i18n/angular-locale_th-th.js" ></script>
         
         @yield('style')
         <style>
@@ -25,15 +27,8 @@
                 height: 100%;
             }
 
-            body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                display: table;
-                font-weight: 100;
-                font-family: 'Lato';
-            }
-
+            @import url(https://fonts.googleapis.com/css?family=Questrial);
+            
             .container {
                 text-align: center;
                 display: table-cell;
@@ -84,6 +79,7 @@
           <ul class="nav nav-sidebar">
             <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
             <li><a href="{{url('/admin/calendar')}}">Calendar</a></li>
+            <li><a href="{{url('/admin/payment')}}">Payment</a></li>
             <li><a href="#">Reports</a></li>
             <li><a href="#">Analytics</a></li>
             <li><a href="#">Export</a></li>
