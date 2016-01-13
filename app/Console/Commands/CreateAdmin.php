@@ -44,8 +44,7 @@ class CreateAdmin extends Command
         $result = \DB::table('users')->insert([
             'name' =>  $email ,
             'firstName' => 'Admin-'.date('YmdHis'),
-            'lastName' => 'Inpromma',
-            'cardID' => '1490300066761',
+            'cardID' => mt_rand(0000000000000, 9999999999999),
             'phone' => '0909359085',
             'code' => date('YmdHis'),
             'email' => $email,
