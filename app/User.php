@@ -36,4 +36,25 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    public function scopeEmail($query , $email)
+    {
+        return $query->where('email', 'like' , '%'.$email.'%');
+    }
+
+    public function scopeRole($query , $role)
+    {
+        return $query->where('role', $role);
+    }
+
+    public function scopeActive($query , $active)
+    {
+        return $query->where('active', $active);
+    }
+
+    public function scopeLimit($query , $skip , $take)
+    {
+        return $query->skip($skip)->take($take);
+    }
+
 }

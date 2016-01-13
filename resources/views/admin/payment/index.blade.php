@@ -20,110 +20,122 @@
 
 @section('content')
 	<h3>Payment</h3>
-	<div ng-controller="PaymentController" ng-init="init()">
-		<div class="row" style="margin: 20px 0;">
-			<div class="col-sm-12">
-				<div  class="form-inline">
-					<div class="form-group">
-						<label>Date</label>
-						<select ng-options="day.opened_at as day.opened_at | date:'EEEE dd MMMM y' 
-						for day in list.days track by day.opened_at" ng-model="input.date"  ng-disabled="ui.date"
-						class="form-control select-booking-date" placeholder="booking date" ng-change="getZone()"></select>
+<div ng-controller="PaymentController" ng-init="init()">
+	<div class="panel panel-default">
+	  <div class="panel-heading">
+	  	<div class="row" style="margin: 20px 0;">
+					<div class="col-sm-12">
+						<div  class="form-inline">
+							<div class="form-group">
+								<label>Date</label>
+								<select ng-options="day.opened_at as day.opened_at | date:'EEEE dd MMMM y' 
+								for day in list.days track by day.opened_at" ng-model="input.date"  ng-disabled="ui.date"
+								class="form-control select-booking-date"  ng-change="getZone()"></select>
+							</div>
+
+							<div class="form-group">
+								<label>Zone</label>
+								<select ng-options="zone.id as zone.code +' - '+zone.name
+								for zone in list.zones" ng-model="input.zone"  ng-disabled="ui.zone"
+								class="form-control select-booking-date" ng-change="ui.type = false" ></select>
+							</div>
+
+							<div class="form-group">
+								<label>Type</label>
+								<select ng-options="type.id as type.name
+								for type in list.types" ng-model="input.type"  ng-disabled="ui.type"
+								class="form-control select-booking-date"  ng-change="ui.status = false"></select>
+							</div>
+
+
+							<div class="form-group">
+								<label>Status</label>
+								<select ng-options="status.id as status.name
+								for status in list.status" ng-model="input.status"  ng-disabled="ui.status"
+								class="form-control select-booking-date"  ></select>
+							</div>
+							
+							<button class="btn btn-info" ng-click="search()" >Search</button>
+						</div>
 					</div>
 
-					<div class="form-group">
-						<label>Zone</label>
-						<select ng-options="zone.id as zone.code +' - '+zone.name
-						for zone in list.zones" ng-model="input.zone"  ng-disabled="ui.zone"
-						class="form-control select-booking-date" ng-change="ui.type = false" ></select>
-					</div>
-
-					<div class="form-group">
-						<label>Type</label>
-						<select ng-options="type.id as type.name
-						for type in list.types" ng-model="input.type"  ng-disabled="ui.type"
-						class="form-control select-booking-date"  ng-change="ui.status = false"></select>
-					</div>
-
-
-					<div class="form-group">
-						<label>Status</label>
-						<select ng-options="status.id as status.name
-						for status in list.status" ng-model="input.status"  ng-disabled="ui.status"
-						class="form-control select-booking-date"  ></select>
-					</div>
-					
-					<button class="btn btn-info" ng-click="search()" >Search</button>
 				</div>
-			</div>
 
-		</div>
-		<div class="row">
-			<div class="col-sm-12">
+	  </div>
+	  <div class="panel-body">
+	   		
+				<div class="row">
+					<div class="col-sm-12">
 
-				<table class="table table-striped table-bordered">
-					<thead>
-						<tr>
-							<td>IDX</td>
-							<td>Code</td>
-							<td>Product</td>
-							<td>Qty</td>
-							<td>Price</td>
-							<td>Status</td>
-							<td>Payment</td>
-							<td>Create</td>
-							<td>&nbsp;</td>
-						</tr>
-					</thead>
-					<tbody>
-						<tr ng-repeat="obj in table.payment">
-							<td><% obj.id %></td>
-							<td><% obj.code %></td>
-							<td><% obj.productName %></td>
-							<td><% obj.quantity %></td>
-							<td><% obj.totalPrice %></td>
-							<td>
-								<div ng-if="obj.status == 'BK'">
-									Booking
-								</div>
-								<div ng-if="obj.status == 'CN'">
-									Booking
-								</div>
-							</td>
-							<td>
-								<div ng-if="obj.payment == 0">
-									Wait
-								</div>
-								<div ng-if="obj.payment == 1">
-									<a href="<% obj.picture %>" target="_blank">Uploaded</a>
-								</div>
-								<div ng-if="obj.payment == 2">
-									Approved
-								</div>
-							</td>
-							<td><% obj.created_at %></td>
-							<td>
-								<div ng-if="obj.payment == 1">
-									<button class="btn btn-xs btn-warning" ng-click="approve(obj.id)">Approve</button>
-								</div>
-								<div ng-if="obj.payment == 2">
-									<label class="label label-success">Approved</label>
-								</div>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="col-sm-12">
-				<uib-pagination total-items="input.total" ng-model="input.page" 
-				items-per-page="input.pageSize"
-				ng-change="pageChanged()"></uib-pagination> 
-				<p>total of record : <% input.total %></p>
-			</div>
+						<table class="table table-striped table-bordered">
+							<thead>
+								<tr>
+									<td>IDX</td>
+									<td>Code</td>
+									<td>Product</td>
+									<td>Qty</td>
+									<td>Price</td>
+									<td>Status</td>
+									<td>Payment</td>
+									<td>Create</td>
+									<td>&nbsp;</td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="obj in table.payment">
+									<td><% obj.id %></td>
+									<td><% obj.code %></td>
+									<td><% obj.productName %></td>
+									<td><% obj.quantity %></td>
+									<td><% obj.totalPrice %></td>
+									<td>
+										<div ng-if="obj.status == 'BK'">
+											Booking
+										</div>
+										<div ng-if="obj.status == 'CN'">
+											Booking
+										</div>
+									</td>
+									<td>
+										<div ng-if="obj.payment == 0">
+											Wait
+										</div>
+										<div ng-if="obj.payment == 1">
+											<a href="<% obj.picture %>" target="_blank">Uploaded</a>
+										</div>
+										<div ng-if="obj.payment == 2">
+											Approved
+										</div>
+									</td>
+									<td><% obj.created_at %></td>
+									<td>
+										<div ng-if="obj.payment == 1">
+											<button class="btn btn-xs btn-warning" ng-click="approve(obj.id)">Approve</button>
+										</div>
+										<div ng-if="obj.payment == 2">
+											<label class="label label-success">Approved</label>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="col-sm-12">
+						<uib-pagination total-items="input.total" ng-model="input.page" 
+						items-per-page="input.pageSize"
+						ng-change="pageChanged()"></uib-pagination> 
+						<p>total of record : <% input.total %></p>
+					</div>
 
-		</div>
+				</div>
+	  </div>
 
+	   <div class="panel-footer">
+	   		
+	   </div>
 	</div>
+</div>
+	
 @endsection
 
 
