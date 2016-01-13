@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Calendar;
 use App\Booking;
 use App\BookingDetail;
+use App\ViewBookingAndDetail;
 use Validator;
 
 class PaymentController extends Controller
@@ -55,7 +56,7 @@ class PaymentController extends Controller
         $type = $request->input('type'); 
         $status = $request->input('status'); 
 
-        $date = $request->input('date'); 
+        $date = $request->input('date').' 00:00:00'; 
         $page = $request->input('page'); 
         $pageSize = $request->input('pageSize'); 
 
@@ -63,23 +64,32 @@ class PaymentController extends Controller
 
         if($zone == 99 && $type == 99 && $status == 99){
             $booking = Booking::where('sale_at' , $date)->skip($skip)->take($pageSize)->get();
-            $count = Booking::where('sale_at' , $date)->skip($skip)->take($pageSize)->count();
+            $count = Booking::where('sale_at' , $date)->count();
             return response()->json(['result'=>true , 'data'=> $booking , 'total'=>$count ]);
         }
+        
+        $query = \DB::table('v_booking_and_detail')->where('sale_at' , $date);
 
-        if($zone != 99){
-            $query = \DB::table('v_booking_and_detail')->where('sale_at' , $date)->where('zoneID' , $zone);
-        }else if($zone != 99 && $type != 99){
-            $query = $query->where('type' , $type);
-        }else if($zone != 99 && $type != 99 && $status != 99){
-            $query = $query->where('status' , $status);
-        }
+        if($zone != 99) $query->where('zoneID' , $zone);
+        if($type != 99) $query->where('type' , $type);
+        if($status != 99) $query->where('payment' , $status);
+        
 
-        $booking = $query->groupBy('id')->skip($skip)->take($pageSize)->get();
-        $sql = $query->groupBy('id')->skip($skip)->take($pageSize)->toSql();
-        $count = $query->groupBy('id')->skip($skip)->take($pageSize)->count();
+       /* \Event::listen('illuminate.query', function($query)
+        {
+            var_dump($query);
+        });*/
 
-        return response()->json(['result'=>true , 'data'=> $booking , 'total'=>$count , 'sql' =>$sql  ]);
+        $countQuery = $query->groupBy('id');
+
+        $booking = $query->skip($skip)->take($pageSize)->get();
+
+        $sql =  $query->toSql();
+
+        $count = ViewBookingAndDetail::from(\DB::raw('('.$countQuery->toSql().')  as table_count'))
+            ->mergeBindings($countQuery)->count();
+    
+        return response()->json(['result'=>true , 'data'=> $booking , 'total'=>$count , 'sql' => $sql]);
     }
 
     /**
@@ -129,12 +139,22 @@ class PaymentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $rules = array('bookingid' =>'required');
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) return response()->json(array('result'=>false , 'message'=>'invalid input field.'));
+
+        $booking_id = $request->input('bookingid');
+        $booking = Booking::where('id' , $booking_id )->first();
+
+        if($booking == null) return response()->json(array('result'=>false , 'message'=>'can not define booking from id '.$booking_id));
+        $booking->payment = 2;
+        if($booking->save())
+            return response()->json(array('result'=>true , 'message'=>'success' ));
+        return response()->json(array('result'=>false , 'message'=>'update fail'));
     }
 
     /**
