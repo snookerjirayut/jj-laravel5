@@ -222,7 +222,7 @@
 			$scope.list = {};
 			$scope.list.status = [{id:99 , name:'ALL - ทั้งหมด'} ,{id:0 , name: 'Booking'} , {id:1 , name: 'Uploaded'}
 			, {id:2 , name: 'Approved'}];
-			$scope.list.types = [{id:99 , name:'ALL - ทั้งหมด'} ,{id:1 , name: 'Transfer'} , {id:2 , name: 'With holding'}];
+			$scope.list.types = [{id:99 , name:'ALL - ทั้งหมด'} ,{id:1 , name: 'โอนเงิน'} , {id:2 , name: 'ชำระ ณ วันขาย'}];
 
 			$scope.modal = {};
 
