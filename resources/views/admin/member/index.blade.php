@@ -61,6 +61,7 @@
 	  						<td>Full Name</td>
 	  						<td>Tel</td>
 	  						<td>Create</td>
+	  						<td></td>
 	  					</tr>
 	  				</thead>
 	  				<tbody>
@@ -72,6 +73,7 @@
 	  						<td><% obj.firstName+' '+obj.lastName %></td>
 	  						<td><% obj.phone %></td>
 	  						<td><% obj.created_at %></td>
+	  						<td><a href="#detail" ng-click="showDetail($index)"><i class="glyphicon glyphicon-search"></i></a></td>
 	  					</tr>
 	  				</tbody>
 	  			</table>
@@ -91,6 +93,54 @@
 	  </div>
 	</div>
 
+	<div class="detail" ng-hide="ui.detail" id="detail">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-sm-3">
+						<label>Email</label>
+						<input class="form-control" ng-model="detail.email"  readonly>
+					</div>
+
+					<div class="col-sm-3">
+						<label>First Name</label>
+						<input class="form-control" ng-model="detail.firstName"  >
+					</div>
+
+					<div class="col-sm-3">
+						<label>Last Name</label>
+						<input class="form-control" ng-model="detail.lastName"  >
+					</div>
+
+					<div class="col-sm-3">
+						<label>Phone</label>
+						<input class="form-control" ng-model="detail.phone"  >
+					</div>
+
+					<div>
+						<div class="col-sm-3">
+							<label>Address</label>
+							<textarea class="form-control" ng-model="detail.address" rows="4"></textarea>
+						</div>
+
+						<div class="col-sm-3">
+							<label>Type</label>
+							<select ng-options="role.id as role.name 
+							for role in list.role" ng-model="detail.role" 
+							class="form-control select-booking-date"></select>
+						</div>
+
+					</div>
+					
+
+				</div>
+			</div>
+			<div class="panel-footer">
+				<button class="btn btn-success" ng-click="update()">update</button>
+			</div>
+		</div>
+	</div>
+
 
 </div>
 
@@ -105,14 +155,27 @@
 			$scope.input.page = 1;
 			$scope.input.pageSize = 20;
 
-			$scope.ui = { type:false, status:true,email:false,search:true };
+			$scope.detail = {};
+
+			$scope.ui = { type:false, status:true,email:false,search:true,detail:true };
 
 			$scope.table = {};
 
 			$scope.list = {};
 			$scope.list.type = [{id:99, name: 'ALL'} , {id:1 , name: 'Guest'},{id:2 , name: 'Member'}];
 			$scope.list.status = [{id:99, name: 'ALL'},{id:1 , name: 'Active'},{id:2 , name: 'Inactive'}];
+			$scope.list.role = [{id:1 , name: 'Guest'},{id:2 , name: 'Member'}];
 			
+
+			$scope.update = function(){
+				if($scope.detail.id == null) return ;
+				$http.put("{{url('/admin/member/update')}}/"+$scope.detail.id  , $scope.detail ).success(function(d){
+					if(d.result){
+						$scope.table.member[$scope.input.index] = d.data;
+						alert('update success.');
+					}else alert(d.message);
+				});
+			}
 
 			$scope.search = function(){
 				$http.post("{{url('/admin/member/search')}}",$scope.input).success(function(d){
@@ -134,6 +197,16 @@
 					}
 				});
 			}
+
+			$scope.showDetail = function(index){
+				if(index == null)return;
+				$scope.input.index = index;
+				$scope.detail = $scope.table.member[index];
+				console.log($scope.detail);
+				$scope.ui.detail = false;
+			}
+
+
 
 		}]);
 	</script>

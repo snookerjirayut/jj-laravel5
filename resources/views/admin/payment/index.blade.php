@@ -88,7 +88,7 @@
 								<tr ng-repeat="obj in table.payment">
 									<td><% obj.id %></td>
 									<td>
-										<a href="#" ng-click="openModal(obj.id)"><% obj.code %></a>
+										<a href="javascript://" ng-click="openModal(obj.id)"><% obj.code %></a>
 									</td>
 									<td><% obj.productName %></td>
 									<td><% obj.quantity %></td>

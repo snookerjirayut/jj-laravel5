@@ -29,7 +29,7 @@ class MemberController extends Controller
         );
 
         $validator = Validator::make($request->all(), $rules);
-        if ($validator->fails()) return response()->json(array('result'=>false , 'message'=>'invalid input field.'));
+        if ($validator->fails()) return response()->json(array('result'=>false , 'message'=>$validator->errors()->first()));
 
         $role = $request->input('type');
         $active = $request->input('status');
@@ -40,7 +40,7 @@ class MemberController extends Controller
         $skip = ($page -1)*$pageSize;
 
         //$sql = \DB::table('users');
-        $sql = User::whereRaw('(1+1=2)');
+        $sql = User::whereRaw('(1+1=2)')->where('isAdmin', 0);
         if($role == 99 && $active == 99 && !isset($email)){
             $user = $sql->limit($skip,$pageSize)->get();
             return response()->json(['result'=>true , 'data'=>$user , 'total' =>$sql->count() ]);
@@ -63,50 +63,6 @@ class MemberController extends Controller
 
     }
 
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
     /**
      * Update the specified resource in storage.
      *
@@ -116,7 +72,24 @@ class MemberController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rules = array(
+                'id' =>'required',
+                'email' =>'required',
+                'role' => 'required'
+        );
+
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) return response()->json(array('result'=>false , 'message'=>$validator->errors()->first()));
+
+        $user = User::where('id', $id )->first();
+        $user->role = $request->input('role');
+        $user->firstName = $request->input('firstName');
+        $user->lastName = $request->input('lastName');
+        $user->phone = $request->input('phone');
+        $user->address = $request->input('address');
+        if($user->save())
+            return response()->json(array('result'=>true , 'message'=>'success' , 'data'=>$user ));
+        return response()->json(array('result'=>false , 'message'=>'update fail.' , 'data'=>$user  ));
     }
 
     /**
@@ -127,6 +100,6 @@ class MemberController extends Controller
      */
     public function destroy($id)
     {
-        //
+
     }
 }
