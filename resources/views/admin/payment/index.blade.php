@@ -15,6 +15,9 @@
 	thead tr td {
 		font-weight: bold;
 	}
+	.last-box{
+		margin-bottom: 20px;
+	}
 	</style>
 @endsection
 
@@ -84,7 +87,9 @@
 							<tbody>
 								<tr ng-repeat="obj in table.payment">
 									<td><% obj.id %></td>
-									<td><% obj.code %></td>
+									<td>
+										<a href="#" ng-click="openModal(obj.id)"><% obj.code %></a>
+									</td>
 									<td><% obj.productName %></td>
 									<td><% obj.quantity %></td>
 									<td><% obj.totalPrice %></td>
@@ -104,7 +109,7 @@
 											<a href="<% obj.picture %>" target="_blank">Uploaded</a>
 										</div>
 										<div ng-if="obj.payment == 2">
-											Approved
+											<a href="<% obj.picture %>" target="_blank">Approved</a>
 										</div>
 									</td>
 									<td><% obj.created_at %></td>
@@ -134,6 +139,68 @@
 	   		
 	   </div>
 	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel">Booking Code <% modal.booking.code %></h4>
+	      </div>
+	      <div class="modal-body">
+	       <div class="col-sm-12 last-box">
+	        	<% modal.detail.type == 1 ?  'โอนเงิน' : 'ชำระ ณ​ วันขายสินค้า'  %>
+	        	<div ng-if="modal.booking.payment == 0">
+					<a href="#" target="_blank">รอการโอนเงินและอัพโหลดหลักฐานการโอน</a>
+				</div>
+				<div ng-if="modal.booking.payment == 1">
+					<a href="<% obj.picture %>" target="_blank">อัพโหลดหลักฐานการโอนเงินแล้ว</a>
+				</div>
+				<div ng-if="modal.booking.payment == 2">
+					<a href="<% modal.booking.picture %>" target="_blank">อนุมัติแล้ว</a>
+				</div>
+	        </div>
+	        <div class="col-sm-6"> </div>
+	        <div class="col-sm-6"> 
+	        	<p><% modal.user.firstName+' '+modal.user.lastName %></p>
+	        	<p><% modal.user.address %></p>
+	        	<p><% modal.user.phone %></p>
+	        </div>
+	       
+	        <table class="table table-striped table-bordered">
+	        	<thead>
+		        	<tr>
+		        		<td class="text-center">#</td>
+		        		<td class="text-center">Zone</td>
+		        		<td class="text-center">Number</td>
+		        		<td class="text-center">Qty</td>
+		        		<td class="text-center">Price</td>
+		        	</tr>
+	        	</thead>
+	        	<tr ng-repeat="obj in modal.booking.detail">
+	        		<td class="text-center"><% $index + 1 %></td>
+	        		<td class="text-center"><% obj.zoneCode %></td>
+	        		<td class="text-center"><% obj.zoneNumber %></td>
+	        		<td class="text-center">1</td>
+	        		<td class="text-center"><% obj.price %></td>
+	        	</tr>
+	        	<tr>
+	        		<td colspan="4" class="text-right">Grand Total</td>
+	        		<td class="text-center"> <strong><% modal.booking.totalPrice|number %></strong> </td>
+	        	</tr>
+	        </table>
+
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+
 </div>
 	
 @endsection
@@ -157,6 +224,8 @@
 			, {id:2 , name: 'Approved'}];
 			$scope.list.types = [{id:99 , name:'ALL - ทั้งหมด'} ,{id:1 , name: 'Transfer'} , {id:2 , name: 'With holding'}];
 
+			$scope.modal = {};
+
 			$scope.approve = function(data){
 				//alert(data);
 				if(data == null) return; 
@@ -168,6 +237,18 @@
 						$scope.pageChanged();
 					}else alert(d.message);
 				})
+			}
+
+			$scope.openModal = function(id){
+				if(id == null) return;
+				$http.get("{{ url('/admin/payment/show') }}/"+id).success(function(d){
+					if(d.result){
+						console.log(d.data);
+						$scope.modal.user = d.user;
+						$scope.modal.booking = d.data;
+						$('#myModal').modal('show');
+					}else alert(d.message);
+				});
 			}
 
 			$scope.init = function(){

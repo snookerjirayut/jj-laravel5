@@ -93,9 +93,11 @@ Route::group(['middleware' => 'role:admin'] , function(){
 	Route::get('/admin/payment/zone/{date}', 'Backend\PaymentController@zone');
 	Route::post('/admin/payment/search', 'Backend\PaymentController@search');
 	Route::post('/admin/payment/update', 'Backend\PaymentController@update');
+	Route::get('/admin/payment/show/{id}', 'Backend\PaymentController@show');
 
 	Route::get('/admin/member', 'Backend\MemberController@index');
 	Route::post('/admin/member/search', 'Backend\MemberController@search');
+
 	
 });
 

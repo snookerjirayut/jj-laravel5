@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Calendar;
 use App\Booking;
 use App\BookingDetail;
+use App\User;
 use App\ViewBookingAndDetail;
 use Validator;
 
@@ -42,15 +43,15 @@ class PaymentController extends Controller
     public function search(Request $request){
         $rules = array(
                 'date' =>'required',
-                'zone' => 'required',
+                /*'zone' => 'required',
                 'type' => 'required',
-                'status' => 'required',
+                'status' => 'required',*/
                 'page' => 'required',
                 'pageSize'  => 'required'
         );
 
         $validator = Validator::make($request->all(), $rules);
-        if ($validator->fails()) return response()->json(array('result'=>false , 'message'=>'invalid input field.'));
+        if ($validator->fails()) return response()->json(array('result'=>false , 'message'=>$validator->errors()->first() ));
 
         $zone = $request->input('zone'); 
         $type = $request->input('type'); 
@@ -70,9 +71,9 @@ class PaymentController extends Controller
         
         $query = \DB::table('v_booking_and_detail')->where('sale_at' , $date);
 
-        if($zone != 99) $query->where('zoneID' , $zone);
-        if($type != 99) $query->where('type' , $type);
-        if($status != 99) $query->where('payment' , $status);
+        if(isset($zone) && $zone != 99) $query->where('zoneID' , $zone);
+        if(isset($type) && $type != 99) $query->where('type' , $type);
+        if(isset($status) && $status != 99) $query->where('payment' , $status);
         
 
        /* \Event::listen('illuminate.query', function($query)
@@ -103,17 +104,6 @@ class PaymentController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -122,17 +112,13 @@ class PaymentController extends Controller
     public function show($id)
     {
         //
-    }
+        $booking = Booking::where('id' , $id)->first();
+        if($booking == null) return response()->json(['result'=>false , 'message'=>'can not get this booking detail.' ]);
+        $booking->detail = BookingDetail::where('bookingID' , $booking->id)->get();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        $user = User::where('id' , $booking->userID )->first();
+
+        return response()->json(['result'=>true , 'message'=>'success' , 'data'=>$booking , 'user'=>$user ]);
     }
 
     /**
@@ -145,7 +131,7 @@ class PaymentController extends Controller
     {
         $rules = array('bookingid' =>'required');
         $validator = Validator::make($request->all(), $rules);
-        if ($validator->fails()) return response()->json(array('result'=>false , 'message'=>'invalid input field.'));
+        if ($validator->fails()) return response()->json(array('result'=>false , 'message'=>$validator->errors()->first() ));
 
         $booking_id = $request->input('bookingid');
         $booking = Booking::where('id' , $booking_id )->first();
