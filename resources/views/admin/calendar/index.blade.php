@@ -39,6 +39,7 @@
 		      <div class="modal-header">
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 		        <h4 class="modal-title" id="myModalLabel">Detail</h4>
+		         <button class="btn btn-warning btn-sm" ng-click="closeDay()" ng-hide="mode.save">Close</button>
 		      </div>
 		      <div class="modal-body form-inline">
 		        <div class="repeat" ng-repeat="zone in list.zone">
@@ -84,7 +85,7 @@
 		$scope.input = {};
 		$scope.list.zone = [];
 		$scope.list.empty = [];
-		$scope.input.open=[];
+		$scope.input.open =[];
 		$scope.event = [];
 		$scope.mode = {};
 		$scope.mode.save = true; 
@@ -97,12 +98,39 @@
 			});
 			$http.get('/admin/get/calendar').success(function(d){
 				if(d == null) return ;
-				d.forEach(function(ele, index, array){
-					var data = { title : 'Open' ,start : ele.opened_at , color: '#257e4a', overlap: false};	
+				d.active.forEach(function(ele, index, array){
+					var data = {id : index , title : 'Open' ,start : ele.opened_at , overlap: false , color :'#257e4a' , active : ele.active};
 					$scope.event.push(data);
 					$('#calendar').fullCalendar('renderEvent' , data , true);
 				});
+				d.inactive.forEach(function(ele, index, array){
+					var data = {id : index , title : 'Close' ,start : ele.opened_at , overlap: false , color :'#cccccc' ,active : ele.active};
+					$scope.event.push(data);
+					$('#calendar').fullCalendar('renderEvent' , data , true);
+				});
+
+				console.log($scope.event);
 				
+			});
+		}
+
+
+		$scope.calendarUpdate = function(){
+			$('#calendar').fullCalendar('removeEvents');
+			$scope.event = [];
+			$http.get('/admin/get/calendar').success(function(d){
+				if(d == null) return ;
+				d.forEach(function(ele, index, array){
+					var data = {id : index , title : 'Open' ,start : ele.opened_at , overlap: false , color :'#257e4a' };
+					$scope.event.push(data);
+					$('#calendar').fullCalendar('renderEvent' , data , true);
+				});
+				d.inactive.forEach(function(ele, index, array){
+					var data = {id : index , title : 'Close' ,start : ele.opened_at , overlap: false , color :'#cccccc'};
+					$scope.event.push(data);
+					$('#calendar').fullCalendar('renderEvent' , data , true);
+				});
+				console.log($scope.event);
 			});
 		}
 
@@ -115,10 +143,7 @@
 			$http.post('/admin/calendar/save', $scope.input).success(function(d){
 				//success
 				if(!d.result){ alert('save agendar error.'); return;}
-				var data = {title: 'Open',start: $scope.input.date , color: '#257e4a', overlap: false};
-				$scope.event.push(data);
-				$('#calendar').fullCalendar('renderEvent' , data , true);
-				//$('#calendar').fullCalendar( 'refresh' );
+				$scope.calendarUpdate();
 				$('#myModal').modal('hide');
 				$scope.reset();
 			});
@@ -185,9 +210,51 @@
 			return data.length > 0 ? true : false;
 		}
 
+		$scope.closeMonth = function(date , callback){
+			if(date == null) return ;
+			$http.get('/admin/calendar/close/month/'+date).success(function(d){
+				if(d != null)
+					callback(d.message);
+			});
+		}
+
+		$scope.closeDay = function(){
+			if($scope.input.date == null)return;
+			if(confirm('Please confirm for close '+$scope.input.date)){
+				$http.get('/admin/calendar/close/day/'+$scope.input.date).success(function(d){
+					if(d.result){
+						alert(d.message);
+						//$scope.input.index
+						var index = $scope.input.index;
+						$("#calendar").fullCalendar( 'removeEvents'  ,  index );
+						var data = {id : index , title : 'Close' ,start:$scope.input.date , overlap: false , color :'#cccccc'};
+						$scope.event[index] = data;
+						$('#calendar').fullCalendar('renderEvent' , data , true);
+						$('#myModal').modal('hide');
+						$scope.reset();
+					}else alert(d.message);
+				});
+				
+
+			}
+			
+		}
+
 		$('#calendar').fullCalendar({
+				customButtons: {
+			        closeButton: {
+			            text: 'Close',
+			            click: function(calEvent, jsEvent, view) {
+			            	var day = $("#calendar").fullCalendar('getDate');
+			            	$scope.closeMonth(day.format() , function(msg){
+			            		$scope.calendarUpdate();
+			            		$scope.$apply();
+			            	});
+			            }
+			        }
+			    },
 			    header: {
-					left: 'prev,next today',
+					left: 'prev,next today closeButton',
 					center: 'title',
 					right: 'month'
 				},
@@ -197,7 +264,8 @@
 				eventClick: function(calEvent, jsEvent, view){
 					$scope.mode.save = false; 
 					$scope.reset();
-					//alert('Event start on: ' + calEvent.start.format());
+					$scope.input.index = calEvent.id;
+					if(calEvent.title === 'Close') return;
 					var dateStr = calEvent.start.format();
 					
 					$http.get('/admin/get/calendar/'+dateStr).success(function(d){
