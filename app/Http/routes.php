@@ -66,7 +66,8 @@ Route::get('/admin/get/zone', function(){
 
 Route::get('/admin/get/calendar', function(){
 	$events = Calendar::where('active' , '1')->groupBy('opened_at')->get();
-	return response()->json($events);
+	$events_inv = Calendar::where('active' , 0)->groupBy('opened_at')->get();
+	return response()->json(['active'=>$events , 'inactive' => $events_inv]);
 });
 Route::get('/admin/get/calendar/{date}', function($date){
 	$events = Calendar::where('active' , '1')->where('opened_at' , $date )->get();
@@ -87,6 +88,9 @@ Route::group(['middleware' => 'role:admin'] , function(){
 		$events = Calendar::where('opened_at' , $date)->delete();
 		return response()->json($events);
 	});
+
+	Route::get('/admin/calendar/close/month/{date}' , 'Backend\CalendarController@closeMouth');
+	Route::get('/admin/calendar/close/day/{date}' , 'Backend\CalendarController@closeDay');
 
 	Route::get('/admin/payment', 'Backend\PaymentController@index');
 	Route::get('/admin/payment/date', 'Backend\PaymentController@date');

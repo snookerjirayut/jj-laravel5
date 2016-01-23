@@ -21,15 +21,7 @@ class CalendarController extends Controller
         return view('admin.calendar.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+  
 
     /**
      * Store a newly created resource in storage.
@@ -94,6 +86,25 @@ class CalendarController extends Controller
         //
     }
 
+    public function closeMouth($date){
+        if (!isset($date)) return response()->json(array( 'result' => false , 'message' => 'valid input.' ));
+        $date = date("Y-m", strtotime($date));
+        $name = date("F", strtotime($date));
+        $calendars = Calendar::where('opened_at' , 'like' , $date.'%')->update(['active' => 0]);
+        if(isset($calendars))
+            return response()->json(array( 'result' => true , 'message' => 'Close '.$name.' success' ));
+        return response()->json(array( 'result' => false , 'message' => 'Close '.$name.' fail.' ));
+    }
+
+     public function closeDay($date){
+        if (!isset($date)) return response()->json(array( 'result' => false , 'message' => 'valid input.' ));
+        $date = date("Y-m-d", strtotime($date));
+        $calendars = Calendar::where('opened_at' , $date)->update(['active' => 0]);
+        if(isset($calendars))
+            return response()->json(array( 'result' => true , 'message' => 'Close '.$date.' success' ));
+        return response()->json(array( 'result' => false , 'message' => 'Close '.$name.' fail.' ));
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -135,7 +146,7 @@ class CalendarController extends Controller
                 }
             }
         }
-        return response()->json(array( 'result' => true , 'message' => 'success ['.$count.'].' ));
+        return response()->json(array( 'result' => true , 'message' => 'success ['.$count.'].' , 'id'=>$request->input('date') ));
     }
 
     /**
