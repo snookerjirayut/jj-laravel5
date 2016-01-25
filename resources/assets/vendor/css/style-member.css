@@ -6,13 +6,6 @@ a > i {
 	color: #5cb85c;
 }
 
-
-
-header{
-	min-height: 250px;
-	width: 100%;
-	background: #fff;
-}
 body{
 	height: 100%;
 }
@@ -20,29 +13,20 @@ body{
 	font-weight: bold;
 }
 .book-tbl {
-  position: relative;
-  display: inline-flex;
-  width: 100%;
-  margin-top: 2%;
-  padding-bottom: 20px;
+	position: relative;
+	display: inline-flex;
+	width: 100%;
+	margin-top: 2%;
+	padding-bottom: 20px;
 }
 label.checkbox{
 	font-size: 0.8em;
 
 }
-.container{
-	padding-top: 3%;
-}
+
 .max-width{
 	max-width: 100%;
 }
-
-/*#footer{
-	position: absolute;
-	width: 100%;
-	bottom: 0;
-}
-*/
 
 #BookingController{
 	min-height:  230px;
@@ -76,7 +60,7 @@ label.checkbox{
 	cursor: pointer;
 	overflow: hidden;
 	transition: all 0.25s ease 0s;
-  	-webkit-transition: all 0.25s
+	-webkit-transition: all 0.25s
 }
 
 .book-tbl > ul > li > label:hover {
@@ -84,15 +68,15 @@ label.checkbox{
 }
 
 .book-tbl > ul > li > label:active {
-	transition: 0; 
-  -webkit-transition: 0;
+	transition: 0;
+	-webkit-transition: 0;
 	-webkit-filter: brightness(.8);
 }
 
 
 .book-tbl > ul > li >  label:active {
-	transition: 0; 
-  -webkit-transition: 0;
+	transition: 0;
+	-webkit-transition: 0;
 	-webkit-filter: brightness(.8);
 }
 
@@ -107,7 +91,7 @@ label.checkbox{
 
 .book-tbl > ul > li > input:checked + label {
 	animation: boom .5s;
-  -webkit-animation: boom .5s;
+	-webkit-animation: boom .5s;
 }
 
 @keyframes boom {
@@ -129,26 +113,17 @@ label.checkbox{
 .circleBase {
 	width: 100px;
 	height: 100px;
-    border-radius: 50%;
-    behavior: url(PIE.htc); /* remove if you don't care about IE8 */
-    background: #999;
-    display: block;
-    margin: 0 auto;
+	border-radius: 50%;
+	behavior: url(PIE.htc); /* remove if you don't care about IE8 */
+	background: #999;
+	display: block;
+	margin: 0 auto;
 }
 img.profile{
 	width: 100px;
 	height: 100px;
 }
 
-.header-top{
-	min-height: 30px;
-	background: #5cb85c;
-}
-.container{
-	/*min-height:100%;*/
-
-	position:relative;
-}
 .content{
 	min-height: 250px;
 }
@@ -163,8 +138,8 @@ img.profile{
 }
 .menu-right{
 	position: absolute;
-    bottom: 0;
-    right: 20px;
+	bottom: 0;
+	right: 20px;
 }
 .menu-right li{
 	width: 150px;
@@ -182,20 +157,7 @@ form.ng-pristine.ng-valid div.row{
 form.ng-pristine.ng-valid input{
 	text-align: center;
 }
-footer{
-	width:100%;
-	height:50px;
-	position:absolute;
-	bottom:0;
-	left:0;
-	background: #5cb85c;
-	/*position: absolute;
-	bottom: 0;
-	left: 0;
-	min-height: 100px;
-	width: 100%;
-	background: #5cb85c;*/
-}
+
 .box-booking-summary{
 	border:1px solid #5cb85c;
 	padding: 3%;
@@ -206,29 +168,29 @@ footer{
 }
 
 .media-left > .lock-number-booking{
-		width: 90px;
-		height: 90px;
-		padding: 10px;
-		padding-top: 8px;
-		font-weight: bold;
-		margin-top: 0;
-		vertical-align: middle;
-		border:1px solid #ccc;
-		text-align: center;
-		background: #fff;
+	width: 90px;
+	height: 90px;
+	padding: 10px;
+	padding-top: 8px;
+	font-weight: bold;
+	margin-top: 0;
+	vertical-align: middle;
+	border:1px solid #ccc;
+	text-align: center;
+	background: #fff;
 }
 
 #checking  div.media-left.active .lock-number-booking{
 	cursor: pointer;
 
 	-moz-transition: all 0.15s ease;
-  -o-transition: all 0.15s ease;
-  -webkit-transition: all 0.15s ease;
-  transition: all 0.15s ease;
+	-o-transition: all 0.15s ease;
+	-webkit-transition: all 0.15s ease;
+	transition: all 0.15s ease;
 }
 #checking  div.media-left.active .lock-number-booking:hover{
-	 border-radius: 50%;
-	 border-color: #5cb85c;
+	border-radius: 50%;
+	border-color: #5cb85c;
 }
 
 div.media-left.active .lock-number-booking a:hover{
@@ -237,10 +199,10 @@ div.media-left.active .lock-number-booking a:hover{
 }
 
 #checking .box-child{
-		width: 50px;
-		height: auto;
-		padding: 0;
-		/*border:1px solid #ccc;*/
+	width: 50px;
+	height: auto;
+	padding: 0;
+	/*border:1px solid #ccc;*/
 }
 .box-payment-status{
 	position: relative;
@@ -248,14 +210,14 @@ div.media-left.active .lock-number-booking a:hover{
 	clear: left;
 }
 
-	
+
 #checking  .media{
-		margin-top: 40px;
-		padding-left: 10%;
+	margin-top: 40px;
+	padding-left: 10%;
 }
 #checking  .media-body{
-		padding: 1px;
-		line-height: 1em;
+	padding: 1px;
+	line-height: 1em;
 }
 
 .clear-left{
@@ -300,15 +262,15 @@ div.media-left.active .lock-number-booking a:hover{
 
 @media screen and (max-width: 765px) {
 	#checking .box-child{
-			width: 50px;
-			height: 40px;
-			padding: 0;
-			float: left;
+		width: 50px;
+		height: 40px;
+		padding: 0;
+		float: left;
 	}
 
 	#checking .media{
-			margin-top: 20px;
-			padding-left: 5%;
+		margin-top: 20px;
+		padding-left: 5%;
 	}
 
 	#checking .media .media-body{
