@@ -6,13 +6,6 @@ a > i {
 	color: #5cb85c;
 }
 
-
-
-header{
-	min-height: 250px;
-	width: 100%;
-	background: #fff;
-}
 body{
 	height: 100%;
 }
@@ -30,19 +23,10 @@ label.checkbox{
 	font-size: 0.8em;
 
 }
-.container{
-	padding-top: 3%;
-}
+
 .max-width{
 	max-width: 100%;
 }
-
-/*#footer{
-	position: absolute;
-	width: 100%;
-	bottom: 0;
-}
-*/
 
 #BookingController{
 	min-height:  230px;
@@ -140,15 +124,6 @@ img.profile{
 	height: 100px;
 }
 
-.header-top{
-	min-height: 30px;
-	background: #5cb85c;
-}
-.container{
-	/*min-height:100%;*/
-
-	position:relative;
-}
 .content{
 	min-height: 250px;
 }
@@ -182,20 +157,7 @@ form.ng-pristine.ng-valid div.row{
 form.ng-pristine.ng-valid input{
 	text-align: center;
 }
-footer{
-	width:100%;
-	height:50px;
-	position:absolute;
-	bottom:0;
-	left:0;
-	background: #5cb85c;
-	/*position: absolute;
-	bottom: 0;
-	left: 0;
-	min-height: 100px;
-	width: 100%;
-	background: #5cb85c;*/
-}
+
 .box-booking-summary{
 	border:1px solid #5cb85c;
 	padding: 3%;

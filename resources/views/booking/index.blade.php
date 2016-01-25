@@ -1,5 +1,22 @@
 @extends('welcome')
 @section('title', 'Booking')
+@section('breadcrumbs')
+	<div class="breadcrumbs">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4 col-sm-4">
+					<h1>จองพื้นที่</h1>
+				</div>
+				<div class="col-lg-8 col-sm-8">
+					<ol class="breadcrumb pull-right">
+						<li><a href="#">หน้าหลัก</a></li>
+						<li class="active">จองพื้นที่</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+@endsection
 @section('content')
 
 <?php 
@@ -33,7 +50,7 @@
 				class="form-control" ng-disabled="ui.number"></select>
 			</div>
 			<div class="col-sm-1">
-				<label>&nbsp;</label>
+				<label>&nbsp;ค้นหา</label>
 				<button class="btn btn-info" ng-click="search()" ng-disabled="input.number == null">ตกลง</button>
 			</div>
 
