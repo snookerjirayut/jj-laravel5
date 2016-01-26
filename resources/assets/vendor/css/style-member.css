@@ -24,6 +24,7 @@ label.checkbox{
 
 }
 
+
 .max-width{
 	max-width: 100%;
 }
@@ -166,7 +167,10 @@ form.ng-pristine.ng-valid input{
 	margin-top: 20px;
 	margin-bottom: 20px;
 }
-
+.media-left {
+	float: left;
+	width: 120px;
+}
 .media-left > .lock-number-booking{
 	width: 90px;
 	height: 90px;
@@ -227,7 +231,6 @@ div.media-left.active .lock-number-booking a:hover{
 	position: relative;
 }
 .media-right.payement{
-	padding-top: 30px;
 	font-size: 1.2em;
 	font-weight: bold;
 }
@@ -270,7 +273,6 @@ div.media-left.active .lock-number-booking a:hover{
 
 	#checking .media{
 		margin-top: 20px;
-		padding-left: 5%;
 	}
 
 	#checking .media .media-body{

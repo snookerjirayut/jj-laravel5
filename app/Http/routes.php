@@ -27,6 +27,8 @@ Route::get('/signin/', 'AuthenticationController@signin');
 Route::get('/signout/', 'AuthenticationController@signout');
 Route::post('/signin/valid', 'AuthenticationController@check');
 
+Route::get('/contact', function(){ return view('contact.index'); });
+
 
 Route::group(['middleware' => 'auth'] , function(){
 	Route::get('/booking', 'BookingController@index');

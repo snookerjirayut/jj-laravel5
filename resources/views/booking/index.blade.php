@@ -9,7 +9,7 @@
 				</div>
 				<div class="col-lg-8 col-sm-8">
 					<ol class="breadcrumb pull-right">
-						<li><a href="#">หน้าหลัก</a></li>
+						<li><a href="{{ url('/') }}">หน้าหลัก</a></li>
 						<li class="active">จองพื้นที่</li>
 					</ol>
 				</div>

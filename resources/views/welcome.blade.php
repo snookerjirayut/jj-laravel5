@@ -79,7 +79,7 @@
                     </li>
 
                     <li>
-                        <a href="contact.html">ติดต่อเรา</a>
+                        <a href="/contact">ติดต่อเรา</a>
                     </li>
                     <li><input class="form-control search" placeholder=" Search" type="text"></li>
                 </ul>
@@ -96,7 +96,7 @@
     @yield('description')
 
 
-            <!--footer start-->
+    <!--footer start-->
     <footer class="footer">
         <div class="container">
             <div class="row">

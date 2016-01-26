@@ -1,8 +1,24 @@
 @extends('welcome')
 @section('title', 'Checkin')
+@section('breadcrumbs')
+	<div class="breadcrumbs">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4 col-sm-4">
+					<h1>จองพื้นที่</h1>
+				</div>
+				<div class="col-lg-8 col-sm-8">
+					<ol class="breadcrumb pull-right">
+						<li><a href="{{ url('/') }}">หน้าหลัก</a></li>
+						<li class="active">เชคอิน</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+@endsection
+
 @section('content')
-
-
 <div ng-controller="CheckinController" class="row" ng-init="init()" style="margin:0">
 	<h2 class="text-center">Check-in</h2>
 	<div class="col-sm-6 col-sm-offset-3" id="checking"  >
@@ -38,11 +54,11 @@
 				    		uploaded slip.</a>
 				    	</span>
 				    	<span ng-if="booking.payment == 2" class="text-success"><a href="<% booking.picture %>" target="_blank">
-				    	<i class="glyphicon glyphicon-picture"></i>payment success.</a></span>
+				    	<i class="glyphicon glyphicon-picture"></i>&nbsp;payment success.</a></span>
 				    </h5>
 			    </div>
 			  </div>
-			  <div class="media-right payement">
+			  <div class="media-right payement text-right">
 			  	<% booking.totalPrice |  number:2 %>&nbsp;฿
 			  </div>
 			</div>

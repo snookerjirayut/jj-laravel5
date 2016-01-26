@@ -5,6 +5,24 @@
 <link href="/css/dropzone.css" rel="stylesheet">
 @endsection
 
+@section('breadcrumbs')
+	<div class="breadcrumbs">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4 col-sm-4">
+					<h1>จองพื้นที่</h1>
+				</div>
+				<div class="col-lg-8 col-sm-8">
+					<ol class="breadcrumb pull-right">
+						<li><a href="{{ url('/') }}">หน้าหลัก</a></li>
+						<li class="active">แจ้งโอน</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+@endsection
+
 @section('content')
 <script src="/js/dropzone.js" ></script>
 {{-- <script src="/js/angular/angular-dropzone.js" ></script> --}}
@@ -25,7 +43,7 @@
 		<div class="dz-default dz-message"></div>
 	</form>
 	<button class="btn btn-block btn-success btn-upload" type="button" ng-click="save()">Upload</button>
-
+<br>
 	{{--  <a class="btn btn-primary" href="" ng-href="<% filename %>"><% filename %></a> --}}
 </div>
 
@@ -49,10 +67,13 @@
 		//miliseconds
 		$scope.init = function(){
 			$http.get('/inform/feed').success(function(d){
+				console.log(d);
+				if(d.data.length === 0 ) $scope.list.booking = [];
 				$scope.list.booking = d.data;
 			});
 		}
 		$scope.save = function(){
+			if(Object.keys($scope.input.file).length == 0) return;
 			$http.put('/inform/update/'+$scope.input.code, $scope.input).success(function(data){
 				console.log(data);
 				if(data.result){
