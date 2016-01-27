@@ -43,6 +43,26 @@
     <div class="col-sm-12 ">
         <img src="img/header.png" class="img-resposive max-width">
     </div>
+
+    <!--User active start-->
+    @if(\Auth::check())
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-sm-12">
+                <ul class="nav nav-pills right">
+                    <li>
+                        <a href="#"><i class="glyphicon glyphicon-user">{{ \Auth::user()->name }}</i></a>
+                    </li>
+                    <li>
+                        <a href="/signout"><i class="glyphicon glyphicon-off"> ออกจากระบบ</i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    @endif
+    <!--User active end-->
+
     <!--header start-->
     <header class="head-section">
         <div class="navbar navbar-default navbar-static-top container">
