@@ -77,8 +77,8 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     @if(\Auth::check())
-                        <li><a href="/booking">จองพื้นที่</a></li>
                         <li><a href="/checkin">เช็คอิน</a></li>
+                        <li><a href="/booking">จองพื้นที่</a></li>
                         <li><a href="/inform">แจ้งโอน</a></li>
                     @endif
                     <li class="dropdown">

@@ -21,6 +21,7 @@
 
 <?php 
 	$user = \Auth::user();
+	$milliseconds = round(microtime(true) * 1000);
 ?>
 
 <!-- ROW -->
@@ -30,9 +31,15 @@
 
 			<div class="col-sm-3">
 				<label>วันที่จอง</label>
-				<select ng-options="day.opened_at as day.name | date:'EEEE dd MMMM y'
-				for day in list.days track by day.opened_at" ng-model="input.date" 
-				class="form-control" ng-change="getZone()"></select>
+				@if(\Auth::user()->role == 2)
+					<select ng-options="day.opened_at as day.name | date:'EEEE dd MMMM y'
+					for day in list.days track by day.opened_at" ng-model="input.date" 
+					class="form-control" ng-change="getZone()"></select>
+				@elseif(\Auth::user()->role == 1)
+					<select ng-options="day.opened_at as day.name | date:'EEEE dd MMMM y'
+					for day in list.days_guest track by day.opened_at" ng-model="input.date" 
+					class="form-control" ng-change="getZone()"></select>
+				@endif
 			</div>
 			<div class="col-sm-3">
 				<label>เลือกโซน</label>
@@ -110,8 +117,6 @@
 		
 	</div>
 
-	{{-- <div class="row" ng-hide="ui.panalPrice" style="margin-right:0;margin-left:0"></div>
-	 --}}
 
 </section>
 
@@ -145,6 +150,7 @@
 		$scope.list.zoneCode = [];
 		$scope.list.zoneBlock = [];
 		$scope.list.zoneBlockDisable = [];
+
 		$scope.input = {};
 		$scope.input.totalPrice = 0;
 		$scope.input.type = 1;
@@ -183,6 +189,7 @@
 			@else 
 			var aprice = $scope.list.zoneCode[0].price_type2;
 			@endif 
+
 			$scope.input.totalPrice = 0;
 			
 				arr_code.forEach(function(ele , index){
@@ -230,6 +237,8 @@
 			$http.get('/booking/calendar/day/get').success(function(d){
 				console.log(d);
 				$scope.list.days = d;
+				$scope.list.days_guest = [{miliseconds: '{{ $milliseconds }}' , name:  '{{ $milliseconds }}' ,opened_at: '{{ date('Y-m-d') }}' }];
+				console.log($scope.list.days_guest);
 			});
 		}
 
@@ -239,7 +248,8 @@
 				return;
 			}
 			$http.get('/booking/calendar/zone/get/'+$scope.input.date).success(function(d){
-				//console.log(d);
+				console.log('zone',d);
+				if(d.length == 0) return alert('ไม่พบการเปิดตลาด');
 				$scope.list.zones = d;
 				$scope.ui.zone = false;
 			});

@@ -72,6 +72,7 @@ class AuthenticationController extends Controller
         if(Auth::attempt(['email' => $email, 'password' => $password, 'active' => 1 ,'isAdmin' => 0] )){
             $user = Auth::user();
             //var_dump(Auth::user());
+            if($user->role == 1) return redirect()->intended('/booking?role=guest');
             return redirect()->intended('/booking');
         }
 
