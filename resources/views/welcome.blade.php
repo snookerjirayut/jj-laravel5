@@ -35,7 +35,6 @@
     <script src="/js/angular-i18n/angular-locale_th-th.js"></script>
     <script src="/js/angular/ui-bootstrap-tpls.js"></script>
 
-
     @yield('style')
 
 </head>

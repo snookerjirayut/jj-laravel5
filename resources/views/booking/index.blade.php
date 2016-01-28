@@ -243,7 +243,7 @@
 		}
 
 		$scope.getZone = function(){
-			if($scope.input.date == null || $scope.input == "?"){
+			if($scope.input.date == null || $scope.input.date == "?"){
 				alert('Please select day before zone.');
 				return;
 			}
