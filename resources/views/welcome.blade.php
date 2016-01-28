@@ -5,42 +5,42 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/theme.css" rel="stylesheet">
-    <link href="css/bootstrap-reset.css" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/theme.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap-reset.css') }}" rel="stylesheet">
 
     <!--external css-->
-    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="css/flexslider.css"/>
-    <link href="assets/bxslider/jquery.bxslider.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="css/animate.css">
-    <link rel="stylesheet" href="assets/owlcarousel/owl.carousel.css">
-    <link rel="stylesheet" href="assets/owlcarousel/owl.theme.css">
+    <link href="{{ asset('assets/font-awesome/css/font-awesome.css') }}" rel="stylesheet"/>
+    <link rel="stylesheet" href="{{  asset('css/flexslider.css') }}"/>
+    <link href="{{  asset('assets/bxslider/jquery.bxslider.css') }}" rel="stylesheet"/>
+    <link rel="stylesheet" href="{{  asset('css/animate.css') }}">
+    <link rel="stylesheet" href="{{  asset('assets/owlcarousel/owl.carousel.css') }}">
+    <link rel="stylesheet" href="{{  asset('assets/owlcarousel/owl.theme.css') }}">
 
-    <link href="css/superfish.css" rel="stylesheet" media="screen">
+    <link href="{{  asset('css/superfish.css') }}" rel="stylesheet" media="screen">
     <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 
     <!-- Custom styles for this template -->
-    <link rel="stylesheet" type="text/css" href="css/component.css">
+    <link rel="stylesheet" type="text/css" href="{{  asset('css/component.css') }}">
 
-    <link href="/css/style-member.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/style-responsive.css" rel="stylesheet"/>
+    <link href="{{  asset('css/style-member.css') }}" rel="stylesheet">
+    <link href="{{  asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{  asset('css/style-responsive.css') }}" rel="stylesheet"/>
 
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/moment/min/moment.min.js"></script>
-    <script src="/css/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="{{  asset('js/jquery.min.js') }}"></script>
+    <script src="{{  asset('js/moment/min/moment.min.js') }}"></script>
+    <script src="{{  asset('css/bootstrap/dist/js/bootstrap.js') }}"></script>
     <!-- Angular core JS -->
-    <script src="/js/angular/angular.min.js"></script>
-    <script src="/js/angular-i18n/angular-locale_th-th.js"></script>
-    <script src="/js/angular/ui-bootstrap-tpls.js"></script>
+    <script src="{{  asset('js/angular/angular.min.js') }}"></script>
+    <script src="{{  asset('js/angular-i18n/angular-locale_th-th.js') }}"></script>
+    <script src="{{  asset('js/angular/ui-bootstrap-tpls.js') }}"></script>
 
     @yield('style')
 
 </head>
 <body>
     <div class="col-sm-12 ">
-        <img src="img/header.png" class="img-resposive max-width">
+        <img src="{{  asset('img/header.png') }}" class="img-resposive max-width">
     </div>
 
     <!--User active start-->

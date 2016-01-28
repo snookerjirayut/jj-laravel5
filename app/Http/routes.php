@@ -58,11 +58,6 @@ Route::group(['middleware' => 'auth'] , function(){
 });
 
 
-Route::group(['middleware' => 'role:new'] , function(){
-
-
-});
-
 
 Route::get('/admin', 'Backend\HomeController@index');
 Route::get('/admin/signin', 'Backend\HomeController@signin');

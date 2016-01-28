@@ -1,30 +1,30 @@
 @extends('backlayout')
 @section('title' , 'Calendar')
 @section('style')
+	<link href="/js/calendar/fullcalendar.css" rel="stylesheet">
+	<style type="text/css">
+		a.fc-day-grid-event.fc-h-event{
+			padding-top: 5px;
+			padding-bottom: 5px;
+		}
+		.min-height{
+			min-height: 300px;
+			padding: 30px;
+		}
+		.panel.panel-default{
+			padding-left: 0;
+			padding-right: 0;
+		}
+		.form-group{
+			margin-left: 5px;
+		}
+		.repeat{
+			margin-top: 20px;
+		}
 
+	</style>
 @endsection
-<link href="/js/calendar/fullcalendar.css" rel="stylesheet">
-<style type="text/css">
-	a.fc-day-grid-event.fc-h-event{
-		padding-top: 5px;
-		padding-bottom: 5px;
-	}
-	.min-height{
-		min-height: 300px;
-		padding: 30px;
-	}
-	.panel.panel-default{
-		padding-left: 0;
-		padding-right: 0;
-	}
-	.form-group{
-		margin-left: 5px;
-	}
-	.repeat{
-		margin-top: 20px;
-	}
 
-</style>
 @section('content')
 
 	
