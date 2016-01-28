@@ -207,7 +207,8 @@ class BookingController extends Controller
     public function getBlock(Request $request){
         $date = $request->input('date');
         $zone = $request->input('zoneName');
-        $blocks = BookingDetail::select('zoneNumber')->where('sale_at' , $date.' 00:00:00' )->get();
+        $blocks = BookingDetail::select('zoneNumber')->where('sale_at' , $date.' 00:00:00' )
+            ->whereIn('status' , ['BK','CN'] )->get();
         return response()->json($blocks);
     }
 }

@@ -79,6 +79,7 @@
           <ul class="nav nav-sidebar">
             <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
             <li><a href="{{url('/admin/calendar')}}">Calendar</a></li>
+              <li><a href="{{url('/admin/manage')}}">Manage</a></li>
             <li><a href="{{url('/admin/payment')}}">Payment</a></li>
             <li><a href="{{url('/admin/member')}}">Member</a></li>
             <li><a href="#">Analytics</a></li>

@@ -112,7 +112,9 @@ Route::group(['middleware' => 'role:admin'] , function(){
 	Route::post('/admin/member/search', 'Backend\MemberController@search');
 	Route::put('/admin/member/update/{id}', 'Backend\MemberController@update');
 
-	
+	Route::get('/admin/manage' , 'Backend\ManageController@index');
+	Route::post('/admin/manage/get' , 'Backend\ManageController@show');
+	Route::get('/admin/manage/clear/{date}' , 'Backend\ManageController@update');
 });
 
 

@@ -120,7 +120,7 @@
 			$scope.event = [];
 			$http.get('/admin/get/calendar').success(function(d){
 				if(d == null) return ;
-				d.forEach(function(ele, index, array){
+				d.active.forEach(function(ele, index, array){
 					var data = {id : index , title : 'Open' ,start : ele.opened_at , overlap: false , color :'#257e4a' };
 					$scope.event.push(data);
 					$('#calendar').fullCalendar('renderEvent' , data , true);

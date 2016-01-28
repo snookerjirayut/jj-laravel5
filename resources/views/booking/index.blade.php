@@ -275,6 +275,9 @@
 						$scope.list.zoneBlock[index] = arr;
 					});
 					//console.log('block' , $scope.list.zoneBlock);
+					setTimeout(function(){
+						$scope.blockDisable();
+					}, (2000));
 				}else{ 
 					delete $scope.input.checked;
 					delete $scope.list.item ;
@@ -282,13 +285,6 @@
 				}
 			});
 		}
-
-		$scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
-		    //you also get the actual event object
-		    //do stuff, execute functions -- whatever...
-		    $scope.blockDisable();
-		   
-		});
 
 		$scope.setTimeout = function(time){
 			 setTimeout(function(){
