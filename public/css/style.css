@@ -48,7 +48,6 @@ p { line-height: 22px }
     font-size: 30px;
     font-weight: 100;
     line-height: 30px;
-    margin-top: 30px;
     padding: 0;
 }
 .navbar-brand span { color: #09b06a }
@@ -140,7 +139,7 @@ ul.dropdown-menu { border: none }
 }
 /*search*/
 .search {
-    margin-top: 3px;
+    /*margin-top: 3px;*/
     border-radius: 0px;
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
@@ -815,7 +814,7 @@ ul.about-flex-slides { margin-left: 0 }
 }
 .contact-form { margin-bottom: 20px }
 .address h4 {
-    color: #797979;
+    color: #09B06A;
     margin-top: -3px;
     text-transform: uppercase;
     margin-bottom: 20px;
@@ -2564,8 +2563,9 @@ p { text-align: left }
     transition: all .3s ease;
 }
 .btn.btn-info {
-    background-color: #37bc9b;
+    background-color: #09b06a;
     border: none;
+    height: 40px;
     -webkit-transition: all .3s ease;
     -moz-transition: all .3s ease;
     -ms-transition: all .3s ease;
@@ -2575,7 +2575,7 @@ p { text-align: left }
 .btn.btn-info:hover,
 .btn.btn-info:active,
 .btn.btn-info.hover {
-    background-color: #48cfad;
+    background-color: #11bc6e;
     border: none;
     -webkit-transition: all .3s ease;
     -moz-transition: all .3s ease;

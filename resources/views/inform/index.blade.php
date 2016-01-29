@@ -9,10 +9,10 @@
 	<div class="breadcrumbs">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-4 col-sm-4">
-					<h1>จองพื้นที่</h1>
+				<div class="col-lg-5 col-sm-5">
+					<h1>แจ้งโอนโดยหลักฐานการชำระเงิน</h1>
 				</div>
-				<div class="col-lg-8 col-sm-8">
+				<div class="col-lg-7 col-sm-7">
 					<ol class="breadcrumb pull-right">
 						<li><a href="{{ url('/') }}">หน้าหลัก</a></li>
 						<li class="active">แจ้งโอน</li>
@@ -27,9 +27,9 @@
 <script src="/js/dropzone.js" ></script>
 {{-- <script src="/js/angular/angular-dropzone.js" ></script> --}}
 
-<h3 class="text-center">ยืนยันการชำระเงินด้วยหลักฐานการโอน</h3>
+
 <div class="col-sm-6 col-sm-offset-3" ng-controller="UploadController" ng-init="init()">
-	<div class="col-sm-12 box-inform-date">
+	<div class="controls col-lg-12 col-sm-12 form-group has-success box-inform-date">
 		<p class="text-center">วันที่จอง</p>
 		<select ng-model="input.code" ng-options="booking.code as booking.miliseconds | date:'EEEE dd MMMM y' for booking in list.booking" class="form-control box-select-date"></select>
 	</div>
@@ -42,7 +42,7 @@
 		</div>
 		<div class="dz-default dz-message"></div>
 	</form>
-	<button class="btn btn-block btn-success btn-upload" type="button" ng-click="save()">Upload</button>
+	<button class="btn btn-block btn-info btn-upload" type="button" ng-click="save()">อัพโหลด</button>
 <br>
 	{{--  <a class="btn btn-primary" href="" ng-href="<% filename %>"><% filename %></a> --}}
 </div>

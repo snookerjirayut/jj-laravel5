@@ -5,7 +5,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-sm-4">
-                    <h1>จองพื้นที่</h1>
+                    <h1>ติดต่อเรา</h1>
                 </div>
                 <div class="col-lg-8 col-sm-8">
                     <ol class="breadcrumb pull-right">
@@ -24,25 +24,25 @@
 
             <div class="contact-form">
                 <form role="form">
-                    <div class="form-group">
+                    <div class="form-group has-success">
                         <label for="name">
                             ชื่อ - นามสกุล
                         </label>
                         <input type="text" placeholder="" id="name" class="form-control">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group has-success">
                         <label for="email">
                             Email
                         </label>
                         <input type="text" placeholder="" id="email" class="form-control">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group has-success">
                         <label for="phone">
                             เบอร์โทรศัพท์
                         </label>
                         <input type="text" id="phone" class="form-control">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group has-success">
                         <label for="phone">
                             ข้อความ
                         </label>

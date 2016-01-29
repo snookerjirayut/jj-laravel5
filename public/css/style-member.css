@@ -55,7 +55,7 @@ label.checkbox{
 	position: relative;
 	width: 58px;
 	color: #fff;
-	background: #FBCF61;
+	background: #09b06a;
 	text-align: center;
 	line-height: 40px;
 	cursor: pointer;
@@ -65,7 +65,7 @@ label.checkbox{
 }
 
 .book-tbl > ul > li > label:hover {
-	background: #00B4F1;
+	background: #8bc63a;
 }
 
 .book-tbl > ul > li > label:active {
@@ -86,7 +86,7 @@ label.checkbox{
 }
 
 .book-tbl > ul > li > input:checked + label {
-	background: #FF7541;
+	background: #df314a;
 	color: #fff;
 }
 
@@ -103,7 +103,7 @@ label.checkbox{
 }
 .book-tbl > ul > li > input:disabled + label {
 	color: #fff;
-	background: #f00;
+	background: #878787;
 	cursor: not-allowed;
 }
 
@@ -156,7 +156,7 @@ form.ng-pristine.ng-valid div.row{
 
 }
 form.ng-pristine.ng-valid input{
-	text-align: center;
+	text-align: left;
 }
 
 .box-booking-summary{
@@ -246,8 +246,8 @@ div.media-left.active .lock-number-booking a:hover{
 	padding: 13%;
 }
 .btn-upload{
-	margin-top: 10%;
-	width: 70%;
+	margin-top: 5%;
+	width: 80%;
 	display: block;
 	margin-left: auto;
 	margin-right: auto;

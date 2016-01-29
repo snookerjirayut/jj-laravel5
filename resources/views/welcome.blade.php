@@ -65,43 +65,48 @@
     <!--header start-->
     <header class="head-section">
         <div class="navbar navbar-default navbar-static-top container">
-            <div class="navbar-header">
-                <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse" type="button">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.html">GREEN<span>vintage</span></a>
+            <div class="col-lg-3 col-sm-3">
+                <div class="navbar-header">
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse" type="button">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html"><img src="img/logo.png"></a>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    @if(\Auth::check())
-                        <li><a href="/checkin">เช็คอิน</a></li>
-                        <li><a href="/booking">จองพื้นที่</a></li>
-                        <li><a href="/inform">แจ้งโอน</a></li>
-                    @endif
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-close-others="false" data-delay="0" data-hover=
-                        "dropdown" data-toggle="dropdown" href="#">ข่าวสารและกิจกรรม <i class="fa fa-angle-down"></i>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="blog.html">ข่าวสารและกิจกรรม</a>
-                            </li>
-                            <li>
-                                <a href="price-table-one.html">ราคาโซนขายสินค้า</a>
-                            </li>
-                            <li>
-                                <a href="faq.html">คำถาม</a>
-                            </li>
-                        </ul>
-                    </li>
+            <div class="col-lg-9 col-sm-9">
+                <div class="navbar-collapse collapse">
+                    <br><br>
+                    <ul class="nav navbar-nav">
+                        @if(\Auth::check())
+                            <li><a href="/checkin">เช็คอิน</a></li>
+                            <li><a href="/booking">จองพื้นที่</a></li>
+                            <li><a href="/inform">แจ้งโอน</a></li>
+                        @endif
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-close-others="false" data-delay="0" data-hover=
+                            "dropdown" data-toggle="dropdown" href="#">ข่าวสารและกิจกรรม <i class="fa fa-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="blog.html">ข่าวสารและกิจกรรม</a>
+                                </li>
+                                <li>
+                                    <a href="price-table-one.html">ราคาโซนขายสินค้า</a>
+                                </li>
+                                <li>
+                                    <a href="faq.html">คำถาม</a>
+                                </li>
+                            </ul>
+                        </li>
 
-                    <li>
-                        <a href="/contact">ติดต่อเรา</a>
-                    </li>
-                    <li><input class="form-control search" placeholder=" Search" type="text"></li>
-                </ul>
+                        <li>
+                            <a href="/contact">ติดต่อเรา</a>
+                        </li>
+                        <li><input class="form-control search" placeholder=" Search" type="text"></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </header>

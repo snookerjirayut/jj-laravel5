@@ -28,8 +28,8 @@
 <section ng-controller="BookingController" ng-init="init()" id="BookingController">
 	<div class="row" style="margin-right:0;margin-left:0;margin-bottom:20px;">
 		<div class="col-sm-12">
-
-			<div class="col-sm-3">
+			
+			<div class="controls col-lg-3 col-sm-3 form-group has-success">
 				<label>วันที่จอง</label>
 				@if(\Auth::user()->role == 2)
 					<select ng-options="day.opened_at as day.name | date:'EEEE dd MMMM y'
@@ -41,26 +41,27 @@
 					class="form-control" ng-change="getZone()"></select>
 				@endif
 			</div>
-			<div class="col-sm-3">
+			<div class="controls col-lg-3 col-sm-3 form-group has-success">
 				<label>เลือกโซน</label>
 				<select ng-options="zone.name as zone.name for zone in list.zones track by zone.name" 
 				ng-model="input.zoneName" ng-disabled="ui.zone" ng-change="openUI()"
 				class="form-control"></select>
 			</div>
-			<div class="col-sm-3">
+			<div class="controls col-lg-3 col-sm-3 form-group has-success">
 				<label>ระบุสินค้า</label>
 				<input name="productName" ng-model="input.productName" ng-disabled="ui.number" class="form-control">
 			</div>
-			<div class="col-sm-2">
-				<label>จำนวนล็อค</label>
-				<select ng-options="number.id as number.name for number in list.numbers track by number.id" ng-model="input.number" 
-				class="form-control" ng-disabled="ui.number"></select>
+			<div class="controls col-lg-3 col-sm-3  ">
+				<div class="controls col-lg-6 col-sm-6 form-group has-success">
+					<label>จำนวนล็อค</label>
+					<select ng-options="number.id as number.name for number in list.numbers track by number.id" ng-model="input.number" 
+					class="form-control" ng-disabled="ui.number"></select>
+				</div>
+				<div class="controls col-lg-6 col-sm-6 form-group has-success">
+					<label>&nbsp;ค้นหา</label>
+					<button class="btn btn-info" ng-click="search()" ng-disabled="input.number == null">ตกลง</button>
+				</div>
 			</div>
-			<div class="col-sm-1">
-				<label>&nbsp;ค้นหา</label>
-				<button class="btn btn-info" ng-click="search()" ng-disabled="input.number == null">ตกลง</button>
-			</div>
-
 		</div>
 	</div>
 	<div class="row" style="margin-right:0;margin-left:0;">
@@ -107,7 +108,7 @@
 				</div>
 				
 				<div class="col-sm-8 col-sm-offset-2 box-booking-button">
-					<button class="btn btn-success btn-block" 
+					<button class="btn btn-primary btn-lg btn-block" 
 					ng-click="booking()" ng-disabled="ui.buttonBooking">จองพื้นที่</button>
 				</div>
 				

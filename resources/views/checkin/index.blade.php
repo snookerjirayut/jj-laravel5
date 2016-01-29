@@ -5,7 +5,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-4 col-sm-4">
-					<h1>จองพื้นที่</h1>
+					<h1>ยืนยันการมาขาย</h1>
 				</div>
 				<div class="col-lg-8 col-sm-8">
 					<ol class="breadcrumb pull-right">
@@ -20,7 +20,7 @@
 
 @section('content')
 <div ng-controller="CheckinController" class="row" ng-init="init()" style="margin:0">
-	<h2 class="text-center">Check-in</h2>
+	
 	<div class="col-sm-6 col-sm-offset-3" id="checking"  >
 
 		<div ng-repeat="booking in list.bookings">
@@ -39,7 +39,7 @@
 			  </div>
 			  <div class="media-body">
 			    <h5 class="media-heading"><strong>ID :</strong> <% booking.code %></h5>
-			    <h5><strong>Sale at : </strong><% booking.miliseconds | date:'EEEE dd MMMM yyyy' %></h5>
+			    <h5><strong>วันที่ขาย : </strong><% booking.miliseconds | date:'EEEE dd MMMM yyyy' %></h5>
 			    
 			    <div ng-repeat="detail in booking.bookingDetail" id="box-number-<% $index  %>" >
 			    	<div class="col-sm-1 box-child">
