@@ -3038,3 +3038,5 @@ div.header h3{
     position: relative;
     top: -18px;
 }
+.img-responsive {margin:0 auto;}
+.img-center {margin:0 auto;}

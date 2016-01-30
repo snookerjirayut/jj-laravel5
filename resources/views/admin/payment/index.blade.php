@@ -22,7 +22,7 @@
 @endsection
 
 @section('content')
-	<h3>Payment</h3>
+	<h3>ชำระเงิน</h3>
 <div ng-controller="PaymentController" ng-init="init()">
 	<div class="panel panel-default">
 	  <div class="panel-heading">
@@ -30,21 +30,21 @@
 					<div class="col-sm-12">
 						<div  class="form-inline">
 							<div class="form-group">
-								<label>Date</label>
+								<label>วันที่</label>
 								<select ng-options="day.opened_at as day.opened_at | date:'EEEE dd MMMM y' 
 								for day in list.days track by day.opened_at" ng-model="input.date"  ng-disabled="ui.date"
 								class="form-control select-booking-date"  ng-change="getZone()"></select>
 							</div>
 
 							<div class="form-group">
-								<label>Zone</label>
+								<label>โซน</label>
 								<select ng-options="zone.id as zone.code +' - '+zone.name
 								for zone in list.zones" ng-model="input.zone"  ng-disabled="ui.zone"
 								class="form-control select-booking-date" ng-change="ui.type = false" ></select>
 							</div>
 
 							<div class="form-group">
-								<label>Type</label>
+								<label>การชำระ</label>
 								<select ng-options="type.id as type.name
 								for type in list.types" ng-model="input.type"  ng-disabled="ui.type"
 								class="form-control select-booking-date"  ng-change="ui.status = false"></select>
@@ -52,13 +52,13 @@
 
 
 							<div class="form-group">
-								<label>Status</label>
+								<label>สถานะ</label>
 								<select ng-options="status.id as status.name
 								for status in list.status" ng-model="input.status"  ng-disabled="ui.status"
 								class="form-control select-booking-date"  ></select>
 							</div>
 							
-							<button class="btn btn-info" ng-click="search()" >Search</button>
+							<button class="btn btn-info" ng-click="search()" >ค้นหา</button>
 						</div>
 					</div>
 
@@ -73,15 +73,15 @@
 						<table class="table table-striped table-bordered">
 							<thead>
 								<tr>
-									<td>IDX</td>
-									<td>Code</td>
-									<td>Product</td>
-									<td>Qty</td>
-									<td>Price</td>
-									<td>Status</td>
-									<td>Payment</td>
-									<td>Create</td>
-									<td>&nbsp;</td>
+									<td>ลำดับ</td>
+									<td>รหัสจอง</td>
+									<td>ประเภทสินค้า</td>
+									<td>จำนวน</td>
+									<td>ราคา</td>
+									<td>สถานะการจอง</td>
+									<td>สถานะการชำระ</td>
+									<td>วันที่จอง</td>
+									<td>รายละเอียด</td>
 								</tr>
 							</thead>
 							<tbody>
@@ -95,30 +95,30 @@
 									<td><% obj.totalPrice %></td>
 									<td>
 										<div ng-if="obj.status == 'BK'">
-											Booking
+											จองพื้นที่
 										</div>
 										<div ng-if="obj.status == 'CN'">
-											Booking
+											เช็คอินแล้ว
 										</div>
 									</td>
 									<td>
 										<div ng-if="obj.payment == 0">
-											Wait
+											รอชำระเงิน
 										</div>
 										<div ng-if="obj.payment == 1">
-											<a href="<% obj.picture %>" target="_blank">Uploaded</a>
+											<a href="<% obj.picture %>" target="_blank">อัพโหลดหลักฐาน</a>
 										</div>
 										<div ng-if="obj.payment == 2">
-											<a href="<% obj.picture %>" target="_blank">Approved</a>
+											<a href="<% obj.picture %>" target="_blank">ตรวจสอบแล้ว</a>
 										</div>
 									</td>
 									<td><% obj.created_at %></td>
 									<td>
 										<div ng-if="obj.payment == 1">
-											<button class="btn btn-xs btn-warning" ng-click="approve(obj.id)">Approve</button>
+											<button class="btn btn-xs btn-warning" ng-click="approve(obj.id)">ตรวจสอบแล้ว</button>
 										</div>
 										<div ng-if="obj.payment == 2">
-											<label class="label label-success">Approved</label>
+											<label class="label label-success">ยังไม่ตรวจสอบ</label>
 										</div>
 									</td>
 								</tr>
@@ -129,7 +129,7 @@
 						<uib-pagination total-items="input.total" ng-model="input.page" 
 						items-per-page="input.pageSize"
 						ng-change="pageChanged()"></uib-pagination> 
-						<p>total of record : <% input.total %></p>
+						<p>จำนวนแถว: <% input.total %></p>
 					</div>
 
 				</div>

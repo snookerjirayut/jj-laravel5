@@ -25,18 +25,18 @@
 
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3>Manage</h3>
+                <h3>จัดการข้อมูล</h3>
             </div>
             <div class="panel-body">
 
                 <table class="table table-striped table-bordered">
                     <thead>
                         <tr>
-                            <td>IDX</td>
-                            <td>Date</td>
-                            <td>Booking</td>
-                            <td>Check-in</td>
-                            <td>Un define</td>
+                            <td>ลำดับ</td>
+                            <td>วันที่</td>
+                            <td>จำนวนการจอง</td>
+                            <td>จำนวนเช็คอิน</td>
+                            <td>จำนวนที่ยังไม่เช็คอิน</td>
                             <td></td>
                         </tr>
                     </thead>
@@ -48,7 +48,7 @@
                             <td><% obj.checkin %></td>
                             <td><% obj.undefine %></td>
                             <td>
-                                <button ng-click="clear(obj.opened_at)">clear</button>
+                                <button ng-click="clear(obj.opened_at)">ลบ</button>
                             </td>
                         </tr>
                     </tbody>
@@ -60,7 +60,7 @@
                         <uib-pagination total-items="input.total" ng-model="input.page"
                                         items-per-page="input.pageSize"
                                         ng-change="pageChanged()"></uib-pagination>
-                        <p>total of record : <% input.total %></p>
+                        <p>จำนวนแถว : <% input.total %></p>
                     </div>
                 </div>
 

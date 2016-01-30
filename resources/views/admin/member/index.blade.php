@@ -19,13 +19,13 @@
 @endsection
 
 @section('content')
-<h3>Member</h3>
+<h3>สมาชิก</h3>
 <div ng-controller="MemberController">
 	<div class="panel panel-default">
 	  <div class="panel-heading">
 	  	<div class="form-inline">
 	  		<div class="form-group">
-				<label>Type</label>
+				<label>ประเภท</label>
 				<select ng-options="type.id as type.name 
 				for type in list.type" ng-model="input.type" ng-disabled="ui.type"
 				ng-change="ui.status = false"
@@ -33,7 +33,7 @@
 			</div>
 
 			<div class="form-group">
-				<label>Status</label>
+				<label>สถานะ</label>
 				<select ng-options="status.id as status.name 
 				for status in list.status" ng-model="input.status" ng-disabled="ui.status"
 				ng-change="ui.search = false "
@@ -44,7 +44,7 @@
 				<label>Email</label>
 				<input class="form-control" ng-model="input.email"  placeholder="member@gmail.com">
 			</div>
-			<button class="btn btn-info" ng-click="search()"  >Search</button>
+			<button class="btn btn-info" ng-click="search()"  >ค้นหา</button>
 
 	  	</div>
 	  </div>
@@ -54,14 +54,14 @@
 	  			<table class="table table-striped table-bordered">
 	  				<thead>
 	  					<tr>
-	  						<td>IDX</td>
-	  						<td>Code</td>
-	  						<td>Name</td>
+	  						<td>ลำดับ</td>
+	  						<td>รหัส</td>
+	  						<td>Username</td>
 	  						<td>Email</td>
-	  						<td>Full Name</td>
-	  						<td>Tel</td>
-	  						<td>Create</td>
-	  						<td></td>
+	  						<td>ชื่อ-นามสกุล</td>
+	  						<td>เบอร์โทร</td>
+	  						<td>วันที่ลงทะเบียน</td>
+	  						<td>รายละเอียด</td>
 	  					</tr>
 	  				</thead>
 	  				<tbody>
@@ -84,7 +84,7 @@
 				<uib-pagination total-items="input.total" ng-model="input.page" 
 				items-per-page="input.pageSize"
 				ng-change="pageChanged()"></uib-pagination> 
-				<p>total of record : <% input.total %></p>
+				<p>จำนวนแถว : <% input.total %></p>
 			</div>
 	  	</div>
 	  </div>
@@ -103,28 +103,28 @@
 					</div>
 
 					<div class="col-sm-3">
-						<label>First Name</label>
+						<label>ชื่อ</label>
 						<input class="form-control" ng-model="detail.firstName"  >
 					</div>
 
 					<div class="col-sm-3">
-						<label>Last Name</label>
+						<label>นามสกุล</label>
 						<input class="form-control" ng-model="detail.lastName"  >
 					</div>
 
 					<div class="col-sm-3">
-						<label>Phone</label>
+						<label>เบอร์โทร</label>
 						<input class="form-control" ng-model="detail.phone"  >
 					</div>
 
 					<div>
 						<div class="col-sm-3">
-							<label>Address</label>
+							<label>ที่อยู่</label>
 							<textarea class="form-control" ng-model="detail.address" rows="4"></textarea>
 						</div>
 
 						<div class="col-sm-3">
-							<label>Type</label>
+							<label>ประเภท</label>
 							<select ng-options="role.id as role.name 
 							for role in list.role" ng-model="detail.role" 
 							class="form-control select-booking-date"></select>
@@ -136,7 +136,7 @@
 				</div>
 			</div>
 			<div class="panel-footer">
-				<button class="btn btn-success" ng-click="update()">update</button>
+				<button class="btn btn-success" ng-click="update()">อัพเดต</button>
 			</div>
 		</div>
 	</div>

@@ -1,6 +1,6 @@
 @extends('backlayout')
 @section('content')
 @section('title', 'Home')
-<h1>Home</h1>
+<h1>หน้าหลัก</h1>
 
 @endsection

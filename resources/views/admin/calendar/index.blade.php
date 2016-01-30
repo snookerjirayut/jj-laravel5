@@ -38,8 +38,8 @@
 		    <div class="modal-content">
 		      <div class="modal-header">
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		        <h4 class="modal-title" id="myModalLabel">Detail</h4>
-		         <button class="btn btn-warning btn-sm" ng-click="closeDay()" ng-hide="mode.save">Close</button>
+		        <h4 class="modal-title" id="myModalLabel">รายละเอียด</h4>
+		         <button class="btn btn-warning btn-sm" ng-click="closeDay()" ng-hide="mode.save">ปิด</button>
 		      </div>
 		      <div class="modal-body form-inline">
 		        <div class="repeat" ng-repeat="zone in list.zone">
@@ -51,21 +51,21 @@
 							</label>
 						</div>
 						<div class="form-group">
-							<label>Max</label>
+							<label>สูงสุด</label>
 							<input type="text" value="<% zone.maxLock %>"  class="form-control" readonly>
 						</div>
 						<div class="form-group">
-							<label>Close</label>
+							<label>ปิด</label>
 							<input type="text" ng-model="input.open[$index].close" class="form-control" 
 							id="input_close_<% $index %>" name="input_close_<% $index %>" readonly>
 						</div>
 				</div>
 		      </div>
 		      <div class="modal-footer">
-		        <button class="btn btn-success" ng-click="save()" ng-hide="mode.save != true">Save</button>
-		        <button class="btn btn-info" ng-click="update()" ng-hide="mode.save">Update</button>
-				<button class="btn btn-warning" ng-click="reset()">Reset</button>
-				<button class="btn btn-danger" ng-click="delete()" ng-hide="mode.save">Delete</button>
+		        <button class="btn btn-success" ng-click="save()" ng-hide="mode.save != true">บันทึก</button>
+		        <button class="btn btn-info" ng-click="update()" ng-hide="mode.save">อัพเดต</button>
+				<button class="btn btn-warning" ng-click="reset()">รีเซต</button>
+				<button class="btn btn-danger" ng-click="delete()" ng-hide="mode.save">ลบ</button>
 		      </div>
 		    </div>
 		  </div>
@@ -285,7 +285,7 @@
 						$scope.list.zone = $scope.list.empty;
 						//console.log('return open >> ' , $scope.input.open);
 						$scope.input.date = dateStr;
-						$('#myModalLabel').html('Detail @ '+$scope.input.date);
+						$('#myModalLabel').html('รายละเอียด วันที่ '+$scope.input.date);
 						$('#myModal').modal('show');
 					});
 					$scope.$apply();
@@ -298,7 +298,7 @@
 					$scope.mode.save = true; 
 					$scope.reset();
 					$scope.input.date = date.format();
-					$('#myModalLabel').html('Detail @ '+$scope.input.date);
+					$('#myModalLabel').html('รายละเอียด วันที่ '+$scope.input.date);
 					$('#myModal').modal('show');
 					$scope.$apply();
 				},

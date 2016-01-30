@@ -61,13 +61,13 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Settings</a></li>
-            <li><a href="{{url('/admin/signout')}}">Signout</a></li>
-            <li><a href="#">Help</a></li>
+            <!-- <li><a href="#">Dashboard</a></li> -->
+            <li><a href="#">ตั้งค่า</a></li>
+            <li><a href="{{url('/admin/signout')}}">ออกจากระบบ</a></li>
+            <li><a href="#">ช่วยเหลือ</a></li>
           </ul>
           <form class="navbar-form navbar-right">
-            <input type="text" class="form-control" placeholder="Search...">
+            <input type="text" class="form-control" placeholder="ค้นหา">
           </form>
         </div>
       </div>
@@ -77,13 +77,13 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
-            <li><a href="{{url('/admin/calendar')}}">Calendar</a></li>
-              <li><a href="{{url('/admin/manage')}}">Manage</a></li>
-            <li><a href="{{url('/admin/payment')}}">Payment</a></li>
-            <li><a href="{{url('/admin/member')}}">Member</a></li>
-            <li><a href="#">Analytics</a></li>
-            <li><a href="#">Export</a></li>
+            <li class="active"><a href="#">หน้าแรก<span class="sr-only">(current)</span></a></li>
+            <li><a href="{{url('/admin/calendar')}}">ปฏิทิน</a></li>
+              <li><a href="{{url('/admin/manage')}}">จัดการข้อมูล</a></li>
+            <li><a href="{{url('/admin/payment')}}">ชำระเงิน</a></li>
+            <li><a href="{{url('/admin/member')}}">สมาชิก</a></li>
+            <!--<li><a href="#">วิเคราะห์</a></li>
+            <li><a href="#">ไฟล์</a></li> -->
           </ul>
 
         </div>
