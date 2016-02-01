@@ -52,8 +52,6 @@ class BookingController extends Controller
         }
 
         $user = User::where('id', $booking->userID)->get()->first();
-
-
         //var_dump($booking , $detail);
         return view('booking.summary', ['booking' => $booking, 'detail' => $detail, 'user' => $user]);
     }

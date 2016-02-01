@@ -68,13 +68,15 @@
             </div>
             <div class="row">
                 <div class="col-sm-6 right">
+                    @if(isset($booking) && isset($user))
                     <p><strong>ชื่อสินค้า : </strong>{{ $booking->productName }} </p>
                     <p><strong>ชื่อผู้จอง : </strong> {{ $user->name }}</p>
                     <p><strong>ที่อยู่ : </strong>{{ $user->address }} </p>
+                    @endif
                 </div>
             </div>
 
-            @if($detail != null)
+        @if(isset($detail))
                 @foreach ($detail as $obj)
                     <div class="media">
                         <div class="media-left">
@@ -96,14 +98,13 @@
                 </div>
 
                 <div class="row buttom last">
-                    <div class="col-sm-6 col-sm-offset-3">
+                    <div class="col-sm-6 col-sm-offset-2">
                         <button class="btn btn-success btn-block" onclick="backToBooking()">กลับสู่หน้าจอง</button>
                     </div>
                 </div>
 
-        </div>
-
         @endif
+        </div>
 
     </div>
 
@@ -117,7 +118,7 @@
         }*/
         angular.module("myApp").controller('SummaryController', ['$scope', '$http', function ($scope, $http) {
 
-            $scope.date = {{$booking->miliseconds}};
+            $scope.date = {{ isset($booking->miliseconds) ? $booking->miliseconds: '""' }} ;
 
 
         }]);

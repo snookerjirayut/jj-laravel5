@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use DateTime;
+use App\User;
 
 class Booking extends Model
 {
@@ -38,9 +39,27 @@ class Booking extends Model
         if($this->status == "CN"){ return false;}
         $str =  $interval->format('%R%d');
         if( $str >= 0  && $str <= 1 ){
+            //return true;
+            $user = User::where('id' , $this->userID)->first();
+            if($user->role == 1){
+                //user guest
+                return $this->validateCheckin();
+            }
+            //user member
             return true;
         }
+
         return false;
+
+    }
+
+    public function validateCheckin(){
+        if($this->type == 1){
+            if($this->payment == 2) return true;
+            else return false;
+        }else {
+            return true;
+        }
 
     }
 

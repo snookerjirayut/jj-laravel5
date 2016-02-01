@@ -174,7 +174,7 @@
 				$http.post('/booking/create',$scope.input).success(function(d){
 					console.log(d);
 					if(d.result){
-						window.location = '/booking/summary/'+d.bookingCode;
+						window.location = '/summary/'+d.bookingCode;
 					}
 				});
 			}

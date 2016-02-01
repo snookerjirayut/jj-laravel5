@@ -25,11 +25,13 @@
 
 		<div ng-repeat="booking in list.bookings">
 			<div class="media">
+
 			  <div class="media-left disable" ng-if="!booking.canCheckIn">
 			    <h2 class="lock-number-booking">
 			    	<i class="glyphicon glyphicon-map-marker"></i><% booking.status %>
 			    </h2>
 			  </div>
+
 			  <div class="media-left active" ng-if="booking.canCheckIn">
 			    <h2 class="lock-number-booking">
 			    	<a href="#" ng-click="checkin($index , booking.code)">
@@ -37,6 +39,7 @@
 			    	</a>
 			    </h2>
 			  </div>
+
 			  <div class="media-body">
 			    <h5 class="media-heading"><strong>ID :</strong> <% booking.code %></h5>
 			    <h5><strong>วันที่ขาย : </strong><% booking.miliseconds | date:'EEEE dd MMMM yyyy' %></h5>
@@ -54,7 +57,7 @@
 				    		uploaded slip.</a>
 				    	</span>
 				    	<span ng-if="booking.payment == 2" class="text-success"><a href="<% booking.picture %>" target="_blank">
-				    	<i class="glyphicon glyphicon-picture"></i>&nbsp;payment success.</a></span>
+				    	<i class="glyphicon glyphicon-picture"></i>&nbsp;admin approve.</a></span>
 				    </h5>
 			    </div>
 			  </div>

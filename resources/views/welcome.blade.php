@@ -5,42 +5,42 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Bootstrap core CSS -->
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/theme.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/bootstrap-reset.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/theme.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/bootstrap-reset.css') }}" rel="stylesheet">
 
     <!--external css-->
-    <link href="{{ asset('assets/font-awesome/css/font-awesome.css') }}" rel="stylesheet"/>
-    <link rel="stylesheet" href="{{  asset('css/flexslider.css') }}"/>
+    <link href="{{ asset('/assets/font-awesome/css/font-awesome.css') }}" rel="stylesheet"/>
+    <link rel="stylesheet" href="{{  asset('/css/flexslider.css') }}"/>
     <link href="{{  asset('assets/bxslider/jquery.bxslider.css') }}" rel="stylesheet"/>
-    <link rel="stylesheet" href="{{  asset('css/animate.css') }}">
-    <link rel="stylesheet" href="{{  asset('assets/owlcarousel/owl.carousel.css') }}">
-    <link rel="stylesheet" href="{{  asset('assets/owlcarousel/owl.theme.css') }}">
+    <link rel="stylesheet" href="{{  asset('/css/animate.css') }}">
+    <link rel="stylesheet" href="{{  asset('/assets/owlcarousel/owl.carousel.css') }}">
+    <link rel="stylesheet" href="{{  asset('/assets/owlcarousel/owl.theme.css') }}">
 
-    <link href="{{  asset('css/superfish.css') }}" rel="stylesheet" media="screen">
+    <link href="{{  asset('/css/superfish.css') }}" rel="stylesheet" media="screen">
     <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 
     <!-- Custom styles for this template -->
-    <link rel="stylesheet" type="text/css" href="{{  asset('css/component.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{  asset('/css/component.css') }}">
 
-    <link href="{{  asset('css/style-member.css') }}" rel="stylesheet">
-    <link href="{{  asset('css/style.css') }}" rel="stylesheet">
-    <link href="{{  asset('css/style-responsive.css') }}" rel="stylesheet"/>
+    <link href="{{  asset('/css/style-member.css') }}" rel="stylesheet">
+    <link href="{{  asset('/css/style.css') }}" rel="stylesheet">
+    <link href="{{  asset('/css/style-responsive.css') }}" rel="stylesheet"/>
 
-    <script src="{{  asset('js/jquery.min.js') }}"></script>
-    <script src="{{  asset('js/moment/min/moment.min.js') }}"></script>
-    <script src="{{  asset('css/bootstrap/dist/js/bootstrap.js') }}"></script>
+    <script src="{{  asset('/js/jquery.min.js') }}"></script>
+    <script src="{{  asset('/js/moment/min/moment.min.js') }}"></script>
+    <script src="{{  asset('/css/bootstrap/dist/js/bootstrap.js') }}"></script>
     <!-- Angular core JS -->
-    <script src="{{  asset('js/angular/angular.min.js') }}"></script>
-    <script src="{{  asset('js/angular-i18n/angular-locale_th-th.js') }}"></script>
-    <script src="{{  asset('js/angular/ui-bootstrap-tpls.js') }}"></script>
+    <script src="{{  asset('/js/angular/angular.min.js') }}"></script>
+    <script src="{{  asset('/js/angular-i18n/angular-locale_th-th.js') }}"></script>
+    <script src="{{  asset('/js/angular/ui-bootstrap-tpls.js') }}"></script>
 
     @yield('style')
 
 </head>
 <body>
     <div class="col-sm-12 ">
-        <img src="{{  asset('img/header.png') }}" class="img-resposive max-width">
+        <img src="{{  asset('/img/header.png') }}" class="img-resposive max-width">
     </div>
 
     <!--User active start-->
@@ -72,7 +72,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html"><img src="img/logo.png"></a>
+                    <a class="navbar-brand" href="index.html"><img src="{{  asset('/img/logo.png') }}"></a>
                 </div>
             </div>
             <div class="col-lg-9 col-sm-9">
@@ -206,27 +206,25 @@
     </footer>
     <!--small footer end-->
 
-<script type="text/javascript" src="js/hover-dropdown.js">
+<script type="text/javascript" src="{{  asset('/js/hover-dropdown.js') }}">
 </script>
-<script defer src="js/jquery.flexslider.js">
+<script defer src="{{  asset('/js/jquery.flexslider.js') }}">
 </script>
-<script type="text/javascript" src="assets/bxslider/jquery.bxslider.js">
-</script>
-
-<script type="text/javascript" src="js/jquery.parallax-1.1.3.js">
-</script>
-<script src="js/wow.min.js">
-</script>
-<script src="assets/owlcarousel/owl.carousel.js">
+<script type="text/javascript" src="{{  asset('/assets/bxslider/jquery.bxslider.js') }}">
 </script>
 
-<script src="js/jquery.easing.min.js">
+<script type="text/javascript" src="{{  asset('/js/jquery.parallax-1.1.3.js') }}">
 </script>
-<script src="js/link-hover.js">
+<script src="{{  asset('/js/wow.min.js') }}"></script>
+<script src="{{  asset('/assets/owlcarousel/owl.carousel.js') }}"></script>
+
+<script src="{{  asset('/js/jquery.easing.min.js') }}">
 </script>
-<script src="js/superfish.js">
+<script src="{{  asset('/js/link-hover.js') }}">
 </script>
-<script type="text/javascript" src="js/parallax-slider/jquery.cslider.js">
+<script src="{{  asset('/js/superfish.js') }}">
+</script>
+<script type="text/javascript" src="{{  asset('/js/parallax-slider/jquery.cslider.js') }}">
 </script>
 <script type="text/javascript">
     $(function () {
@@ -241,7 +239,7 @@
 
 
 <!--common script for all pages-->
-<script src="js/common-scripts.js">
+<script src="{{  asset('js/common-scripts.js') }}">
 </script>
 
 <script type="text/javascript">
@@ -297,7 +295,7 @@
 
 
 </script>
-<script src="/js/app.js"></script>
+<script src="{{  asset('/js/app.js') }}"></script>
 @yield('script')
 </body>
 </html>

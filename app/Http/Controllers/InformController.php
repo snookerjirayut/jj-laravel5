@@ -28,8 +28,8 @@ class InformController extends Controller
 
     public function feed(){
         $user = Auth::user();
-        $booking = Booking::where('userID' ,  $user->id)->where('payment' , 0 )->where('type' , 1)->get();
-        return response()->json(array('result'=>true ,'data' => $booking ));
+        $booking = Booking::where('userID' ,  $user->id)->where('payment' , 0)->where('type' , 1)->get();
+        return response()->json(['result'=>true ,'data' => $booking ]);
     }
 
 

@@ -29,6 +29,7 @@ Route::post('/signin/valid', 'AuthenticationController@check');
 
 Route::get('/contact', function(){ return view('contact.index'); });
 
+Route::get('/summary/{id?}', 'BookingController@summary');
 
 Route::group(['middleware' => 'auth'] , function(){
 	Route::get('/booking', 'BookingController@index');
@@ -41,13 +42,9 @@ Route::group(['middleware' => 'auth'] , function(){
 	Route::get('/booking/calendar/zone/get/{date}', 'BookingController@getZone');
 	Route::post('/booking/calendar/block/get', 'BookingController@getBlock');
 
-	Route::get('/booking/summary/{id}', 'BookingController@summary');
-
 	Route::get('/checkin', 'CheckinController@index');
 	Route::post('/checkin/get', 'CheckinController@feed');
 	Route::put('/checkin/save/{id}', 'CheckinController@update');
-
-
 
 	Route::get('/inform', 'InformController@index');
 	Route::get('/inform/feed', 'InformController@feed');
