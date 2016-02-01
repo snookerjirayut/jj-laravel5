@@ -23,6 +23,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/register' , 'HomeController@register');
+
 Route::get('/signin/', 'AuthenticationController@signin');
 Route::get('/signout/', 'AuthenticationController@signout');
 Route::post('/signin/valid', 'AuthenticationController@check');
@@ -107,6 +109,11 @@ Route::group(['middleware' => 'role:admin'] , function(){
 	Route::get('/admin/manage' , 'Backend\ManageController@index');
 	Route::post('/admin/manage/get' , 'Backend\ManageController@show');
 	Route::get('/admin/manage/clear/{date}' , 'Backend\ManageController@update');
+});
+
+Route::get('/utility/district/{zipcode?}' , function($zipcode){
+	$aumphur = \DB::table('v_zipcode')->where('ZIPCODE' , $zipcode)->get();
+	return response()->json(["data" => $aumphur]);
 });
 
 

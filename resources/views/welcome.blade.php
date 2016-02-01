@@ -35,6 +35,9 @@
     <script src="{{  asset('/js/angular-i18n/angular-locale_th-th.js') }}"></script>
     <script src="{{  asset('/js/angular/ui-bootstrap-tpls.js') }}"></script>
 
+    <script src="{{  asset('/js/jquery.validate.min.js') }}"></script>
+    <script src="{{  asset('/js/additional-methods.min.js') }}"></script>
+
     @yield('style')
 
 </head>

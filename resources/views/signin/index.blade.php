@@ -43,7 +43,7 @@
 
                                 <div class="registration">
                                     หากคุณยังไม่มีบัญชีผู้ใช้
-                                    <a class="" href="registration.html">
+                                    <a class="" href="/register">
                                         ลงทะเบียนเดี๋ยวนี้
                                     </a>
                                 </div> <!-- class="registration" end -->
