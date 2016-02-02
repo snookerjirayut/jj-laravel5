@@ -24,6 +24,7 @@ Route::get('/', function () {
 });
 
 Route::get('/register' , 'HomeController@register');
+Route::post('/register/valid' , 'HomeController@store');
 
 Route::get('/signin/', 'AuthenticationController@signin');
 Route::get('/signout/', 'AuthenticationController@signout');

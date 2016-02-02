@@ -91,6 +91,16 @@
 
 <!-- Text input-->
 <div class="form-group">
+  <label class="col-md-4 control-label" for="cardID"></label>  
+  <div class="col-md-4">
+  <input id="cardID" name="cardID" type="text" placeholder="Card ID" 
+  class="form-control input-md" ng-model="input.cardID">
+  </div>
+</div>
+
+
+<!-- Text input-->
+<div class="form-group">
   <label class="col-md-4 control-label" for="tel"></label>  
   <div class="col-md-4">
   <input id="phone" name="phone" type="text" placeholder="Phone number" 
@@ -164,7 +174,15 @@
 
 		$scope.save = function(){
 			if(!form.valid()) return;
-				
+			console.log($scope.input);
+			
+			$http.post('/register/valid',$scope.input).success(function(d){
+				console.log(d)
+				if(d.result){
+					alert(d.message);
+					window.location = '/signin';
+				}else alert(d.message);
+			});	
 		}
 
 		$scope.getDistrict = function(){
@@ -186,6 +204,7 @@
 			
 			var data = filed[0];
 			console.log(data);
+			$scope.input.districtName = data.DISTRICT_NAME;
 			$scope.input.amphur = data.AMPHUR_ID;
 			$scope.input.amphurName = data.AMPHUR_NAME;
 			$scope.input.province = data.PROVINCE_ID;
@@ -204,6 +223,7 @@
 				name : { required: true },
 				firstname : { required: true },
 				lastname : { required: true },
+				cardID : {required: true , minlength : 13 , maxlength : 13},
 				phone : { required: true , minlength : 10 , maxlength : 10},
 				address  : { required: true },
 				zipcode : { required: true , minlength : 5 , maxlength : 5},
