@@ -73,6 +73,12 @@ Route::get('/admin/get/calendar', function(){
 	$events_inv = Calendar::where('active' , 0)->groupBy('opened_at')->get();
 	return response()->json(['active'=>$events , 'inactive' => $events_inv]);
 });
+
+Route::get('/admin/get/zone/{date}', function($date){
+	$zone = Calendar::where('active' , '1')->where('opened_at' , $date)->get();
+	return response()->json(['zone'=>$zone]);
+});
+
 Route::get('/admin/get/calendar/{date}', function($date){
 	$events = Calendar::where('active' , '1')->where('opened_at' , $date )->get();
 	return response()->json($events);
@@ -110,6 +116,10 @@ Route::group(['middleware' => 'role:admin'] , function(){
 	Route::get('/admin/manage' , 'Backend\ManageController@index');
 	Route::post('/admin/manage/get' , 'Backend\ManageController@show');
 	Route::get('/admin/manage/clear/{date}' , 'Backend\ManageController@update');
+
+	Route::get('/admin/verify' , 'Backend\VerifyLockController@index');
+	Route::post('/admin/verify/get' , 'Backend\VerifyLockController@show');
+	Route::get('/admin/verify/update/{id}' , 'Backend\VerifyLockController@update');
 });
 
 Route::get('/utility/district/{zipcode?}' , function($zipcode){

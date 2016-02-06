@@ -62,11 +62,11 @@ class ManageController extends Controller
     {
         if($date == null)return response()->json(['result'=>false , 'message' => 'date can not be null.']);
         $booking = Booking::where('sale_at' ,$date. ' 00:00:00' )
-            ->where('status' , 'BK')->update(['status'=>'RM']);
+            ->where('status' , 'BK')->update(['status'=>'RM' , 'active'=>0]);
 
         $booking_list = Booking::where('sale_at' ,$date. ' 00:00:00' )->where('status' , 'RM')->get();
         foreach($booking_list as $key => $book){
-            BookingDetail::where('bookingID' , $book->id)->update(['status' => 'RM']);
+            BookingDetail::where('bookingID' , $book->id)->update(['status' => 'RM' , 'active'=>0]);
         }
 
         if($booking != null)

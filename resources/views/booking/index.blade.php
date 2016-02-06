@@ -206,16 +206,35 @@
 		}
 
 		$scope.checkValue = function(id ,$event){
-			
+			//console.log('event >> '  , $event);
 			var a = $scope.input.checked;
 			if(Object.keys(a).length > 0){
 				Object.keys(a).forEach(function(ele ,index){
+					//console.log('in >>', index , ele );
+					
 					if(!$scope.input.checked[ele]){ 
 						delete $scope.input.checked[ele];
 						//console.log('in >>', index , ele , $scope.input.checked[ele] , $scope.input.checked);
+					}else{
+						if(index > 0){
+							var arr_key = Object.keys(a);
+							console.log( 'aa >> ',index , arr_key);
+							if(index <= arr_key.length-1  ){
+								var key0 = arr_key[0].substring(0,1);
+								var key1 = arr_key[index].substring(0,1);
+								if(key0 != key1){
+									alert('กรุณาเลือกโซน '+key0);
+									delete $scope.input.checked[ele];
+								}
+							}
+							
+						}
 					}
+					
 				});
+
 			}
+			
 			
 			
 			if(Object.keys(a).length > $scope.input.number){
@@ -228,7 +247,7 @@
 				$scope.ui.buttonBooking =false;
 			}
 
-			console.log($scope.input.checked);
+			//console.log($scope.input.checked);
 			$scope.showPrice();
 
 		}
@@ -296,7 +315,7 @@
 		$scope.blockDisable = function(){
 			$http.post('/booking/calendar/block/get', $scope.input).success(function(d){
 				if(d != null){
-					console.log($scope.input.checked);
+					//console.log($scope.input.checked);
 					$scope.list.zoneBlockDisable = d;
 					$scope.list.zoneBlockDisable.forEach(function(element, index, array){
 						Object.keys($scope.input.checked).forEach(function(ele){

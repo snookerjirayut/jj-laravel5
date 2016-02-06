@@ -99,7 +99,7 @@
 
                 <div class="row buttom last">
                     <div class="col-sm-6 col-sm-offset-2">
-                        <button class="btn btn-success btn-block" onclick="backToBooking()">กลับสู่หน้าจอง</button>
+                        <button class="btn btn-success btn-block" ng-click="backToBooking()">กลับสู่หน้าจอง</button>
                     </div>
                 </div>
 
@@ -119,7 +119,9 @@
         angular.module("myApp").controller('SummaryController', ['$scope', '$http', function ($scope, $http) {
 
             $scope.date = {{ isset($booking->miliseconds) ? $booking->miliseconds: '""' }} ;
-
+            $scope.backToBooking = function(){
+                window.location = '/booking';
+            }
 
         }]);
 

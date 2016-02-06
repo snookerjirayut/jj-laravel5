@@ -82,6 +82,7 @@
               <li><a href="{{url('/admin/manage')}}">จัดการข้อมูล</a></li>
             <li><a href="{{url('/admin/payment')}}">ชำระเงิน</a></li>
             <li><a href="{{url('/admin/member')}}">สมาชิก</a></li>
+            <li><a href="{{url('/admin/verify')}}">ตรวจสอบ</a></li>
             <!--<li><a href="#">วิเคราะห์</a></li>
             <li><a href="#">ไฟล์</a></li> -->
           </ul>
