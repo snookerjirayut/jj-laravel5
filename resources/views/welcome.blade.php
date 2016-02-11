@@ -66,6 +66,7 @@
     <!--User active end-->
 
     <!--header start-->
+            
     <header class="head-section">
         <div class="navbar navbar-default navbar-static-top container">
             <div class="col-lg-3 col-sm-3">
@@ -75,9 +76,10 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html"><img src="{{  asset('/img/logo.png') }}"></a>
+                    <a class="navbar-brand" href="/"><img src="{{  asset('/img/logo.png') }}"></a>
                 </div>
             </div>
+            <div class="navbar-collapse collapse">
             <div class="col-lg-9 col-sm-9">
                 <div class="navbar-collapse collapse">
                     <br><br>
@@ -145,15 +147,15 @@
                         <ul class="page-footer-list">
                             <li>
                                 <i class="fa fa-angle-right"></i>
-                                <a href="booking.html">จองพื้นที่ขายของ</a>
+                                <a href="/booking">จองพื้นที่ขายของ</a>
                             </li>
                             <li>
                                 <i class="fa fa-angle-right"></i>
-                                <a href="checkin.html">เชคอิน</a>
+                                <a href="/checkin">เชคอิน</a>
                             </li>
                             <li>
                                 <i class="fa fa-angle-right"></i>
-                                <a href="inform.html">แจ้งโอน</a>
+                                <a href="/inform">แจ้งโอน</a>
                             </li>
                             <li>
                                 <i class="fa fa-angle-right"></i>
@@ -192,11 +194,11 @@
             <div class="row">
                 <div class="col-lg-6 col-sm-6 pull-right">
                     <ul class="social-link-footer list-unstyled">
-                        <li class="wow flipInX" data-wow-duration="2s" data-wow-delay=".1s"><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li class="wow flipInX" data-wow-duration="2s" data-wow-delay=".1s"><a href="https://www.facebook.com/jjgreen59/?fref=ts" target="_blank"><i class="fa fa-facebook"></i></a></li>
 
-                        <li class="wow flipInX" data-wow-duration="2s" data-wow-delay=".5s"><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li class="wow flipInX" data-wow-duration="2s" data-wow-delay=".5s"><a href="https://twitter.com/?lang=th" target="_blank"><i class="fa fa-twitter"></i></a></li>
 
-                        <li class="wow flipInX" data-wow-duration="2s" data-wow-delay=".8s"><a href="#"><i class="fa fa-youtube"></i></a></li>
+                        <li class="wow flipInX" data-wow-duration="2s" data-wow-delay=".8s"><a href="https://www.youtube.com" target="_blank"><i class="fa fa-youtube"></i></a></li>
                     </ul>
                 </div>
                 <div class="col-md-4">

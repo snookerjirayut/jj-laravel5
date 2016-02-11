@@ -33,20 +33,23 @@
                                     <input type="password" name="password" class="form-control"
                                            placeholder="Password">
                                 </div>
-                                <label class="checkbox">
-                                    <input type="checkbox" value="remember-me"> Remember me
-                                                  <span class="pull-right">
-                                                    <a data-toggle="modal" href="#myModal"> ลืมรหัสผ่าน?</a>
-                                                  </span>
-                                </label>
-                                <button class="btn btn-lg btn-login btn-block" type="submit">เข้าสู่ระบบ</button>
+                                
+                                    <label class="checkbox">
+                                        <input type="checkbox" value="remember-me"> 
+                                        <span>จำรหัสผ่าน</span> 
+                                            <span class="pull-right">
+                                                <a data-toggle="modal" href="#myModal"> ลืมรหัสผ่าน?</a>
+                                            </span>
+                                    </label>
+                                                                <button class="btn btn-lg btn-login btn-block" type="submit">เข้าสู่ระบบ</button>
+                                
 
-                                <div class="registration">
+                                <div class="row">
                                     หากคุณยังไม่มีบัญชีผู้ใช้
                                     <a class="" href="/register">
                                         ลงทะเบียนเดี๋ยวนี้
                                     </a>
-                                </div> <!-- class="registration" end -->
+                                </div> <!-- class="row" end -->
                             </div> <!--class="login-wrap"end -->
                         </form>
 

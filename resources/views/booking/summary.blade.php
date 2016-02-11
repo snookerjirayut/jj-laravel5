@@ -9,7 +9,7 @@
             padding-top: 25px;
             margin-top: 0;
             vertical-align: middle;
-            border: 1px solid #ccc;
+            border: 1px solid #8CC63F;
             text-align: center;
             background: #fff;
         }
@@ -34,7 +34,14 @@
         p {
             line-height: 1.4em;
             margin-bottom: 10px;
+
         }
+
+        strong{
+            color: #09b06a;
+            font-size: 1.2em;
+        }
+
     </style>
 @endsection
 @section('breadcrumbs')
@@ -42,12 +49,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-sm-4">
-                    <h1>จองพื้นที่</h1>
+                    <h1>สรุปการจองพื้นที่</h1>
                 </div>
                 <div class="col-lg-8 col-sm-8">
                     <ol class="breadcrumb pull-right">
                         <li><a href="{{ url('/') }}">หน้าหลัก</a></li>
-                        <li class="active">จองพื้นที่</li>
+                        <li class="active">สรุปการจองพื้นที่</li>
                     </ol>
                 </div>
             </div>
@@ -56,25 +63,26 @@
 @endsection
 
 @section('content')
-
+<div class="summary">
     <div class="row">
-        <div class="col-sm-8 col-sm-offset-2" ng-controller="SummaryController">
+        <div class="col-lg-12 col-sm-12" ng-controller="SummaryController">
             <div class="row">
-                <div class="col-sm-6 text-left">
-                    <p><strong>เช่าล๊อคของวันที่ : </strong>
+                <div class="col-sm-12 left">
+                    <p><strong>จองล็อคของวันที่ : </strong>
                         <% date | date:'EEEE dd MMMM y' %>
                     </p>
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-6 right">
+                <div class="col-sm-12 right">
                     @if(isset($booking) && isset($user))
-                    <p><strong>ชื่อสินค้า : </strong>{{ $booking->productName }} </p>
                     <p><strong>ชื่อผู้จอง : </strong> {{ $user->name }}</p>
+                    <p><strong>ชื่อสินค้า : </strong>{{ $booking->productName }} </p>
                     <p><strong>ที่อยู่ : </strong>{{ $user->address }} </p>
                     @endif
                 </div>
             </div>
+            <hr>
 
         @if(isset($detail))
                 @foreach ($detail as $obj)
@@ -85,21 +93,37 @@
                         <div class="media-body">
                             <h4 class="media-heading">โซน {{ $detail->zoneName }}</h4>
                             ราคา {{ number_format($obj->price, 2, '.', '') }} บาท
-                            จำนวน 1 ล็อค <br>
+                             <br>
                             {{ $booking->type == 1 ? "ชำระผ่านการโอน" : "ชำระ ณ วันขายสินค้า" }}
                         </div>
                     </div>
                 @endforeach
-
+                <hr>
                 <div class="row buttom">
-                    <div class="col-sm-6 text-left"><p><strong>จำนวนรวม : </strong>{{ count($detail) }} ล็อค</p></div>
-                    <div class="col-sm-6 text-right"><p><strong>ราคารวม
-                                : </strong>{{number_format($booking->totalPrice, 2, '.', '')   }} บาท</p></div>
-                </div>
+                    <div class="col-lg-12 col-sm-12">
+                        <div class="col-lg-9 col-sm-9">
+                            <h1>จำนวนรวม  </h1>
+                        </div>
+                    
+                        <div class="col-lg-3 col-sm-3">
+                            <h1><strong>{{ count($detail) }}</strong>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ล็อค</h1>
+                        </div>
+                    </div>
 
-                <div class="row buttom last">
-                    <div class="col-sm-6 col-sm-offset-2">
-                        <button class="btn btn-success btn-block" ng-click="backToBooking()">กลับสู่หน้าจอง</button>
+                    <div class="col-lg-12 col-sm-12">
+                        <div class="col-lg-8 col-sm-8">
+                            <h1>ราคารวม  </h1>
+                        </div>
+                    
+                        <div class="col-lg-4 col-sm-4">
+                            <h1><strong>{{number_format($booking->totalPrice, 2, '.', '')   }} </strong>&nbsp;&nbsp;บาท</h1>
+                        </div>
+                    </div>
+                </div>
+                    <br>
+                <div class="row">
+                    <div class="col-lg-12 col-sm-12">
+                        <button class="btn btn-primary btn-lg btn-block" onclick="backToBooking()">กลับสู่หน้าจอง</button>
                     </div>
                 </div>
 
@@ -107,6 +131,7 @@
         </div>
 
     </div>
+</div>
 
 @endsection
 
@@ -119,9 +144,7 @@
         angular.module("myApp").controller('SummaryController', ['$scope', '$http', function ($scope, $http) {
 
             $scope.date = {{ isset($booking->miliseconds) ? $booking->miliseconds: '""' }} ;
-            $scope.backToBooking = function(){
-                window.location = '/booking';
-            }
+
 
         }]);
 

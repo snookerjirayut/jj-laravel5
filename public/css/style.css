@@ -25,6 +25,21 @@ a:focus {
     background: #09b06a;
     color: #fff;
 }
+.register h1{
+    color: #09b06a;
+}
+.register span{
+    font-size: 13px;
+    color: #878482;
+}
+.form-register {
+    max-width: 550px;
+    margin: 50px auto 50px;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+
+}
 h1,
 h2,
 h3,
@@ -907,7 +922,7 @@ section.contact-infos {
 .media h3 { margin-top: 20px }
 .media-body h4 {
     font-size: 16px;
-    color: #475168;
+    color: #09b06a;
 }
 .media-body a {
     -webkit-transition: all .3s ease;
@@ -1845,7 +1860,6 @@ ul#filters > .active > span {
 .form-signin {
     max-width: 500px;
     margin: 50px auto 50px;
-    
     border-radius: 3px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
@@ -1923,6 +1937,7 @@ ul#filters > .active > span {
     font-weight: 300;
 }
 .form-signin a { color: #09b06a }
+.form-signin span { font-size: 13px; }
 .form-signin a:hover { color: #8bc63a}
 .login-wrap {
     padding: 20px;
@@ -3040,3 +3055,17 @@ div.header h3{
 }
 .img-responsive {margin:0 auto;}
 .img-center {margin:0 auto;}
+
+.summary {
+    max-width: 550px;
+    margin: 50px auto 50px;
+    border-radius: 3px;
+    border: 1px solid #09b06a;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    padding: 25px;
+}
+.summary h1{
+    font-size: 1.4em
+
+}

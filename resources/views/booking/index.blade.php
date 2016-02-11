@@ -79,40 +79,51 @@
 			</div>
 		</div>
 		<div class="col-sm-4 box-booking-summary" ng-show="input.checked != null">
-			
-			<div >
-				<h5 class="text-center">เช่าล๊อคของวันที่ <% input.date  | date:'EEEE dd MMMM y' %></h5>
+		
+				<div class="text-center text-day">เช่าล็อคคของ <% input.date  | date:'EEEE dd MMMM y' %></div>
 				<hr>
 				<div class="col-sm-12 box-booking-item" ng-repeat="item in list.item" >
-					<div class="col-sm-8 text-left">
-						No. <% item.name %> *  <% item.amount %> ล็อค
+					<div class="col-sm-6 text-left">
+						ล็อค <% item.name %>   
 					</div> 
-					<div class="col-sm-4 text-right"><% item.price | number:2 %> <small>บาท</small></div>
+					<div class="col-sm-6 text-right"><% item.price | number:2 %> <small>บาท</small></div>
 				</div>
-				<div class="col-sm-12">
-					<hr>
-					<div class="text-center"> <small>วิธีการชำระเงิน</small> </div>
-					<div class="col-sm-8 col-sm-offset-2 ">
-						<label class="checkbox">
-							<input type="radio" ng-model="input.type" value="1">
-							 &nbsp;&nbsp;&nbsp;ชำระผ่านธนาคาร
-						</label>
-						<label class="checkbox">
-							<input type="radio" ng-model="input.type" value="2">
-							 &nbsp;&nbsp;ชำระ ณ วันที่ขายสินค้า
-						</label>
+				<hr>
+
+				<div class="col-sm-12 box-booking-total" >
+					<div class="col-sm-5 text-left ">
+						ยอดชำระ 
+					</div>
+					<div class="col-sm-7 text-right text-bold">
+						<% input.totalPrice | number:2 %> <small>บาท</small>
 					</div>
 				</div>
-				<div class="col-sm-12 text-center box-booking-total">
-					<label>ยอดชำระ <% input.totalPrice | number:2 %> บาท</label>
+
+				<hr>
+				<hr>
+				<div class="col-sm-12">
+					<div class="text-center text-pay">วิธีการชำระเงิน</div>
+						
+							<label class="checkbox">
+								<input type="radio" ng-model="input.type" value="1">
+							 	&nbsp;&nbsp;&nbsp;ชำระผ่านธนาคาร
+							</label>
+						
+						
+							<label class="checkbox">
+								<input type="radio" ng-model="input.type" value="2">
+							 	&nbsp;&nbsp;ชำระ ณ วันที่ขายสินค้า
+							</label>
+						
 				</div>
+				
 				
 				<div class="col-sm-8 col-sm-offset-2 box-booking-button">
 					<button class="btn btn-primary btn-lg btn-block" 
 					ng-click="booking()" ng-disabled="ui.buttonBooking">จองพื้นที่</button>
 				</div>
 				
-			</div>
+			
 
 		</div>
 		
@@ -206,35 +217,16 @@
 		}
 
 		$scope.checkValue = function(id ,$event){
-			//console.log('event >> '  , $event);
+			
 			var a = $scope.input.checked;
 			if(Object.keys(a).length > 0){
 				Object.keys(a).forEach(function(ele ,index){
-					//console.log('in >>', index , ele );
-					
 					if(!$scope.input.checked[ele]){ 
 						delete $scope.input.checked[ele];
 						//console.log('in >>', index , ele , $scope.input.checked[ele] , $scope.input.checked);
-					}else{
-						if(index > 0){
-							var arr_key = Object.keys(a);
-							console.log( 'aa >> ',index , arr_key);
-							if(index <= arr_key.length-1  ){
-								var key0 = arr_key[0].substring(0,1);
-								var key1 = arr_key[index].substring(0,1);
-								if(key0 != key1){
-									alert('กรุณาเลือกโซน '+key0);
-									delete $scope.input.checked[ele];
-								}
-							}
-							
-						}
 					}
-					
 				});
-
 			}
-			
 			
 			
 			if(Object.keys(a).length > $scope.input.number){
@@ -247,7 +239,7 @@
 				$scope.ui.buttonBooking =false;
 			}
 
-			//console.log($scope.input.checked);
+			console.log($scope.input.checked);
 			$scope.showPrice();
 
 		}
@@ -315,7 +307,7 @@
 		$scope.blockDisable = function(){
 			$http.post('/booking/calendar/block/get', $scope.input).success(function(d){
 				if(d != null){
-					//console.log($scope.input.checked);
+					console.log($scope.input.checked);
 					$scope.list.zoneBlockDisable = d;
 					$scope.list.zoneBlockDisable.forEach(function(element, index, array){
 						Object.keys($scope.input.checked).forEach(function(ele){
