@@ -123,7 +123,7 @@
                     <br>
                 <div class="row">
                     <div class="col-lg-12 col-sm-12">
-                        <button class="btn btn-primary btn-lg btn-block" ng-click="backToBooking()">กลับสู่หน้าจอง</button>
+                        <button class="btn btn-primary btn-lg btn-block" ng-click="backToBooking()">ปิดหน้าจอ</button>
                     </div>
                 </div>
 
@@ -144,8 +144,11 @@
         angular.module("myApp").controller('SummaryController', ['$scope', '$http', function ($scope, $http) {
 
             $scope.date = {{ isset($booking->miliseconds) ? $booking->miliseconds: '""' }} ;
+
             $scope.backToBooking = function(){
-                window.location = "/booking";
+                $http.get('/booking/session/clear').success(function(d){
+                    window.close();
+                });
             }
 
         }]);

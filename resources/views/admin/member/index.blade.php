@@ -137,6 +137,7 @@
 			</div>
 			<div class="panel-footer">
 				<button class="btn btn-success" ng-click="update()">อัพเดต</button>
+				<button class="btn btn-info" ng-click="booking()">จอง</button>
 			</div>
 		</div>
 	</div>
@@ -166,7 +167,12 @@
 			$scope.list.status = [{id:99, name: 'ALL'},{id:1 , name: 'Active'},{id:2 , name: 'Inactive'}];
 			$scope.list.role = [{id:1 , name: 'Guest'},{id:2 , name: 'Member'}];
 			
-
+			$scope.booking = function(){
+				if($scope.detail.id == null) return ;
+				var win = window.open('{{ url('/admin/booking') }}/'+$scope.detail.id, '_blank');
+  				win.focus();
+			}
+			
 			$scope.update = function(){
 				if($scope.detail.id == null) return ;
 				$http.put("{{url('/admin/member/update')}}/"+$scope.detail.id  , $scope.detail ).success(function(d){

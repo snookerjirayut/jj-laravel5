@@ -34,11 +34,21 @@ Route::get('/contact', function(){ return view('contact.index'); });
 
 Route::get('/summary/{id?}', 'BookingController@summary');
 
+
 Route::group(['middleware' => 'auth'] , function(){
 	Route::get('/booking', 'BookingController@index');
 	Route::post('/booking/create', 'BookingController@store');
 	Route::put('/booking/update', 'BookingController@update');
 	Route::delete('/booking/destroy', 'BookingController@destroy');
+
+	Route::get('/booking/createByAdmin', 'BookingController@createByAdmin')->name('/booking/createByAdmin');
+	Route::post('/booking/create/admin', 'BookingController@storeByAdmin');
+	Route::post('/booking/search/admin', 'BookingController@searchByAdmin');
+	Route::get('/summary/admin/{id?}', 'BookingController@summaryByAdmin');
+	Route::get('/booking/session/clear' , function(){
+		session()->forget('member');
+		return response()->json(["result"=>true]);
+	});
 
 	Route::post('/booking/search', 'BookingController@search');
 	Route::get('/booking/calendar/day/get', 'BookingController@getDay');
@@ -120,6 +130,8 @@ Route::group(['middleware' => 'role:admin'] , function(){
 	Route::get('/admin/verify' , 'Backend\VerifyLockController@index');
 	Route::post('/admin/verify/get' , 'Backend\VerifyLockController@show');
 	Route::get('/admin/verify/update/{id}' , 'Backend\VerifyLockController@update');
+
+	Route::get('/admin/booking/{id}' , 'Backend\BookingController@index');
 });
 
 Route::get('/utility/district/{zipcode?}' , function($zipcode){
