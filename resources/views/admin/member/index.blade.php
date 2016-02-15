@@ -184,12 +184,14 @@
 			}
 
 			$scope.search = function(){
+				$scope.ui.detail
 				$http.post("{{url('/admin/member/search')}}",$scope.input).success(function(d){
 					console.log(d);
 					if(d.result){
 						$scope.table.member = d.data;
 						$scope.input.total = d.total;
 						if(d.total == 0){ alert('Data not found.'); }
+						$scope.ui.detail = true;
 					}
 				});
 			}

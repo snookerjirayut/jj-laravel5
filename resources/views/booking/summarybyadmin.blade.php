@@ -1,4 +1,4 @@
-@extends('welcome')
+@extends('welcomebyadmin')
 @section('title', 'Summary')
 @section('style')
     <style type="text/css">

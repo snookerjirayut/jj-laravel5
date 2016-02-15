@@ -19,6 +19,7 @@ class BookingController extends Controller
     public function index($id)
     {
         //
+        session()->forget('member');
         if($id == null) return response()->json(["message" => "member id is null."]);
         $member = User::where('id' , $id)->first();
         if($member == null) return response()->json(["message" => "member is null."]);

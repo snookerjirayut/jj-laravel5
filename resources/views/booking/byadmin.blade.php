@@ -1,4 +1,4 @@
-@extends('welcome')
+@extends('welcomebyadmin')
 @section('title', 'Booking')
 @section('breadcrumbs')
 	<div class="breadcrumbs">
