@@ -3,7 +3,9 @@
 @section('style')
 <style type="text/css">
 	.error{
-		color: #d9534f;
+	color: #d9534f;
+    font-weight: lighter;
+    font-size: 12px;
 	}
 </style>
 @endsection
@@ -16,7 +18,7 @@
      	<div class="row col-xs-12 register">
 			<h1>ลงทะเบียนเพื่อจองพื้นที่</h1><br>
 				<span>ยินดีต้อนรับสู่ตลาดนัดกรีน วินเทจ เราคือวิธีที่สะดวกที่สุดในการจองพื้นที่ขายสินค้า	
-				<br>brง่ายเพียงแตะปุ่ม สร้างบัญชีของคุณและเริ่มจองพท้นที่ในไม่กี่นาที</span>	
+				<br>ง่ายเพียงแตะปุ่ม สร้างบัญชีของคุณและเริ่มจองพื้นที่ในไม่กี่นาที</span>	
 		</div><br>
 
             <div class="row">
@@ -40,7 +42,7 @@
             <!-- Add input -->
             <div class="row">
                 <div class="col-xs-12 ">
-                    <textarea name="address" id="address" class="form-control" rows="3" placeholder="ที่อยู่" ng-model="input.address"></textarea>
+                    <textarea id="address" name="address" type="text" placeholder="ที่อยู่" class="form-control" rows="3"  ng-model="input.address"></textarea>
                 </div>
             </div>
 
@@ -72,14 +74,14 @@
             <!-- Phone input -->
             <div class="row">
                 <div class="col-xs-12 ">
-                    <input id="phone" name="phone" type="text" placeholder="เบอร์มือถือ" class="form-control input-md" ng-model="input.phone">    
+                    <input id="phone" name="phone" type="text" placeholder="เบอร์โทรศัพท์" class="form-control input-md" ng-model="input.phone">    
                 </div>
             </div>
 
             <!-- Email input -->
             <div class="row">
                  <div class="col-xs-12 ">
-                    <input id="email" name="email" type="text" placeholder="Email" class="form-control input-md" ng-model="input.email">
+                    <input id="email" name="email" type="email" placeholder="Email" class="form-control input-md" ng-model="input.email">
                 </div>
             </div>
 			
@@ -103,7 +105,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12 col-sm-12">
-                    <button class="btn btn-lg btn-info btn-block" ng-click="save()">สร้างบัญชี</button>
+                    <button class="btn btn-jj btn-block" ng-click="save()">สร้างบัญชี</button>
                 </div>
             </div>
     
@@ -185,13 +187,13 @@
             messages:{
                 email : { required : 'กรุณากรอก email' , email : 'กรุณากรอกให้อยู่ในรูปแบบ email' },
                 password : { required: 'กรุณากรอกรหัสผ่าน' , minlength : 'ความยาวอย่างน้อย 6 ตัวอักษร' , maxlength : 'ความยาวสูงสุด 12 ตัวอักษร'},
-                trypassword : { required: 'กรุณากรอกรหัสผ่าน' , minlength : 'ความยาวอย่างน้อย 6 ตัวอักษร' , maxlength : 'ความยาวสูงสุด 12 ตัวอักษร', equalTo : 'กรอกใหม่อีกครั้ง'
+                trypassword : { required: 'กรุณายืนยันรหัสผ่าน' , minlength : 'ความยาวอย่างน้อย 6 ตัวอักษร' , maxlength : 'ความยาวสูงสุด 12 ตัวอักษร', equalTo : 'กรอกใหม่อีกครั้ง'
                 },
                 name : { required: 'กรุณาระบุชื่อผู้ใช้งาน' },
-                firstname : { required: 'กรุณารุบบชื่อ' },
-                lastname : { required: 'กรุณารุบะนามสกุล' },
-                cardID : {required: 'กรุณาระบุเลขบัตรประชาชน' , minlength : 'กรุณากรอกให้ครบ 13 หลัก' , maxlength : 'สามารถกรอกได้ 13 ตัวอักษร'},
-                phone : { required: 'กรุณาระบุเบอร์โทรศัพท์' , minlength : 'ความยาวอย่างน้อย 9 ตัวอักษร' , maxlength : 'ความยาวสูงสุด 10 ตัวอักษร'},
+                firstname : { required: 'กรุณาระบุชื่อ' },
+                lastname : { required: 'กรุณาระบุนามสกุล' },
+                cardID : {required: 'กรุณาระบุเลขบัตรประชาชน' , minlength : 'กรุณากรอกให้ครบ 13 หลัก' , maxlength : 'กรอกได้ 13 หลัก'},
+                phone : { required: 'กรุณาระบุเบอร์โทรศัพท์' , minlength : 'ความยาวอย่างน้อย 9 หลัก' , maxlength : 'ความยาวสูงสุด 10 หลัก'},
                 address  : { required: 'กรุณาระบุที่อยู่' },
                 zipcode : { required: 'กรุณาระบุรหัสไปรษณีย์' , minlength : 'ความยาวอย่างน้อย 5 ตัวอักษร' , maxlength : 'ความยาวสูงสุด 5 ตัวอักษร'},
             }

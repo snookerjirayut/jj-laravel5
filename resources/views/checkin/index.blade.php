@@ -41,7 +41,7 @@
 			  </div>
 
 			  <div class="media-body">
-			    <h5 class="media-heading"><strong>ID :</strong> <% booking.code %></h5>
+			    <h5 class="media-heading"><strong>รหัสจอง :</strong> <% booking.code %></h5>
 			    <h5><strong>วันที่ขาย : </strong><% booking.miliseconds | date:'EEEE dd MMMM yyyy' %></h5>
 			    
 			    <div ng-repeat="detail in booking.bookingDetail" id="box-number-<% $index  %>" >
@@ -51,18 +51,18 @@
 			    </div>
 			    <div class="box-payment-status">
 				    <h5>
-				    	<span ng-if="booking.payment == 0" class="text-danger">wait payment.</span>
+				    	<span ng-if="booking.payment == 0" class="text-danger">รอแจ้งโอน</span>
 				    	<span ng-if="booking.payment == 1" class="text-warning">
 				    		<a href="<% booking.picture %>" target="_blank"><i class="glyphicon glyphicon-picture"></i>
-				    		uploaded slip.</a>
+				    		แจ้งโอนแล้ว</a>
 				    	</span>
 				    	<span ng-if="booking.payment == 2" class="text-success"><a href="<% booking.picture %>" target="_blank">
-				    	<i class="glyphicon glyphicon-picture"></i>&nbsp;admin approve.</a></span>
+				    	<i class="glyphicon glyphicon-picture"></i>&nbsp;ตรวจสอบแล้ว</a></span>
 				    </h5>
 			    </div>
 			  </div>
 			  <div class="media-right payement text-right">
-			  	<% booking.totalPrice |  number:2 %>&nbsp;฿
+			  	<% booking.totalPrice |  number:2 %>&nbsp;บาท
 			  </div>
 			</div>
 		</div>
@@ -70,9 +70,7 @@
 		
 	</div>
 
-	<div class="col-sm-8 col-sm-offset-2" style="margin-top:30px">
-		<uib-pager total-items="input.total" ng-model="input.currentPage" items-per-page="input.pageSize" ng-change="nextPage()"></uib-pager>
-	</div>	
+	
 
 </div>
 

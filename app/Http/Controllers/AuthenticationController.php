@@ -76,7 +76,7 @@ class AuthenticationController extends Controller
             return redirect()->intended('/booking');
         }
 
-       return redirect()->intended('/signin')->withErrors('Please check your email or password again.');
+       return redirect()->intended('/signin')->withErrors('อีเมลหรือรหัสผ่านไม่ถูกต้อง');
     }
 
     public function signout(){

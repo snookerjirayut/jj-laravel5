@@ -59,7 +59,7 @@
 				</div>
 				<div class="controls col-lg-6 col-sm-6 form-group has-success">
 					<label>&nbsp;ค้นหา</label>
-					<button class="btn btn-info" ng-click="search()" ng-disabled="input.number == null">ตกลง</button>
+					<button class="btn btn-jj" ng-click="search()" ng-disabled="input.number == null">ตกลง</button>
 				</div>
 			</div>
 		</div>
@@ -119,7 +119,7 @@
 				
 				
 				<div class="col-sm-8 col-sm-offset-2 box-booking-button">
-					<button class="btn btn-primary btn-lg btn-block" 
+					<button class="btn btn-jj btn-block" 
 					ng-click="booking()" ng-disabled="ui.buttonBooking">จองพื้นที่</button>
 				</div>
 				

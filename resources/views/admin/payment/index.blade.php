@@ -115,10 +115,10 @@
 									<td><% obj.created_at %></td>
 									<td>
 										<div ng-if="obj.payment == 1">
-											<button class="btn btn-xs btn-warning" ng-click="approve(obj.id)">ตรวจสอบแล้ว</button>
+											<button class="btn btn-xs btn-warning" ng-click="approve(obj.id)">ยังไม่ตรวจสอบ</button>
 										</div>
 										<div ng-if="obj.payment == 2">
-											<label class="label label-success">ยังไม่ตรวจสอบ</label>
+											<label class="label label-success">ตรวจสอบแล้ว</label>
 										</div>
 									</td>
 								</tr>

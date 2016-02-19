@@ -65,14 +65,14 @@
 	   			<table class="table table-striped table-bordered">
 	   				<thead>
 	   					<tr>
-	   						<td  width="5%">IDX</td>
-	   						<td  width="20%">Member</td>
-	   						<td  width="20%">LockNumber</td>
-	   						<td  width="5%" class="text-center">CheckIn</td>
-	   						<td  width="5%" class="text-center">Payment type</td>
-	   						<td  width="5%" class="text-center">Payment status</td>
-	   						<td  width="5%" class="text-center">Verify</td>
-	   						<td  width="5%" class="text-center">#</td>
+	   						<td  width="5%">ลำดับ</td>
+	   						<td  width="20%">สมาชิก</td>
+	   						<td  width="20%">ล็อคที่อง</td>
+	   						<td  width="5%" class="text-center">เช็คอิน</td>
+	   						<td  width="5%" class="text-center">ประเภทการชำระ</td>
+	   						<td  width="5%" class="text-center">สถานะการชำระ</td>
+	   						<td  width="5%" class="text-center">สถานะตรวจสอบ</td>
+	   						<td  width="5%" class="text-center">ตรวจสอบ</td>
 	   					</tr>
 	   				</thead>
 	   				<tbody>
@@ -85,25 +85,25 @@
 	   							</div>
 	   						</td>
 	   						<td class="text-center">
-	   							<div ng-if="value.status == 'CN'" class="label label-success">Y</div>
-	   							<div ng-if="value.status != 'CN'" class="label label-danger">N</div>
+	   							<div ng-if="value.status == 'CN'" class="label label-success">เช็คอินแล้ว</div>
+	   							<div ng-if="value.status != 'CN'" class="label label-danger">ยังไม่เช็คอิน</div>
 	   						</td>
 	   						<td class="text-center">
-	   							<div ng-if="value.type == 1" class="label label-primary">TRAN</div>
-	   							<div ng-if="value.type == 2" class="label label-info">SALE</div>
+	   							<div ng-if="value.type == 1" class="label label-primary">โอนเงิน</div>
+	   							<div ng-if="value.type == 2" class="label label-info">จ่ายสด</div>
 	   						</td>
 	   						<td class="text-center">
-	   							<div ng-if="value.payment == 0" class="label label-warning">Waiting</div>
+	   							<div ng-if="value.payment == 0" class="label label-warning">ค้างชำระ</div>
 	   							<div ng-if="value.payment == 1" class="label label-info">
-	   								<a href="<% value.picture %>" target="_blank">Uploaded</a>
+	   								<a href="<% value.picture %>" target="_blank">แจ้งโอนแล้ว</a>
 	   							</div>
 	   							<div ng-if="value.payment == 2" class="label label-success">
-	   								<a href="<% value.picture %>" target="_blank" class="label-link">Approved</a>
+	   								<a href="<% value.picture %>" target="_blank" class="label-link">เรียบร้อย</a>
 	   							</div>
 	   						</td>
 	   						<td  class="text-center">
-	   							<div ng-if="value.verify == 0" class="label label-warning">Waiting</div>
-	   							<div ng-if="value.verify == 1" class="label label-success">Verified</div>
+	   							<div ng-if="value.verify == 0" class="label label-warning">รอตรวจสอบ</div>
+	   							<div ng-if="value.verify == 1" class="label label-success">ตรวจสอบแล้ว</div>
 	   						</td>
 	   						<td class="text-center">
 	   							<a href="javascript:void(0)" ng-click="verify(value.id , $index)" class="btn btn-success btn-xs">

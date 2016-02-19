@@ -12,15 +12,7 @@
         <img src="{{  asset('img/header.png') }}" class="img-resposive max-width">
     </div>
 
-    @if (count($errors) > 0)
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+   
     
             
     
@@ -29,10 +21,19 @@
         <div class="col-lg-4"></div>
         <div class="col-lg-4">
             <img src="{{  asset('img/logo.png') }}" class="img-responsive img-center">
-            <div class="col-lg-12 text-center "><h3>ADMIN</h3></div>
+            
+            
 
-            <form role="form" form method="post" action="{{url('')}}/admin/signin/valid">
+            <form class="form-signin wow fadeInUp" method="post" action="{{url('')}}/admin/signin/valid">
+                <div class="col-lg-12 text-center "><h3>ADMIN</h3></div>
                 <div class="login-wrap">
+                     @if (count($errors) > 0)
+                <div class="alert alert-danger">
+                @foreach ($errors->all() as $error)
+                    {{ $error }}
+                @endforeach
+                </div>
+            @endif
                     <div class="form-group has-success">
                         <input type="text" name="email" placeholder="Email" class="form-control">
                     </div>
@@ -40,7 +41,7 @@
                         <input type="password" name="password" placeholder="Password" class="form-control">
                     </div>
                             
-                    <button class="btn btn-info btn-lg btn-block " type="submit">
+                    <button class="btn btn-jj btn-block " type="submit">
                         เข้าสู่ระบบ
                     </button>
                 </div>

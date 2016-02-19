@@ -2,15 +2,6 @@
 @section('title', 'Signin')
 @section('content')
 
-    @if (count($errors) > 0)
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
             <!--property start-->
 
         <div class="row">
@@ -24,9 +15,18 @@
                     <div class="form-wrapper">
                         <form class="form-signin wow fadeInUp" action="/signin/valid" method="post">
 
-                            <div class="login-wrap">
+                            <div class="login-wrap ">
+
+                                @if (count($errors) > 0)
+                                    <div class="alert alert-danger">
+                                        @foreach ($errors->all() as $error)
+                                        {{ $error }}
+                                        @endforeach
+            
+                                    </div>
+                                @endif
                                 <div class="form-group has-success">
-                                    <input type="text" name="email" class="form-control"
+                                    <input type="email" name="email" class="form-control"
                                            placeholder="Email" autofocus>
                                 </div>
                                 <div class="form-group has-success">
@@ -41,15 +41,14 @@
                                                 <a data-toggle="modal" href="#myModal"> ลืมรหัสผ่าน?</a>
                                             </span>
                                     </label>
-                                                                <button class="btn btn-lg btn-login btn-block" type="submit">เข้าสู่ระบบ</button>
+                                    <button class="btn btn-jj btn-login btn-block" type="submit">เข้าสู่ระบบ</button>
                                 
-
-                                <div class="row">
-                                    หากคุณยังไม่มีบัญชีผู้ใช้
-                                    <a class="" href="/register">
+                                <div class="form-group has-success">
+                                    หากคุณยังไม่มีบัญชีผู้ใช้&nbsp;&nbsp;<a class="" href="/register">
                                         ลงทะเบียนเดี๋ยวนี้
                                     </a>
-                                </div> <!-- class="row" end -->
+                                </div>
+                                
                             </div> <!--class="login-wrap"end -->
                         </form>
 
@@ -147,3 +146,5 @@
 
         <!--recent work end-->
 @endsection
+
+

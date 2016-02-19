@@ -34,7 +34,7 @@
                         <label for="email">
                             Email
                         </label>
-                        <input type="text" placeholder="" id="email" class="form-control">
+                        <input type="email" placeholder="" id="email" class="form-control">
                     </div>
                     <div class="form-group has-success">
                         <label for="phone">
@@ -49,9 +49,10 @@
                 <textarea placeholder="" rows="5" class="form-control">
                 </textarea>
                     </div>
-                    <button class="btn btn-primary btn-lg" type="submit">
+                    <button class="btn btn-jj " type="submit">
                         ส่งข้อความ
                     </button>
+                    
                 </form>
 
             </div>
@@ -72,11 +73,8 @@
                 <h4 class="title custom-font text-black">
                     เวลาทำการ
                 </h4>
-                <p>
-                    พฤหัสบดี - อาทิตย์ 16:00 - 01.00 น.
-                    <br>
-
-                </p>
+                <p><i class="fa fa-calendar pr-10"></i>พฤหัสบดี - อาทิตย์ 16:00 - 01.00 น. </p>
+                
             </section>
             <section class="contact-infos">
                 <h4>
@@ -107,7 +105,7 @@
 
         //google map
         function initialize() {
-            var myLatlng = new google.maps.LatLng(51.508742, -0.120850);
+            var myLatlng = new google.maps.LatLng(13.8052894, 100.5508128);
             var mapOptions = {
                 zoom: 5,
                 center: myLatlng,
