@@ -33,13 +33,72 @@ a:focus {
     color: #878482;
 }
 .form-register {
-    max-width: 550px;
+    max-width: 540px;
     margin: 50px auto 50px;
     border-radius: 3px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
+}
+.form-register .form-control textarea {
+    position: relative;
+    font-size: 14px;
+    height: 48px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.form-register .form-control:focus { z-index: 2 }
+.form-register input[type="text"],
+.form-register textarea,
+.form-register input[type="email"],
+.form-register input[type="password"] {
+    margin-bottom: 15px;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border: 1px solid #CCC;
+    box-shadow: none;
+    font-size: 14px;
+}
+.form-register .btn-register {
+    background: #09b06a;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 300;
+    margin-bottom: 20px;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease;
+}
+.form-register .btn-register:hover {
+    color: #fff;
+    background: #11cc77;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease;
+}
+.form-register p {
+    text-align: center;
+    color: #b6b6b6;
+    font-size: 16px;
+    font-weight: 300;
+}
+.form-register a { color: #09b06a }
+.form-register span { font-size: 13px; }
+.form-register a:hover { color: #8bc63a}
 
 }
+
 h1,
 h2,
 h3,
@@ -827,7 +886,24 @@ ul.about-flex-slides { margin-left: 0 }
     margin-top: 40px;
     margin-bottom: 40px;
 }
-.contact-form { margin-bottom: 20px }
+.contact-form {
+    max-width: 100%;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
+.contact-form .form-control textarea{
+    position: relative;
+    font-size: 14px;
+    height: 48px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+
+
 .address h4 {
     color: #09B06A;
     margin-top: -3px;
@@ -1437,6 +1513,7 @@ ul.page-footer-list li i { padding-right: 10px }
     padding-bottom: 5px;
     margin-bottom: 20px;
     /*text-align: center;*/
+    color: #09B06A;
 }
 .recent p {
     text-align: center;
@@ -1796,8 +1873,8 @@ ul#filters > .active > span {
     border: 1px solid #eee;
 }
 .form-control {
-    border: 1px solid #eaeaea;
-    border-radius: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
 }
 .form-control:focus {
     border: none;
@@ -1899,7 +1976,7 @@ ul#filters > .active > span {
     border-radius: 3px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
-    border: 1px solid #09b06a;
+    border: 1px solid #CCC;
     box-shadow: none;
     font-size: 14px;
 }
@@ -1920,7 +1997,7 @@ ul#filters > .active > span {
 }
 .form-signin .btn-login:hover {
     color: #fff;
-    background: #11cc77;
+    background: #0BB76F;
     border-radius: 3px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
@@ -1945,71 +2022,7 @@ ul#filters > .active > span {
     -moz-border-radius: 3px;
     border-radius: 3px;
 }
-.login-social-link {
-    display: inline-block;
-    margin-top: 20px;
-    margin-bottom: 15px;
-}
-.login-social-link a {
-    color: #fff;
-    padding: 15px 28px;
-    border-radius: 1px;
-    -webkit-border-radius: 1px;
-    -moz-border-radius: 1px;
-}
-.login-social-link a:hover { color: #fff }
-.login-social-link a i {
-    font-size: 20px;
-    padding-right: 10px;
-}
-.login-social-link a.facebook {
-    background: #5D9CEC;
-    margin-right: 15px;
-    border-radius: 3px;
-    -moz-border-radius:3px;
-    -webkit-border-radius:3px;
-    margin-bottom: 2px;
-    float: left;
-    -webkit-transition: all .3s ease;
-    -moz-transition: all .3s ease;
-    -ms-transition: all .3s ease;
-    -o-transition: all .3s ease;
-    transition: all .3s ease;
-}
-.login-social-link a.facebook:hover {
-    background: #4A89DC;
-    border-radius: 3px;
-    -moz-border-radius:3px;
-    -webkit-border-radius:3px;
-    -webkit-transition: all .3s ease;
-    -moz-transition: all .3s ease;
-    -ms-transition: all .3s ease;
-    -o-transition: all .3s ease;
-    transition: all .3s ease;
-}
-.login-social-link a.twitter {
-    background: #4FC1E9;
-    border-radius: 3px;
-    -moz-border-radius:3px;
-    -webkit-border-radius:3px;
-    float: left;
-    -webkit-transition: all .3s ease;
-    -moz-transition: all .3s ease;
-    -ms-transition: all .3s ease;
-    -o-transition: all .3s ease;
-    transition: all .3s ease;
-}
-.login-social-link a.twitter:hover {
-    background: #3BAFDA;
-    border-radius: 3px;
-    -moz-border-radius:3px;
-    -webkit-border-radius:3px;
-    -webkit-transition: all .3s ease;
-    -moz-transition: all .3s ease;
-    -ms-transition: all .3s ease;
-    -o-transition: all .3s ease;
-    transition: all .3s ease;
-}
+
 .form-wrapper { padding-bottom: 70px }
 .login-bg {
     margin-top: -40px;
@@ -2580,7 +2593,7 @@ p { text-align: left }
 .btn.btn-info {
     background-color: #09b06a;
     border: none;
-    height: 40px;
+    height: 48px;
     -webkit-transition: all .3s ease;
     -moz-transition: all .3s ease;
     -ms-transition: all .3s ease;
@@ -3069,3 +3082,115 @@ div.header h3{
     font-size: 1.4em
 
 }
+
+
+[class^="icon-"],
+[class*=" icon-"] {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  line-height: 14px;
+  vertical-align: middle;
+  background-image: url("/less/custom/");
+  background-position: 14px 14px;
+  background-repeat: no-repeat;
+  margin-top: 1px;
+}
+
+
+.userSection {
+  float: right;
+  padding-top: 55px;
+  width: 90px;
+  cursor: pointer;
+}
+.userSection__userAvatar {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  float: right;
+  border-radius: 50%;
+  overflow: hidden;
+  text-align: center;
+}
+.userSection__userAvatar img {
+  width: auto;
+  height: 100%;
+}
+.userSection__dropdownToggle {
+  /*width: 90px;*/
+  float: right;
+}
+
+.userSection__userMenu {
+  display: none;
+}
+.userSection.open > .userSection__userMenu {
+  display: block;
+}
+
+
+.userSection__userMenu {
+  width: 200px;
+  float: right;
+  position: absolute;
+  top: 106px;
+  right: -25px;
+  padding: 10px;
+  list-style: none;
+}
+.userSection__userMenu:before {
+  content: " ";
+  width: 0;
+  height: 0;
+  border-left: 10px solid rgba(0, 0, 0, 0);
+  border-right: 10px solid rgba(0, 0, 0, 0);
+  border-bottom: 10px solid #EFF2F3;
+  position: absolute;
+  top: -10px;
+  right: 32px;
+}
+.userSection__userMenu__menuItem  {
+  color: #09B06A;
+  font-size: 1em;
+}
+.userSection__userMenu__menuItem a {
+  color: #999;
+  padding: 10px 20px;
+  display: inline-block;
+}
+.userSection__userMenu__menuItem a:hover {
+  color: #8CC63F;
+}
+.userSection__userMenu {
+  background: #EFF2F3;
+}
+.userSection__userMenu__menuName  {
+  color: #09B06A;
+  font-size: 1.2em;
+}
+.btn-jj{
+  display: block;
+  font-size: 18px;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  background-color: #09B06A;
+  border-radius: 3px;
+  height: 48px;
+  text-shadow: 0 -1px -1px #af3a2a;
+  -moz-box-shadow: 0 4px 0 #13905B, 0 5px 5px 1px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 0 4px 0 #13905B, 0 5px 5px 1px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 0 #13905B, 0 5px 5px 1px rgba(0, 0, 0, 0.4);
+  -moz-transition: all 0.15s ease-in-out;
+  -o-transition: all 0.15s ease-in-out;
+  -webkit-transition: all 0.15s ease-in-out;
+  transition: all 0.15s ease-in-out;
+}
+.btn-jj:active {
+  margin-top: -10px;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+

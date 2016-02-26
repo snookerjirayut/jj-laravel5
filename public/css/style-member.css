@@ -163,9 +163,10 @@ img.profile{
 	margin-bottom: 40px;
 }
 form.ng-pristine.ng-valid div.row{
-	margin: 10px;
-
+	/*margin: 10px;*/
 }
+
+
 form.ng-pristine.ng-valid input{
 	text-align: left;
 }
