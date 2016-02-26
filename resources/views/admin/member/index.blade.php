@@ -25,7 +25,7 @@
 	  <div class="panel-heading">
 	  	<div class="form-inline">
 	  		<div class="form-group">
-				<label>ประเภท</label>
+				<label>ประเภท</label><br>
 				<select ng-options="type.id as type.name 
 				for type in list.type" ng-model="input.type" ng-disabled="ui.type"
 				ng-change="ui.status = false"
@@ -33,16 +33,8 @@
 			</div>
 
 			<div class="form-group">
-				<label>สถานะ</label>
-				<select ng-options="status.id as status.name 
-				for status in list.status" ng-model="input.status" ng-disabled="ui.status"
-				ng-change="ui.search = false "
-				class="form-control select-booking-date"></select>
-			</div>
-
-			<div class="form-group">
-				<label>Email</label>
-				<input class="form-control" ng-model="input.email"  placeholder="member@gmail.com">
+				<label>Email</label><br>
+				<input width="8%"class="form-control" ng-model="input.email"  placeholder="member@gmail.com">
 			</div>
 			<button class="btn btn-info" ng-click="search()"  >ค้นหา</button>
 
@@ -51,11 +43,11 @@
 	  <div class="panel-body">
 	  	<div class="row">
 	  		<div class="col-sm-12">
-	  			<table class="table table-striped table-bordered">
+	  			<table class="table table-striped table-bordered ">
 	  				<thead>
-	  					<tr>
+	  					<tr class="text-center">
 	  						<td>ลำดับ</td>
-	  						<td>รหัส</td>
+	  						<td>ประเภทผู้ค้า</td>
 	  						<td>Username</td>
 	  						<td>Email</td>
 	  						<td>ชื่อ-นามสกุล</td>
@@ -67,7 +59,7 @@
 	  				<tbody>
 	  					<tr ng-repeat="obj in table.member">
 	  						<td><% obj.id %></td>
-	  						<td><% obj.code %></td>
+	  						<td><% memberRole(obj.role) %></td>
 	  						<td><% obj.name %></td>
 	  						<td><% obj.email %></td>
 	  						<td><% obj.firstName+' '+obj.lastName %></td>
@@ -163,14 +155,20 @@
 			$scope.table = {};
 
 			$scope.list = {};
-			$scope.list.type = [{id:99, name: 'ALL'} , {id:1 , name: 'Guest'},{id:2 , name: 'Member'}];
-			$scope.list.status = [{id:99, name: 'ALL'},{id:1 , name: 'Active'},{id:2 , name: 'Inactive'}];
-			$scope.list.role = [{id:1 , name: 'Guest'},{id:2 , name: 'Member'}];
+			$scope.list.type = [{id:99, name: 'ทั้งหมด'} , {id:1 , name: 'ลูกค้าจร'},{id:2 , name: 'ลูกค้าประจำ'}];
+			$scope.list.status = [{id:99, name: 'ทั้งหมด'},{id:1 , name: 'ปกติ'},{id:2 , name: 'ยกเลิก'}];
+			$scope.list.role = [{id:1 , name: 'ลูกค้าจร'},{id:2 , name: 'ลูกค้าประจำ'}];
 			
 			$scope.booking = function(){
 				if($scope.detail.id == null) return ;
 				var win = window.open('{{ url('/admin/booking') }}/'+$scope.detail.id, '_blank');
   				win.focus();
+			}
+
+			$scope.memberRole = function(role){
+				if(role == 1) return "ผู้ค้าจร" ; 
+				else if (role == 2) return "ผู้ค้าประจำ" ; 
+				else return "undefine"
 			}
 			
 			$scope.update = function(){

@@ -30,21 +30,21 @@
 					<div class="col-sm-12">
 						<div  class="form-inline">
 							<div class="form-group">
-								<label>วันที่</label>
+								<label>วันที่</label><br>
 								<select ng-options="day.opened_at as day.opened_at | date:'EEEE dd MMMM y' 
 								for day in list.days track by day.opened_at" ng-model="input.date"  ng-disabled="ui.date"
 								class="form-control select-booking-date"  ng-change="getZone()"></select>
 							</div>
 
 							<div class="form-group">
-								<label>โซน</label>
+								<label>โซน</label><br>
 								<select ng-options="zone.id as zone.code +' - '+zone.name
 								for zone in list.zones" ng-model="input.zone"  ng-disabled="ui.zone"
 								class="form-control select-booking-date" ng-change="ui.type = false" ></select>
 							</div>
 
 							<div class="form-group">
-								<label>การชำระ</label>
+								<label>การชำระ</label><br>
 								<select ng-options="type.id as type.name
 								for type in list.types" ng-model="input.type"  ng-disabled="ui.type"
 								class="form-control select-booking-date"  ng-change="ui.status = false"></select>
@@ -52,12 +52,11 @@
 
 
 							<div class="form-group">
-								<label>สถานะ</label>
+								<label>สถานะ</label><br>
 								<select ng-options="status.id as status.name
 								for status in list.status" ng-model="input.status"  ng-disabled="ui.status"
 								class="form-control select-booking-date"  ></select>
 							</div>
-							
 							<button class="btn btn-info" ng-click="search()" >ค้นหา</button>
 						</div>
 					</div>
@@ -72,7 +71,7 @@
 
 						<table class="table table-striped table-bordered">
 							<thead>
-								<tr>
+								<tr class="text-center">
 									<td>ลำดับ</td>
 									<td>รหัสจอง</td>
 									<td>ประเภทสินค้า</td>
@@ -115,10 +114,10 @@
 									<td><% obj.created_at %></td>
 									<td>
 										<div ng-if="obj.payment == 1">
-											<button class="btn btn-xs btn-warning" ng-click="approve(obj.id)">ตรวจสอบแล้ว</button>
+											<button class="btn btn-xs btn-warning" ng-click="approve(obj.id)">ยังไม่ตรวจสอบ</button>
 										</div>
 										<div ng-if="obj.payment == 2">
-											<label class="label label-success">ยังไม่ตรวจสอบ</label>
+											<label class="label label-success">ตรวจสอบแล้ว</label>
 										</div>
 									</td>
 								</tr>

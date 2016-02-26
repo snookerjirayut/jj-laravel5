@@ -31,7 +31,7 @@
 
                 <table class="table table-striped table-bordered">
                     <thead>
-                        <tr>
+                        <tr class="text-center">
                             <td>ลำดับ</td>
                             <td>วันที่</td>
                             <td>จำนวนการจอง</td>

@@ -45,26 +45,7 @@
     <div class="col-sm-12 ">
         <img src="{{  asset('/img/header.png') }}" class="img-resposive max-width">
     </div>
-
-    <!--User active start-->
-    @if(\Auth::check())
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 col-sm-12">
-                <ul class="nav nav-pills right">
-                    <li>
-                        <a href="#"><i class="glyphicon glyphicon-user">{{ \Auth::user()->name }}</i></a>
-                    </li>
-                    <li>
-                        <a href="/signout"><i class="glyphicon glyphicon-off"> ออกจากระบบ</i></a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    @endif
-    <!--User active end-->
-
+    
     <!--header start-->
             
     <header class="head-section">
@@ -79,11 +60,12 @@
                     <a class="navbar-brand" href="/"><img src="{{  asset('/img/logo.png') }}"></a>
                 </div>
             </div>
+
             <div class="navbar-collapse collapse">
-            <div class="col-lg-9 col-sm-9">
-                <div class="navbar-collapse collapse">
-                    <br><br>
-                    <ul class="nav navbar-nav">
+                <div class="col-lg-8 col-sm-8">
+                    <div class="navbar-collapse collapse">
+                        <br><br>
+                        <ul class="nav navbar-nav">
                         @if(\Auth::check())
                             <li><a href="/checkin">เช็คอิน</a></li>
                             <li><a href="/booking">จองพื้นที่</a></li>
@@ -105,17 +87,38 @@
                                 </li>
                             </ul>
                         </li>
-
                         <li>
                             <a href="/contact">ติดต่อเรา</a>
-                        </li>
-                        <li><input class="form-control search" placeholder=" Search" type="text"></li>
+                        </li>   
                     </ul>
                 </div>
+            </div>
+
+            <div class="col-lg-1 col-sm-1">
+                <!-- USER OPTIONS -->
+                <!--User active start-->
+                    @if(\Auth::check())
+                    <div class="userSection">
+                        <div class="userSection__dropdownToggle" data-toggle="dropdown">
+                            <div class="userSection__userAvatar">
+                                <img class="" src="http://placehold.it/150x150" alt="User Avatar">
+                            </div>
+    
+                        </div>
+                        <ul class="userSection__userMenu">
+                            <li class="userSection__userMenu__menuName ">  {{ \Auth::user()->name }}</li> 
+                            <li class="userSection__userMenu__menuItem glyphicon glyphicon-th-list"><a href="#">ประวัติการจอง</a></li>
+                            <li class="userSection__userMenu__menuItem glyphicon glyphicon-edit"><a href="#">แก้ไขข้อมูล</a></li>
+                            <li class="userSection__userMenu__menuItem glyphicon glyphicon-log-out"><a href="/signout">ออกจากระบบ</a></li>
+                        </ul>
+                    </div>
+                    @endif
+                <!--User active end-->           
             </div>
         </div>
     </header>
     <!--header start end-->
+
 
     @yield('breadcrumbs')
     <div class="container">
@@ -129,7 +132,9 @@
     <footer class="footer">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4 col-sm-4 address wow fadeInUp" data-wow-duration="2s" data-wow-delay=".1s">
+                <div class="col-lg-4 col-sm-4">
+                    <div class="text-footer wow fadeInUp" data-wow-duration="2s" data-wow-delay=".1s">
+                
                     <h1>
                         เกี่ยวกับ กรีน วินเทจ
                     </h1>
@@ -137,10 +142,10 @@
                         Green vintage Night Market ตลาดนัดกลางคืนโฉมใหม่ในทำเลแห่งเก่า กลิ่นไอเดิมๆ ที่ไม่เคยจางหาย บรรยากาศผู้คนที่มากมายตามสายทางเดิน สองข้างทางเต็มไปด้วยบรรยากาศของร้านค้าต่างๆ ในแต่ละโซน กว่าพันร้านค้า ที่มีมาให้ดูให้ชม ให้เลือกให้หา มาหาความสุข สนุกทุกย่างก้าว กับบรรยากาศตลาดนัดกลางคืนที่เจเจกรีน ใกล้กับพิพิธภัณฑ์เด็ก
 
                     </p>
-                </div>
+                </div></div>
 
                 <div class="col-lg-4 col-sm-4">
-                    <div class="page-footer wow fadeInUp" data-wow-duration="2s" data-wow-delay=".5s">
+                    <div class="page-footer wow fadeInUp" data-wow-duration="2s" data-wow-delay=".4s">
                         <h1>
                             กรีน วินเทจ
                         </h1>
@@ -169,8 +174,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-4 col-sm-4">
-                    <div class="text-footer wow fadeInUp" data-wow-duration="2s" data-wow-delay=".7s">
+                <div class="col-lg-4 col-sm-4 address wow fadeInUp" data-wow-duration="2s" data-wow-delay=".7s">
                         <h1>
                             ติดต่อเราได้ที่
                         </h1>
@@ -180,7 +184,7 @@
                             <p><i class="fa fa-phone pr-10"></i>  086 567 9959 </p>
                             <p><i class="fa fa-envelope pr-10"></i>   <a href="javascript:;">mychappa@gmail.com</a></p>
                         </address>
-                    </div>
+                    
                 </div>
             </div>
         </div>
