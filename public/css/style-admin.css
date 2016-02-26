@@ -81,5 +81,5 @@ input[type=checkbox]:checked + label .check:before {
 
 .pad { padding: 25px; }
 .modal.in .modal-dialog {
-  min-width: 70%;
+  min-width: 80%;
 }

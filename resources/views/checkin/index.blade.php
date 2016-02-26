@@ -19,7 +19,7 @@
 @endsection
 
 @section('content')
-<div ng-controller="CheckinController" class="row" ng-init="init()" style="margin:0">
+<div ng-controller="CheckinController" class="row" ng-init="init()" style="margin-bottom: 5%">
 	
 	<div class="col-sm-6 col-sm-offset-3" id="checking"  >
 
@@ -32,7 +32,7 @@
 			    </h2>
 			  </div>
 
-			  <div class="media-left active" ng-if="booking.canCheckIn">
+			  <div class="media-left active" ng-if="booking.canCheckIn" ng-click="checkin($index , booking.code)">
 			    <h2 class="lock-number-booking">
 			    	<a href="#" ng-click="checkin($index , booking.code)">
 			    		<i class="glyphicon glyphicon-map-marker"></i><% booking.status %>

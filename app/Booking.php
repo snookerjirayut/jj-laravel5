@@ -36,17 +36,24 @@ class Booking extends Model
         $date_now = new DateTime("now");
         //$date_now = new DateTime("2015-12-26");
         $interval = date_diff($date_now , $date_sale);
-        if($this->status == "CN"){ return false;}
+        if($this->status == "CN"){ return false; }
         $str =  $interval->format('%R%d');
         if( $str >= 0  && $str <= 1 ){
-            //return true;
+            /*//return true;
             $user = User::where('id' , $this->userID)->first();
             if($user->role == 1){
                 //user guest
                 return $this->validateCheckin();
             }
             //user member
-            return true;
+            return true;*/
+
+            if($this->type == 1){
+                if($this->payment == 2) return true;
+                else return false;
+            }else {
+                return true;
+            }
         }
 
         return false;
