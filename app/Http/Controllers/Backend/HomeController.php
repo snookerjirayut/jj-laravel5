@@ -60,7 +60,7 @@ class HomeController extends Controller
             return redirect()->intended('/admin/');
         }
        // var_dump(Auth::user());
-       return redirect()->intended('/admin/signin?e')->withErrors('Please check your email or password again.');
+       return redirect()->intended('/admin/signin?e')->withErrors('อีเมลหรือพาสเวิร์ดไม่ถูกต้อง');
     }
 
     /**
