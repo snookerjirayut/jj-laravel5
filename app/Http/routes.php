@@ -38,6 +38,14 @@ Route::get('/summary/{id?}', 'BookingController@summary');
 Route::group(['middleware' => 'auth'] , function(){
 	Route::get('/booking', 'BookingController@index');
 	Route::post('/booking/create', 'BookingController@store');
+
+	Route::get('/monthly', 'MonthlyController@index');
+	Route::post('/monthly/create', 'MonthlyController@store');
+	Route::post('/monthly/calendar/block/get', 'MonthlyController@getBlockMonthly');
+	Route::get('/monthly/calendar/month/get', 'MonthlyController@getMonthly');
+	Route::post('/monthly/save' , 'MonthlyController@save');
+
+
 	Route::put('/booking/update', 'BookingController@update');
 	Route::delete('/booking/destroy', 'BookingController@destroy');
 
@@ -54,6 +62,7 @@ Route::group(['middleware' => 'auth'] , function(){
 	Route::get('/booking/calendar/day/get', 'BookingController@getDay');
 	Route::get('/booking/calendar/zone/get/{date}', 'BookingController@getZone');
 	Route::post('/booking/calendar/block/get', 'BookingController@getBlock');
+
 
 	Route::get('/checkin', 'CheckinController@index');
 	Route::post('/checkin/get', 'CheckinController@feed');

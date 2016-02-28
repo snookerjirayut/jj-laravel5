@@ -62,7 +62,7 @@
 				</div>
 		      </div>
 		      <div class="modal-footer">
-		        <button class="btn btn-success" ng-click="save()" ng-hide="mode.save != true">บันทึก</button>
+		        <button class="btn btn-success" ng-click="save()" ng-hide="mode.save != true" id="btn_save">บันทึก</button>
 		        <button class="btn btn-info" ng-click="update()" ng-hide="mode.save">อัพเดต</button>
 				<button class="btn btn-warning" ng-click="reset()">รีเซต</button>
 				<button class="btn btn-danger" ng-click="delete()" ng-hide="mode.save">ลบ</button>
@@ -86,6 +86,7 @@
 		$scope.list.zone = [];
 		$scope.list.empty = [];
 		$scope.input.open =[];
+		$scope.input.dates = [];
 		$scope.event = [];
 		$scope.mode = {};
 		$scope.mode.save = true; 
@@ -114,7 +115,6 @@
 			});
 		}
 
-
 		$scope.calendarUpdate = function(){
 			$('#calendar').fullCalendar('removeEvents');
 			$scope.event = [];
@@ -135,13 +135,15 @@
 		}
 
 		$scope.save = function(){
-			if($scope.input.date == null){
+			if($scope.input.dates.length <= 0){
 				alert('Please select day befor save agendar.');
 				return ;
 			}
 			//console.log($scope.input.open);
+			$('#btn_save').button('loading');
 			$http.post('/admin/calendar/save', $scope.input).success(function(d){
 				//success
+				$('#btn_save').button('reset');
 				if(!d.result){ alert('save agendar error.'); return;}
 				$scope.calendarUpdate();
 				$('#myModal').modal('hide');
@@ -251,10 +253,19 @@
 			            		$scope.$apply();
 			            	});
 			            }
-			        }
+			        },
+					monthlyButton:{
+						text: 'Monthly',
+						click: function(calEvent, jsEvent, view) {
+							console.log($scope.input.dates);
+							$('#myModalLabel').html('Monthly');
+							$('#myModal').modal('show');
+							$scope.$apply();
+						}
+					}
 			    },
 			    header: {
-					left: 'prev,next today closeButton',
+					left: 'prev,next today closeButton monthlyButton',
 					center: 'title',
 					right: 'month'
 				},
@@ -297,9 +308,12 @@
 					}
 					$scope.mode.save = true; 
 					$scope.reset();
-					$scope.input.date = date.format();
-					$('#myModalLabel').html('รายละเอียด วันที่ '+$scope.input.date);
-					$('#myModal').modal('show');
+					//$scope.input.date = date.format();
+					$scope.input.dates.push(date.format());
+					var data = {id : date.format() , title : 'mark' ,start : date.format() , overlap: false , color :'#f0ad4e'};
+					$scope.event.push(data);
+					$('#calendar').fullCalendar('renderEvent' , data , true);
+
 					$scope.$apply();
 				},
 		    });

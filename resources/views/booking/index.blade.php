@@ -209,7 +209,6 @@
 					$scope.input.totalPrice += aprice;
 					arr_item.push({id:index , code:acode ,name : ele, price :aprice ,amount:1 });
 				});
-			
 
 			console.log(arr_item);
 			$scope.list.item = arr_item;
@@ -221,14 +220,31 @@
 			var a = $scope.input.checked;
 			if(Object.keys(a).length > 0){
 				Object.keys(a).forEach(function(ele ,index){
-					if(!$scope.input.checked[ele]){ 
+					//console.log('in >>', index , ele );
+
+					if(!$scope.input.checked[ele]){
 						delete $scope.input.checked[ele];
 						//console.log('in >>', index , ele , $scope.input.checked[ele] , $scope.input.checked);
+					}else{
+						if(index > 0){
+							var arr_key = Object.keys(a);
+							console.log( 'aa >> ',index , arr_key);
+							if(index <= arr_key.length-1  ){
+								var key0 = arr_key[0].substring(0,1);
+								var key1 = arr_key[index].substring(0,1);
+								if(key0 != key1){
+									alert('กรุณาเลือกโซน '+key0);
+									delete $scope.input.checked[ele];
+								}
+							}
+
+						}
 					}
+
 				});
+
 			}
-			
-			
+
 			if(Object.keys(a).length > $scope.input.number){
 				alert('limit '+$scope.input.number+' block.');
 				delete $scope.input.checked[id];
@@ -239,7 +255,7 @@
 				$scope.ui.buttonBooking =false;
 			}
 
-			console.log($scope.input.checked);
+			//console.log($scope.input.checked);
 			$scope.showPrice();
 
 		}
@@ -249,7 +265,21 @@
 			$http.get('/booking/calendar/day/get').success(function(d){
 				console.log(d);
 				$scope.list.days = d;
+				$scope.list.days.forEach(function(element, index, array){
+					var mydate = new Date(element.name);
+					console.log(mydate);
+					mydate.setFullYear( mydate.getFullYear() + 543 );
+					console.log('full year >> ' , mydate);
+					element.name = mydate.getTime();
+				});
 				$scope.list.days_guest = [{miliseconds: '{{ $milliseconds }}' , name:  '{{ $milliseconds }}' ,opened_at: '{{ date('Y-m-d') }}' }];
+				$scope.list.days_guest.forEach(function(element, index, array){
+					var mydate = new Date(element.name);
+					console.log(mydate);
+					mydate.setFullYear( mydate.getFullYear() + 543 );
+					console.log('full year >> ' , mydate);
+					element.name = mydate.getTime();
+				});
 				console.log($scope.list.days_guest);
 			});
 		}

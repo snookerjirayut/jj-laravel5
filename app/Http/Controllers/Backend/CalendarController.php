@@ -31,36 +31,36 @@ class CalendarController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = array('open' =>'required', 'date' =>'required');
+        $rules = array('open' =>'required', 'dates' =>'required');
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) return response()->json(array( 'result' => false , 'message' => 'valid input.' ));
 
-        $count = 0;
-        $arr = $request->input('open');
-        for($i = 0; $i < count( $arr ); $i++){
-            $open = (object) $arr[$i];
-            if(isset($open->value)){
-                //check date 
-                /*$day = date('l');*/
-                if($open->value){
-                    $calendar = new Calendar();
-                    $calendar->code = $open->code;
-                    $calendar->zoneID = $open->id;
-                    $calendar->name = $open->name;
-                    $calendar->maxLock = $open->maxLock;
-                    $calendar->row = $open->row;
-                    $calendar->availableLock = ($open->maxLock - $open->close);
-                    $calendar->price_type1 = $open->price_type1;
-                    $calendar->price_type2 = $open->price_type2;
-                    $calendar->active = $open->active;
-                    $calendar->opened_at = $request->input('date').' 00:00:00';
-                    $calendar->created_at = date("Y-m-d H:i:s");
-                    $calendar->save();
-                    $count++;
+        $dates = $request->input('dates');
+        foreach($dates as $key => $date){
+            $arr = $request->input('open');
+            for($i = 0; $i < count( $arr ); $i++){
+                $open = (object) $arr[$i];
+                if(isset($open->value)){
+                    if($open->value){
+                        $calendar = new Calendar();
+                        $calendar->code = $open->code;
+                        $calendar->zoneID = $open->id;
+                        $calendar->name = $open->name;
+                        $calendar->maxLock = $open->maxLock;
+                        $calendar->row = $open->row;
+                        $calendar->availableLock = ($open->maxLock - $open->close);
+                        $calendar->price_type1 = $open->price_type1;
+                        $calendar->price_type2 = $open->price_type2;
+                        $calendar->active = $open->active;
+                        $calendar->opened_at = $date.' 00:00:00';
+                        $calendar->created_at = date("Y-m-d H:i:s");
+                        $calendar->save();
+                    }
                 }
             }
         }
-        return response()->json(array( 'result' => true , 'message' => 'success ['.$count.'].' ));
+
+        return response()->json(array( 'result' => true , 'message' => 'success.' ));
       
     }
 

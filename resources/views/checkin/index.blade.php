@@ -96,6 +96,13 @@
 				console.log(d);
 				if(d.result){
 					$scope.list.bookings = d.data;
+					$scope.list.bookings.forEach(function(element , index , array){
+						var mydate = new Date(element.miliseconds);
+						//console.log(mydate);
+						mydate.setFullYear(mydate.getFullYear() + 543);
+						//console.log('full year >> ', mydate);
+						element.miliseconds = mydate.getTime();
+					});
 					$scope.input.total = d.total;
 				}
 			});
