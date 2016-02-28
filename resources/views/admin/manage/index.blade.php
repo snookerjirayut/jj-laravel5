@@ -18,6 +18,7 @@
             font-weight: bold;
         }
     </style>
+
 @endsection
 @section('content')
 
@@ -32,11 +33,11 @@
                 <table class="table table-striped table-bordered">
                     <thead>
                         <tr class="text-center">
-                            <td>ลำดับ</td>
-                            <td>วันที่</td>
-                            <td>จำนวนการจอง</td>
-                            <td>จำนวนเช็คอิน</td>
-                            <td>จำนวนที่ยังไม่เช็คอิน</td>
+                            <td width=5% >ลำดับ</td>
+                            <td width=15%>วันที่</td>
+                            <td width=25%>จำนวนการจอง</td>
+                            <td width=25%>จำนวนเช็คอิน</td>
+                            <td width=25%>จำนวนที่ยังไม่เช็คอิน</td>
                             <td></td>
                         </tr>
                     </thead>
@@ -48,7 +49,8 @@
                             <td><% obj.checkin %></td>
                             <td><% obj.undefine %></td>
                             <td>
-                                <button ng-click="clear(obj.opened_at)">ลบ</button>
+                                
+                                <button ng-click="clear(obj.opened_at)"><i class="glyphicon glyphicon-trash"></i> </button>
                             </td>
                         </tr>
                     </tbody>
@@ -108,11 +110,12 @@
                 if(!open) return alert('Open day can not define.');
                 $http.get(' {{url('/admin/manage/clear')}}/'+open).success(function(d){
                     if (d.result) {
-                        alert('Success');
+                        alert('ลบเรียบร้อยแล้ว');
                         $scope.pageChanged();
                     }
                 });
             }
+            
 
 
         }]);

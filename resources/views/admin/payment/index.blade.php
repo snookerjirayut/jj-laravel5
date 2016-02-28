@@ -57,7 +57,7 @@
 								for status in list.status" ng-model="input.status"  ng-disabled="ui.status"
 								class="form-control select-booking-date"  ></select>
 							</div>
-							<button class="btn btn-info" ng-click="search()" >ค้นหา</button>
+							<button class="btn btn-info" ng-click="search()" >ตกลง</button>
 						</div>
 					</div>
 
@@ -125,9 +125,9 @@
 						</table>
 					</div>
 					<div class="col-sm-12">
-						<uib-pagination total-items="input.total" ng-model="input.page" 
+						 <uib-pagination total-items="input.total" ng-model="input.page"
 						items-per-page="input.pageSize"
-						ng-change="pageChanged()"></uib-pagination> 
+						ng-change="pageChanged()"></uib-pagination>
 						<p>จำนวนแถว: <% input.total %></p>
 					</div>
 
@@ -145,10 +145,17 @@
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title" id="myModalLabel">Booking Code <% modal.booking.code %></h4>
+	        <h4 class="modal-title" id="myModalLabel">รหัสจอง<% modal.booking.code %></h4>
 	      </div>
 	      <div class="modal-body">
 	       <div class="col-sm-12 last-box">
+	       	<div class="col-sm-9"> 
+	        	<p class="glyphicon glyphicon-user"><% modal.user.firstName+' '+modal.user.lastName %></p><br>
+	        	<p class="glyphicon glyphicon-map-marker"><% modal.user.address %></p><br>
+	        	<p class="glyphicon glyphicon-phone"><% modal.user.phone %></p><br>
+
+	        </div>
+	       	<div class="col-sm-3"> 
 	        	<% modal.detail.type == 1 ?  'โอนเงิน' : 'ชำระ ณ​ วันขายสินค้า'  %>
 	        	<div ng-if="modal.booking.payment == 0">
 					<a href="#" target="_blank">รอการโอนเงินและอัพโหลดหลักฐานการโอน</a>
@@ -160,21 +167,17 @@
 					<a href="<% modal.booking.picture %>" target="_blank">อนุมัติแล้ว</a>
 				</div>
 	        </div>
-	        <div class="col-sm-6"> </div>
-	        <div class="col-sm-6"> 
-	        	<p><% modal.user.firstName+' '+modal.user.lastName %></p>
-	        	<p><% modal.user.address %></p>
-	        	<p><% modal.user.phone %></p>
+	        
 	        </div>
 	       
 	        <table class="table table-striped table-bordered">
 	        	<thead>
 		        	<tr>
-		        		<td class="text-center">#</td>
-		        		<td class="text-center">Zone</td>
-		        		<td class="text-center">Number</td>
-		        		<td class="text-center">Qty</td>
-		        		<td class="text-center">Price</td>
+		        		<td class="text-center">ลำดับ</td>
+		        		<td class="text-center">โซน</td>
+		        		<td class="text-center">ล็อคที่จอง</td>
+		        		<td class="text-center">จำนวน</td>
+		        		<td class="text-center">ราคา</td>
 		        	</tr>
 	        	</thead>
 	        	<tr ng-repeat="obj in modal.booking.detail">
@@ -185,14 +188,14 @@
 	        		<td class="text-center"><% obj.price %></td>
 	        	</tr>
 	        	<tr>
-	        		<td colspan="4" class="text-right">Grand Total</td>
+	        		<td colspan="4" class="text-right">ราคารวม</td>
 	        		<td class="text-center"> <strong><% modal.booking.totalPrice|number %></strong> </td>
 	        	</tr>
 	        </table>
 
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
 	        
 	      </div>
 	    </div>
@@ -219,8 +222,8 @@
 			$scope.table = {};
 
 			$scope.list = {};
-			$scope.list.status = [{id:99 , name:'ALL - ทั้งหมด'} ,{id:0 , name: 'Booking'} , {id:1 , name: 'Uploaded'}
-			, {id:2 , name: 'Approved'}];
+			$scope.list.status = [{id:99 , name:'ALL - ทั้งหมด'} ,{id:0 , name: 'จองพื้นที่'} , {id:1 , name: 'อัพโหลดหลักฐานการโอนแล้ว'}
+			, {id:2 , name: 'ตรวจสอบแล้ว'}];
 			$scope.list.types = [{id:99 , name:'ALL - ทั้งหมด'} ,{id:1 , name: 'โอนเงิน'} , {id:2 , name: 'ชำระ ณ วันขาย'}];
 
 			$scope.modal = {};
@@ -229,10 +232,10 @@
 				//alert(data);
 				if(data == null) return; 
 				$scope.input.bookingid = data;
-				if(!confirm('Please confirm the approve of booking id '+data)) return;
+				if(!confirm('ตรวจสอบการจองของ ID '+data)) return;
 				$http.post("{{url('/admin/payment/update')}}", $scope.input).success(function(d){
 					if(d.result){
-						alert('Booking ID '+data+' approved.');
+						alert('Booking ID '+data+' ตรวจสอบเรียบร้อย');
 						$scope.pageChanged();
 					}else alert(d.message);
 				})
@@ -277,7 +280,7 @@
 					if(d.result){
 						$scope.table.payment = d.data;
 						$scope.input.total = d.total;
-						if(d.total == 0){ alert('Data not found.'); }
+						if(d.total == 0){ alert('ไม่พบข้อมูล'); }
 					}
 				});
 			}

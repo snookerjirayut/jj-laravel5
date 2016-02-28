@@ -36,7 +36,7 @@
 				<label>Email</label><br>
 				<input width="8%"class="form-control" ng-model="input.email"  placeholder="member@gmail.com">
 			</div>
-			<button class="btn btn-info" ng-click="search()"  >ค้นหา</button>
+			<button class="btn btn-info" ng-click="search()"  >ตกลง</button>
 
 	  	</div>
 	  </div>
@@ -73,9 +73,9 @@
 	  	</div>
 	  	<div class="row">
 	  		<div class="col-sm-12">
-				<uib-pagination total-items="input.total" ng-model="input.page" 
+				<uib-pagination total-items="input.total" ng-model="input.page"
 				items-per-page="input.pageSize"
-				ng-change="pageChanged()"></uib-pagination> 
+				ng-change="pageChanged()"></uib-pagination>
 				<p>จำนวนแถว : <% input.total %></p>
 			</div>
 	  	</div>
