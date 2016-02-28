@@ -87,7 +87,7 @@
 
 		$scope.input = {}; 
 		$scope.input.total = 0;
-		$scope.input.pageSize = 3;
+		$scope.input.pageSize = 1;
 		$scope.input.currentPage = 1;
 
 		$scope.init = function(){
