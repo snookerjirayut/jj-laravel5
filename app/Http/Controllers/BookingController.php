@@ -100,14 +100,14 @@ class BookingController extends Controller
 
         $user = \Auth::user();
         if ($user == null) return response()->json(array('result' => false, 'message' => 'user is not define.'));
-
+        $booking_code = date('YmdHms') . '-' . $user->id;
         $booking = Booking::create([
             'sale_at' => $request->input('date'),
             'userID' => $user->id,
             'userCode' => $user->code,
             'quantity' => $request->input('number'),
             'totalPrice' => $request->input('totalPrice'),
-            'code' => $date->format('Ymd-His') . '' . $user->id,
+            'code' => $booking_code,
             'productName' => $request->input('productName'),
             'status' => 'BK',
             'type' => $request->input('type')
