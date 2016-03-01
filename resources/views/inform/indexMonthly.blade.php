@@ -10,12 +10,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-5 col-sm-5">
-                    <h1>แจ้งโอนโดยหลักฐานการชำระเงิน</h1>
+                    <h1>แจ้งโอนโดยหลักฐานการชำระเงิน แบบรายเดือน</h1>
                 </div>
                 <div class="col-lg-7 col-sm-7">
                     <ol class="breadcrumb pull-right">
                         <li><a href="{{ url('/') }}">หน้าหลัก</a></li>
-                        <li class="active">แจ้งโอน</li>
+                        <li class="active">แจ้งโอน แบบรายเดือน</li>
                     </ol>
                 </div>
             </div>
@@ -46,7 +46,9 @@
         <div class="controls col-lg-12 col-sm-12 form-group has-success box-inform-date">
             <p class="text-center">วันที่จอง</p>
             <select ng-model="input.code"
-                    ng-options="booking.code as booking.miliseconds | date:'EEEE dd MMMM y' for booking in list.booking"
+                    id="select-code"
+                    ng-options="booking.code as 'รหัสการจอง : '+booking.code + ' , เดือน : '
+                    +(booking.miliseconds | date:'MMMM y')  for booking in list.booking"
                     class="form-control box-select-date"></select>
         </div>
 
@@ -81,21 +83,25 @@
             $scope.input.file = {};
             $scope.fileAdded = false;
 
-            //miliseconds
             $scope.init = function () {
-                $http.get('/inform/feed').success(function (d) {
-                    console.log(d);
+                $http.get('/inform/monthly/feed').success(function (d) {
+                    //console.log(d);
                     if (d.data.length === 0) $scope.list.booking = [];
                     $scope.list.booking = d.data;
+                    $scope.list.booking.forEach(function(ele){
+                        var myDate = new Date(ele.miliseconds);
+                        myDate.setFullYear( myDate.getFullYear() + 543 );
+                        ele.miliseconds = myDate.getTime();
+                    });
                 });
             }
             $scope.save = function () {
                 if (Object.keys($scope.input.file).length == 0) return;
-                $http.put('/inform/update/' + $scope.input.code, $scope.input).success(function (data) {
+                $http.put('/inform/monthly/update/' + $scope.input.code, $scope.input).success(function (data) {
                     console.log(data);
                     if (data.result) {
                         alert('อัพโหลดเสร็จเรียบร้อย');
-                        window.location = '/inform';
+                        window.location = '/inform/monthly';
                     } else {
                         alert(data.messge);
                     }
@@ -114,6 +120,7 @@
                 });
 
                 myDropzone.on('sending', function (file, xhr, formData) {
+                    console.log($scope.input.code);
                     formData.append('filename', $scope.input.code);
                 });
 

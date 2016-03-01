@@ -40,6 +40,7 @@ Route::group(['middleware' => 'auth'] , function(){
 	Route::post('/booking/create', 'BookingController@store');
 
 	Route::get('/monthly', 'MonthlyController@index');
+	Route::post('/monthly/search', 'MonthlyController@search');
 	Route::post('/monthly/create', 'MonthlyController@store');
 	Route::post('/monthly/calendar/block/get', 'MonthlyController@getBlockMonthly');
 	Route::get('/monthly/calendar/month/get', 'MonthlyController@getMonthly');
@@ -69,9 +70,13 @@ Route::group(['middleware' => 'auth'] , function(){
 	Route::put('/checkin/save/{id}', 'CheckinController@update');
 
 	Route::get('/inform', 'InformController@index');
+	Route::get('/inform/monthly', 'InformController@indexMonthly');
 	Route::get('/inform/feed', 'InformController@feed');
+	Route::get('/inform/monthly/feed', 'InformController@feedMonthly');
 	Route::post('/inform/upload', 'InformController@upload');
 	Route::put('/inform/update/{id}', 'InformController@update');
+	Route::put('/inform/monthly/update/{id}', 'InformController@updateMonthly');
+
 
 
 });

@@ -360,6 +360,7 @@
                             if (d.result) {
                                 $scope.ui.panalPrice = true;
                                 $scope.list.zoneCode = d.data;
+                                console.log('first zoneCode' ,  d.data);
                                 $scope.list.zoneCode.forEach(function (element, index, array) {
                                     var arr = [];
                                     for (i = 1; i <= element.availableLock; i++) {
@@ -368,7 +369,8 @@
                                     }
                                     $scope.list.zoneBlock[index] = arr;
                                 });
-                                //console.log('block' , $scope.list.zoneBlock);
+
+                                console.log('zoneCode' , $scope.list.zoneCode);
                                 setTimeout(function () {
                                     $scope.blockDisable();
                                 }, (2000));

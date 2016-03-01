@@ -39,9 +39,11 @@ class CheckinController extends Controller
 
         $skip = ($currentPage - 1 ) * $pageSize;
 
-        $booking = Booking::where('userID' , $user->id )->whereNotIn('status', ['RM'])->orderBy('id', 'asc')
-        ->skip($skip)->take($pageSize)->get();
-        //var_dump($skip ,  $pageSize);
+        $booking = Booking::where('userID' , $user->id )
+            ->whereRaw(' DATE_FORMAT(sale_at, \'%Y-%m-%d\') >=  DATE_FORMAT(NOW(), \'%Y-%m-%d\')')
+            ->whereNotIn('status', ['RM'])->orderBy('sale_at', 'asc')
+            ->skip($skip)->take($pageSize)->get();
+
         $count = Booking::where('userID' , $user->id )->whereNotIn('status' , ['RM'])->count();
 
         foreach ($booking  as $key => $value) {

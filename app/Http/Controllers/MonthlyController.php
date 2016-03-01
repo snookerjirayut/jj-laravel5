@@ -27,6 +27,30 @@ class MonthlyController extends Controller
         return view('monthly.index');
     }
 
+    public function search(Request $request){
+        $rules = array(
+            'date' => 'required',
+            'zoneName' => 'required'
+        );
+
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) return response()->json(array('result' => false, 'message' => 'invalid input field.'));
+
+        $user = Auth::user();
+
+        $booking_count = Booking::where('sale_at', $request->input('date'))->where('userID', $user->id)->count();
+        if ($booking_count > 0) {
+            return response()->json(array('result' => false, 'message' => 'บัญชีนี้ได้ทำการจองไปแล้ว กรุณาตรวจสอบใหม่อีกครั้ง'));
+        }
+
+
+        $block = Calendar::where('active', 1)
+            ->where('opened_at', $request->input('date'))
+            ->where('name', $request->input('zoneName'))->groupBy('code')->get();
+
+        return response()->json(array('result' => true, 'message' => 'success.', 'data' => $block));
+    }
+
 
     public function thai_date($time)
     {
@@ -147,7 +171,7 @@ class MonthlyController extends Controller
         $products = $request->input('products');
         $month = $request->input('date');
 
-        $sql = "SELECT * FROM calendar where date_format(opened_at , '%Y-%m') = date_format('2016-02-06' , '%Y-%m') and code = '" . $request->input('code') . "' ";
+        $sql = "SELECT * FROM calendar where date_format(opened_at , '%Y-%m') = date_format('". $month ."' , '%Y-%m') and code = '" . $request->input('code') . "' ";
         $sql .= " order by opened_at";
         $rows = \DB::select($sql);
         $total_price = 0 ;

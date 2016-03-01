@@ -110,7 +110,7 @@
                     </table>
 
                 </div>
-                <div class="col-sm-6 col-sm-offset-4">
+                <div class="col-sm-6 col-sm-offset-3">
                         @if(isset($type))
                             @if($type == 1 ) <h4  class="text-success text-center">รูปแบบการชำระเงิน : ชำระผ่านธนาคาร</h4>
                             @elseif ($type == 2 ) <h4 class="text-success text-center">รูปแบบการชำระเงิน : ชำระ ณ วันที่ขายสินค้า</h4>

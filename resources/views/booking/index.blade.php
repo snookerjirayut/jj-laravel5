@@ -263,24 +263,21 @@
 		$scope.init = function(){
 			$('#nav-bar li:first-child').addClass('active');
 			$http.get('/booking/calendar/day/get').success(function(d){
-				console.log(d);
+				//console.log(d);
 				$scope.list.days = d;
-				$scope.list.days.forEach(function(element, index, array){
+				$scope.list.days.forEach(function(element){
 					var mydate = new Date(element.name);
-					console.log(mydate);
 					mydate.setFullYear( mydate.getFullYear() + 543 );
-					console.log('full year >> ' , mydate);
 					element.name = mydate.getTime();
 				});
-				$scope.list.days_guest = [{miliseconds: '{{ $milliseconds }}' , name:  '{{ $milliseconds }}' ,opened_at: '{{ date('Y-m-d') }}' }];
-				$scope.list.days_guest.forEach(function(element, index, array){
+				$scope.list.days_guest = [{miliseconds: {{ $milliseconds }} , name: {{ $milliseconds }}
+					,opened_at: '{{ date('Y-m-d') }}' }];
+				$scope.list.days_guest.forEach(function(element){
 					var mydate = new Date(element.name);
-					console.log(mydate);
 					mydate.setFullYear( mydate.getFullYear() + 543 );
-					console.log('full year >> ' , mydate);
 					element.name = mydate.getTime();
 				});
-				console.log($scope.list.days_guest);
+				//console.log($scope.list.days_guest);
 			});
 		}
 

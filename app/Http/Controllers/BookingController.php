@@ -250,7 +250,7 @@ class BookingController extends Controller
 
         $block = Calendar::where('active', 1)
             ->where('opened_at', $request->input('date'))
-            ->where('name', $request->input('zoneName'))->get();
+            ->where('name', $request->input('zoneName'))->groupBy('code')->get();
 
         return response()->json(array('result' => true, 'message' => 'success.', 'data' => $block));
     }
