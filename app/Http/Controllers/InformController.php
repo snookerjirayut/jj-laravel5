@@ -44,7 +44,11 @@ class InformController extends Controller
     public function feedMonthly()
     {
         $user = Auth::user();
-        $booking = Booking::where('userID', $user->id)->where('payment', 0)->where('type', 1)->groupBy('code')->get();
+        $booking = Booking::where('userID', $user->id)->where('payment', 0)
+            ->where('type', 1)
+            ->groupBy('code')
+            ->orderBy('sale_at', 'asc')
+            ->get();
         return response()->json(['result' => true, 'data' => $booking]);
     }
 
