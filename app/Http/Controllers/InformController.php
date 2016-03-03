@@ -95,12 +95,12 @@ class InformController extends Controller
             'file' => 'required',
             'code' => 'required',
         );
-
+        $user = Auth::user();
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) return response()->json(array('result' => false, 'message' => 'invalid input field.'));
 
         $booking = Booking::where('code', $request->input('code'))->first();
-        $booking->picture = url('') . '/img/upload/' . $request->input('file');
+        $booking->picture = url('') . '/img/upload/'.$user->id.'/' . $request->input('file');
         $booking->payment = 1;
         if ($booking->save()) {
             return response()->json(array('result' => true, 'message' => 'save success', 'data' => $booking));
@@ -115,10 +115,10 @@ class InformController extends Controller
             'file' => 'required',
             'code' => 'required',
         );
-
+        $user = Auth::user();
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) return response()->json(array('result' => false, 'message' => 'invalid input field.'));
-        $path = url('') . '/img/upload/' . $request->input('file');
+        $path = url('') . '/img/upload/' .$user->id.'/'. $request->input('file');
 
         $booking = Booking::where('code', $request->input('code'))->where('payment', '0')
             ->update(['payment' => 1, 'picture' => $path]);

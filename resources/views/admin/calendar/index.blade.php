@@ -139,7 +139,7 @@
 				alert('Please select day befor save agendar.');
 				return ;
 			}
-			//console.log($scope.input.open);
+			//console.log($scope.input);
 			$('#btn_save').button('loading');
 			$http.post('/admin/calendar/save', $scope.input).success(function(d){
 				//success
