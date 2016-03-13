@@ -80,7 +80,8 @@
             <li class="active"><a href="#">หน้าแรก<span class="sr-only">(current)</span></a></li>
             <li><a href="{{url('/admin/calendar')}}">ปฏิทิน</a></li>
               <li><a href="{{url('/admin/manage')}}">จัดการข้อมูล</a></li>
-            <li><a href="{{url('/admin/payment')}}">ชำระเงิน</a></li>
+            <li><a href="{{url('/admin/payment')}}">ชำระเงิน(รายวัน)</a></li>
+              <li><a href="{{url('/admin/paymentmonth')}}">ชำระเงิน(รายเดือน)</a></li>
             <li><a href="{{url('/admin/member')}}">สมาชิก</a></li>
             <li><a href="{{url('/admin/verify')}}">ตรวจสอบ</a></li>
             <!--<li><a href="#">วิเคราะห์</a></li>

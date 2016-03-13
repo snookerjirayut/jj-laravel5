@@ -133,6 +133,13 @@ Route::group(['middleware' => 'role:admin'] , function(){
 	Route::post('/admin/payment/update', 'Backend\PaymentController@update');
 	Route::get('/admin/payment/show/{id}', 'Backend\PaymentController@show');
 
+	Route::get('/admin/paymentmonth', 'Backend\PaymentMonthlyController@index');
+	Route::get('/admin/paymentmonth/date', 'Backend\PaymentMonthlyController@date');
+	Route::get('/admin/paymentmonth/zone/{date}', 'Backend\PaymentMonthlyController@zone');
+	Route::post('/admin/paymentmonth/search', 'Backend\PaymentMonthlyController@search');
+	Route::post('/admin/paymentmonth/update', 'Backend\PaymentMonthlyController@update');
+	Route::get('/admin/paymentmonth/show/{id}', 'Backend\PaymentMonthlyController@show');
+
 	Route::get('/admin/member', 'Backend\MemberController@index');
 	Route::post('/admin/member/search', 'Backend\MemberController@search');
 	Route::put('/admin/member/update/{id}', 'Backend\MemberController@update');
