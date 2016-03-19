@@ -82,27 +82,16 @@ class CheckinController extends Controller
         $date = new DateTime();
         $date->setTimezone(new DateTimeZone('Asia/Bangkok'));
 
-        $booking = Booking::where('code' , $id)->first();
+        $booking = Booking::where('id' , $id)->first();
         $booking->status = 'CN';
         $booking->checkin_at =  $date->format('Y-m-d H:i:s');
         $result = $booking->save();
+
         if(!$result) return response()->json(array('result'=>false , 'message'=>'Booking id $id check-in has error.')); 
 
-        $detail = $request->input('bookingDetail');
-        //var_dump($detail);
-        $count = 0;
-        foreach ($detail as $key => $value) {
-            # code...
-            $val = (object)$value;
-            $obj = BookingDetail::where('id' , $val->id)->first();
-            $obj->status = 'CN';
-            $obj->checkin_at =  $date->format('Y-m-d H:i:s');
-            if($obj->save()) $count++;
-           // var_dump($val);
-        }
-        if($count != count($detail)){
-             return response()->json(array('result'=>false , 'message'=>'false.'));
-        }
+       
+        BookingDetail::where('bookingID' , $id)->update(['status' => 'CN']);
+
 
         return response()->json(array('result'=>true , 'message'=>'success.'));
 

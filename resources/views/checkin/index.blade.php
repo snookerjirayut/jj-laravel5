@@ -32,9 +32,9 @@
 			    </h2>
 			  </div>
 
-			  <div class="media-left active" ng-if="booking.canCheckIn" ng-click="checkin($index , booking.code)">
+			  <div class="media-left active" ng-if="booking.canCheckIn" ng-click="checkin($index , booking.id , booking.code)">
 			    <h2 class="lock-number-booking">
-			    	<a href="#" ng-click="checkin($index , booking.code)">
+			    	<a href="javascript:void(0)" >
 			    		<i class="glyphicon glyphicon-map-marker"></i><% booking.status %>
 			    	</a>
 			    </h2>
@@ -112,6 +112,13 @@
 			$http.post('/checkin/get' , $scope.input).success(function(d){
 				if(d.result){
 					$scope.list.bookings = d.data;
+					$scope.list.bookings.forEach(function(element , index , array){
+						var mydate = new Date(element.miliseconds);
+						//console.log(mydate);
+						mydate.setFullYear(mydate.getFullYear() + 543);
+						//console.log('full year >> ', mydate);
+						element.miliseconds = mydate.getTime();
+					});
 					$scope.input.total = d.total;
 				}
 			});
@@ -122,11 +129,11 @@
 			return day;
 		}
 
-		$scope.checkin = function(index , code){
+		$scope.checkin = function(index , id , code){
 			//alert('test');
 			if(index == null) return ;
 			var param = $scope.list.bookings[index];
-			$http.put('/checkin/save/'+code , param).success(function(d){
+			$http.put('/checkin/save/'+id , param).success(function(d){
 				console.log(d);
 				if(d.result){
 					alert('ID '+code+' check-in is success.');

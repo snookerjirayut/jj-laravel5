@@ -36,9 +36,14 @@ class Booking extends Model
         $date_now = new DateTime("now");
         //$date_now = new DateTime("2015-12-26");
         $interval = date_diff($date_now , $date_sale);
+
         if($this->status == "CN"){ return false; }
+
         $str =  $interval->format('%R%d');
-        if( $str >= 0  && $str <= 1 ){
+
+        //dd(intval($str));
+
+        if( intval($str) >= 0  && intval($str) <= 1 ){
             /*//return true;
             $user = User::where('id' , $this->userID)->first();
             if($user->role == 1){
@@ -54,6 +59,7 @@ class Booking extends Model
             }else {
                 return true;
             }
+
         }
 
         return false;
