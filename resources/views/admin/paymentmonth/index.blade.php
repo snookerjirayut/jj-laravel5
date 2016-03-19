@@ -57,7 +57,10 @@
 								for status in list.status" ng-model="input.status"  ng-disabled="ui.status"
                                         class="form-control select-booking-date"  ></select>
                             </div>
-                            <button class="btn btn-info" ng-click="search()" >ตกลง</button>
+                            <div class="form-group">
+                                <label>&nbsp;</label><br>
+                                <button class="btn btn-info" ng-click="search()" >ตกลง</button>
+                            </div>
                         </div>
                     </div>
 

@@ -34,10 +34,12 @@
 
 			<div class="form-group">
 				<label>Email</label><br>
-				<input width="8%"class="form-control" ng-model="input.email"  placeholder="member@gmail.com">
+				<input width="8%"class="form-control" ng-model="input.email"  placeholder="user email">
 			</div>
-			<button class="btn btn-info" ng-click="search()"  >ตกลง</button>
-
+			<div class="form-group">
+				<label>&nbsp;</label><br>
+				<button class="btn btn-info" ng-click="search()"  >ตกลง</button>
+			</div>
 	  	</div>
 	  </div>
 	  <div class="panel-body">

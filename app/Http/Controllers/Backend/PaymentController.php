@@ -137,7 +137,9 @@ class PaymentController extends Controller
         $booking = Booking::where('id' , $booking_id )->first();
 
         if($booking == null) return response()->json(array('result'=>false , 'message'=>'can not define booking from id '.$booking_id));
+        
         $booking->payment = 2;
+       
         if($booking->save())
             return response()->json(array('result'=>true , 'message'=>'success' ));
         return response()->json(array('result'=>false , 'message'=>'update fail'));

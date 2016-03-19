@@ -32,6 +32,8 @@
 		color: #ccc;
 	}
 
+
+
 	</style>
 @endsection
 
@@ -57,9 +59,10 @@
 	  		 	ng-options="zone.zoneID as (zone.code+' - '+zone.name) for zone in list.zone">
 	  			</select>
 	  		</div>
-
-	  		<button type="buttton" class="btn btn-info" ng-click="search()">Search</button>
-	  	
+			<div class="form-group">
+				<label>&nbsp;</label><br>
+	  			<button type="buttton" class="btn btn-info" ng-click="search()">Search</button>
+	  		</div>
 	  	</div>
 	  </div>
 	  <div class="panel-body">
@@ -95,7 +98,9 @@
 	   							<div ng-if="value.type == 2" class="label label-info">จ่ายสด</div>
 	   						</td>
 	   						<td class="text-center">
-	   							<div ng-if="value.payment == 0" class="label label-warning">ค้างชำระ</div>
+	   							<div ng-if="value.payment == 0" class="label label-warning">
+	   								<a href="javascript:void(0)" class="label-link" ng-click="approve(value.id)">ค้างชำระ</a>
+	   							</div>
 	   							<div ng-if="value.payment == 1" class="label label-info">
 	   								<a href="<% value.picture %>" target="_blank">แจ้งโอนแล้ว</a>
 	   							</div>
@@ -159,8 +164,20 @@
 					console.log(d);
 					if(d.result){
 						$scope.list.table = d.data;
+					}else{
+						alert(d.message);
 					}
 				});
+			}
+
+			$scope.approve = function(id){
+				$scope.input.bookingid = id;
+				$http.post("{{url('/admin/payment/update')}}", $scope.input ).success(function(d){
+					if(d.result){
+						alert('Booking ID '+id+' ตรวจสอบเรียบร้อย');
+						$scope.search();
+					}else alert(d.message);
+				})
 			}
 
 			$scope.verify = function(id , index){

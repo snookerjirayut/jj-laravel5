@@ -57,7 +57,10 @@
 								for status in list.status" ng-model="input.status"  ng-disabled="ui.status"
 								class="form-control select-booking-date"  ></select>
 							</div>
-							<button class="btn btn-info" ng-click="search()" >ตกลง</button>
+							<div class="form-group">
+								<label>&nbsp;</label><br>
+								<button class="btn btn-info" ng-click="search()" >ตกลง</button>
+							</div>
 						</div>
 					</div>
 
@@ -78,6 +81,7 @@
 									<td>จำนวน</td>
 									<td>ราคา</td>
 									<td>สถานะการจอง</td>
+									<td>การชำระเงิน</td>
 									<td>สถานะการชำระ</td>
 									<td>วันที่จอง</td>
 									<td>รายละเอียด</td>
@@ -101,6 +105,15 @@
 										</div>
 									</td>
 									<td>
+										<div ng-if="obj.type == 1">
+											โอนเงิน
+										</div>
+										<div ng-if="obj.type == 2">
+											เงินสด
+										</div>
+									</td>
+
+									<td>
 										<div ng-if="obj.payment == 0">
 											รอชำระเงิน
 										</div>
@@ -113,10 +126,16 @@
 									</td>
 									<td><% obj.created_at %></td>
 									<td>
-										<div ng-if="obj.payment == 1">
+										<div ng-if="obj.type == 2 && obj.payment == 0">
 											<button class="btn btn-xs btn-warning" ng-click="approve(obj.id)">ยังไม่ตรวจสอบ</button>
 										</div>
-										<div ng-if="obj.payment == 2">
+										<div ng-if="obj.type == 1 && obj.payment == 1">
+											<button class="btn btn-xs btn-warning" ng-click="approve(obj.id)">ยังไม่ตรวจสอบ</button>
+										</div>
+										<div ng-if="obj.type == 1 && obj.payment == 2">
+											<label class="label label-success">ตรวจสอบแล้ว</label>
+										</div>
+										<div ng-if="obj.type == 2 && obj.payment == 2">
 											<label class="label label-success">ตรวจสอบแล้ว</label>
 										</div>
 									</td>
@@ -153,7 +172,6 @@
 	        	<p class="glyphicon glyphicon-user"><% modal.user.firstName+' '+modal.user.lastName %></p><br>
 	        	<p class="glyphicon glyphicon-map-marker"><% modal.user.address %></p><br>
 	        	<p class="glyphicon glyphicon-phone"><% modal.user.phone %></p><br>
-
 	        </div>
 	       	<div class="col-sm-3"> 
 	        	<% modal.detail.type == 1 ?  'โอนเงิน' : 'ชำระ ณ​ วันขายสินค้า'  %>
