@@ -91,12 +91,12 @@
                     <div class="text-center text-day">เช่าล็อคคของ <% input.date | date:'MMMM y' %></div>
                     <hr>
                     <div class="col-sm-12 box-booking-item" ng-repeat="item in list.item">
-                        <div class="col-sm-6 text-left">
+                        <div class="col-sm-12 text-center">
                             ล็อค <% item.name %>
                         </div>
-                        <div class="col-sm-6 text-right"><% item.price | number:2 %>
+                        <!-- <div class="col-sm-6 text-right"><% item.price | number:2 %>
                             <small>บาท</small>
-                        </div>
+                        </div> -->
                     </div>
                     <hr>
 

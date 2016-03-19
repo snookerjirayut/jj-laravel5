@@ -76,7 +76,7 @@
         <h2 class="text-center text-success">รหัสการจอง : <span style="color: #AA0000">{{ $booking_code  }}</span></h2>
         <div class="summary">
             <div class="row">
-                <h4 class="text-right">ณ วันที่ {{date('Y-m-d H:i:s')}}</h4>
+                <h4 class="text-right">ณ วันที่ {{date('d/m/Y H:i:s')}}</h4>
                 <h4 class="text-right">รหัสการจอง {{  $booking_code  }}</h4>
                 <h3>สินค้า : {{ $productName }} </h3>
                 <h3>รายเดือน : {{ $thai_date }} </h3>

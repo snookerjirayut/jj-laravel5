@@ -72,7 +72,7 @@
     <form method="post" name="booking_confirm" action="/monthly/save">
     <div class="summary">
         <div class="row">
-            <h4 class="text-right">วันที่ {{date('Y-m-d')}}</h4>
+            <h4 class="text-right">วันที่ {{date('d/m/Y')}}</h4>
             <h4 class="text-right">เวลา {{date('H:i:s')}}</h4>
             <h3>สินค้า : {{ $productName }} </h3>
             <h3>รายเดือน : {{ $thai_date }} </h3>
