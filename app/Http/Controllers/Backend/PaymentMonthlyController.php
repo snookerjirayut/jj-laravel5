@@ -61,12 +61,12 @@ class PaymentMonthlyController extends Controller
         $skip = ($page - 1) * $pageSize;
 
         if($zone == 99 && $type == 99 && $status == 99){
-            $booking = Booking::where('sale_at' , $date)->skip($skip)->take($pageSize)->get();
-            $count = Booking::where('sale_at' , $date)->count();
+            $booking = Booking::where('sale_at' , $date)->where('payment_type' , 2)->skip($skip)->take($pageSize)->get();
+            $count = Booking::where('sale_at' , $date)->where('payment_type' , 2)->count();
             return response()->json(['result'=>true , 'data'=> $booking , 'total'=>$count ]);
         }
 
-        $query = \DB::table('v_booking_and_detail')->where('sale_at' , $date)->groupBy('code');
+        $query = \DB::table('v_booking_and_detail')->where('sale_at' , $date)->where('payment_type' , 2)->groupBy('code');
 
         if(isset($zone) && $zone != 99) $query->where('zoneID' , $zone);
         if(isset($type) && $type != 99) $query->where('type' , $type);

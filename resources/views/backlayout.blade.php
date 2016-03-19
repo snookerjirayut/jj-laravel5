@@ -4,22 +4,22 @@
         <title>Backend - @yield('title')</title>
         <meta name="csrf-token" content="{{ csrf_token() }}">
        
-        <link href='https://fonts.googleapis.com/css?family=Questrial' rel='stylesheet' type='text/css'>
+        <link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet" type="text/css">
 
 
-        <link href="/css/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link href="/css/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+        <link href="{{ asset('css/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/bootstrap/dist/css/bootstrap-theme.min.css')}}" rel="stylesheet">
 
-        <link href="/css/style-admin.css" rel="stylesheet">
+        <link href="{{ asset('css/style-admin.css') }}" rel="stylesheet">
 
-        <script src="/js/jquery.min.js" ></script>
-        <script src="/js/moment/min/moment.min.js" ></script>
-        <script src="/css/bootstrap/dist/js/bootstrap.min.js" ></script>
+        <script src="{{ asset('js/jquery.min.js') }}" ></script>
+        <script src="{{ asset('js/moment/min/moment.min.js') }}" ></script>
+        <script src="{{ asset('css/bootstrap/dist/js/bootstrap.min.js') }}" ></script>
 
 
-        <script src="/js/angular/angular.min.js" ></script>
-        <script src="/js/angular/ui-bootstrap-tpls.js" ></script>
-        <script src="/js/angular-i18n/angular-locale_th-th.js" ></script>
+        <script src="{{ asset('js/angular/angular.min.js') }}" ></script>
+        <script src="{{ asset('js/angular/ui-bootstrap-tpls.js') }}" ></script>
+        <script src="{{ asset('js/angular-i18n/angular-locale_th-th.js')}}" ></script>
         
         @yield('style')
         <style>

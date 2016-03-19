@@ -110,7 +110,8 @@ class BookingController extends Controller
             'code' => $booking_code,
             'productName' => $request->input('productName'),
             'status' => 'BK',
-            'type' => $request->input('type')
+            'type' => $request->input('type'),
+            'payment_type' => 1
         ]);
 
         if ($booking == null) return response()->json(array('result' => false, 'message' => 'booking create fails.'));
@@ -187,7 +188,8 @@ class BookingController extends Controller
             'code' => $date->format('Ymd-His') . '' . $user->id,
             'productName' => $request->input('productName'),
             'status' => 'BK',
-            'type' => $request->input('type')
+            'type' => $request->input('type'),
+            'payment_type' => 1
         ]);
 
         if ($booking == null) return response()->json(['result' => false, 'message' => 'booking create fails.']);

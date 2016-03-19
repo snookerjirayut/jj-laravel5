@@ -80,18 +80,24 @@ class MonthlyController extends Controller
     public function save(Request $request)
     {
         if(!$request->session()->has('quotation')) return redirect('/monthly')->withErrors("ไม่พบข้อมูลการจองพื้นที่");
+       
         $rules = array('type' => 'required');
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails())  return redirect('/monthly')->withErrors($validator);
+       
         $user = \Auth::user();
         if ( $user->role != 2)  return redirect('/monthly')->withErrors("user permission denied.");
 
         $quotation = $request->session()->get('quotation');
         $rows = $quotation["rows"];
         $products = $quotation["products"];
+        
         $arr_product = explode('|' , $products);
+       
         $name = $quotation["productName"];
+       
         $booking_code = date('YmdHms') . '-' . $user->id;
+        
         foreach( $rows as $key => $row){
             $booking = Booking::create([
                 'sale_at' => $row->opened_at,
@@ -102,12 +108,15 @@ class MonthlyController extends Controller
                 'code' => $booking_code,
                 'productName' => $name ,
                 'status' => 'BK',
-                'type' => $request->input('type')
+                'type' => $request->input('type'),
+                'payment_type' => 2
             ]);
 
             $this->saveDetail($booking , $arr_product , $user);
         }
+
         $request->session()->forget('quotation');
+        
         return view('monthly.success', ['rows' => $quotation['rows']
             , 'products' => $quotation['products']
             , 'productName' => $quotation['productName']

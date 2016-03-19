@@ -137,13 +137,14 @@
                 </div>
 
             </div>
-            <div class="row" ng-show="input.checked != null">
+
+            {{--<div class="row" ng-show="input.checked != null">
                 <div class="col-sm-8 col-sm-offset-2 box-booking-button">
                     <button class="btn btn-jj btn-block"
                             ng-click="booking()" ng-disabled="ui.buttonBooking">จองพื้นที่
                     </button>
                 </div>
-            </div>
+            </div>--}}
 
 
         </section>

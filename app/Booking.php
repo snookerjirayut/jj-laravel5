@@ -16,7 +16,7 @@ class Booking extends Model
 
 
     protected $fillable = ['code', 'productName', 'userID' , 'userCode' , 'quantity' 
-    , 'totalPrice' , 'status' , 'sale_at' , 'payment' , 'picture' , 'type' ];
+    , 'totalPrice' , 'status' , 'sale_at' , 'payment' , 'picture' , 'type' , 'payment_type' ];
 
 
     public function bookingdetail(){
