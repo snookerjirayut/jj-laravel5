@@ -42,27 +42,26 @@
 
 </head>
 <body>
+    <!--logo-->
     <div class="col-sm-12 ">
         <img src="{{  asset('/img/header.png') }}" class="img-resposive max-width">
     </div>
     
-    <!--header start-->
-            
+    <!--header start-->      
     <header class="head-section">
         <div class="navbar navbar-default navbar-static-top container">
-            <div class="col-lg-3 col-sm-3">
+            <div class="col-lg-12 col-sm-12">
                 <div class="navbar-header">
                     <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse" type="button">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="/"><img src="{{  asset('/img/logo.png') }}"></a>
                 </div>
             </div>
 
             <div class="navbar-collapse collapse">
-                <div class="col-lg-8 col-sm-8">
+                <div class="col-lg-11 col-sm-11">
                     <div class="navbar-collapse collapse">
                         <br><br>
                         <ul class="nav navbar-nav">
@@ -127,69 +126,6 @@
 
     @yield('description')
 
-
-    <!--footer start-->
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-sm-4">
-                    <div class="text-footer wow fadeInUp" data-wow-duration="2s" data-wow-delay=".1s">
-                
-                    <h1>
-                        เกี่ยวกับ กรีน วินเทจ
-                    </h1>
-                    <p>
-                        Green vintage Night Market ตลาดนัดกลางคืนโฉมใหม่ในทำเลแห่งเก่า กลิ่นไอเดิมๆ ที่ไม่เคยจางหาย บรรยากาศผู้คนที่มากมายตามสายทางเดิน สองข้างทางเต็มไปด้วยบรรยากาศของร้านค้าต่างๆ ในแต่ละโซน กว่าพันร้านค้า ที่มีมาให้ดูให้ชม ให้เลือกให้หา มาหาความสุข สนุกทุกย่างก้าว กับบรรยากาศตลาดนัดกลางคืนที่เจเจกรีน ใกล้กับพิพิธภัณฑ์เด็ก
-
-                    </p>
-                </div></div>
-
-                <div class="col-lg-4 col-sm-4">
-                    <div class="page-footer wow fadeInUp" data-wow-duration="2s" data-wow-delay=".4s">
-                        <h1>
-                            กรีน วินเทจ
-                        </h1>
-                        <ul class="page-footer-list">
-                            <li>
-                                <i class="fa fa-angle-right"></i>
-                                <a href="/booking">จองพื้นที่ขายของ</a>
-                            </li>
-                            <li>
-                                <i class="fa fa-angle-right"></i>
-                                <a href="/checkin">เชคอิน</a>
-                            </li>
-                            <li>
-                                <i class="fa fa-angle-right"></i>
-                                <a href="/inform">แจ้งโอน</a>
-                            </li>
-                            <li>
-                                <i class="fa fa-angle-right"></i>
-                                <a href="faq.html">คำถาม</a>
-                            </li>
-                            <li>
-                                <i class="fa fa-angle-right"></i>
-                                <a href="blog.html">ข่าวสารและกิจกรรม</a>
-                            </li>
-
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-4 address wow fadeInUp" data-wow-duration="2s" data-wow-delay=".7s">
-                        <h1>
-                            ติดต่อเราได้ที่
-                        </h1>
-                        <address>
-                            <p><i class="fa fa-home pr-10"></i> ถนน กำแพงเพชร 3</p>
-                            <p><i class="fa fa-globe pr-10"></i>เขตจตุจักร กรุงเทพมหานคร 10900 </p>
-                            <p><i class="fa fa-phone pr-10"></i>  086 567 9959 </p>
-                            <p><i class="fa fa-envelope pr-10"></i>   <a href="javascript:;">mychappa@gmail.com</a></p>
-                        </address>
-                    
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- footer end -->
 
 
     <!--small footer start -->

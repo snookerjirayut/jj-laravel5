@@ -126,7 +126,7 @@ p { line-height: 22px }
 }
 .navbar-brand span { color: #09b06a }
 .head-section .navbar-collapse  ul.navbar-nav {
-    float: right;
+    float: left;
     margin-right: 0;
     z-index: 199;
 }
@@ -3178,14 +3178,7 @@ div.header h3{
   background-color: #09B06A;
   border-radius: 3px;
   height: 48px;
-  text-shadow: 0 -1px -1px #af3a2a;
-  -moz-box-shadow: 0 4px 0 #13905B, 0 5px 5px 1px rgba(0, 0, 0, 0.4);
-  -webkit-box-shadow: 0 4px 0 #13905B, 0 5px 5px 1px rgba(0, 0, 0, 0.4);
-  box-shadow: 0 4px 0 #13905B, 0 5px 5px 1px rgba(0, 0, 0, 0.4);
-  -moz-transition: all 0.15s ease-in-out;
-  -o-transition: all 0.15s ease-in-out;
-  -webkit-transition: all 0.15s ease-in-out;
-  transition: all 0.15s ease-in-out;
+  
 }
 .btn-jj:active {
   margin-top: -10px;

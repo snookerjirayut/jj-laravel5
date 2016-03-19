@@ -8,22 +8,13 @@
     
 </head>
 <body>
+    <!-- logo -->
     <div class="col-sm-12 ">
         <img src="{{  asset('img/header.png') }}" class="img-resposive max-width">
     </div>
 
-   
-    
-            
-    
-    
     <div class="login-wrap">
-        <div class="col-lg-4"></div>
-        <div class="col-lg-4">
-            <img src="{{  asset('img/logo.png') }}" class="img-responsive img-center">
-            
-            
-
+        <div class="col-lg-12">
             <form class="form-signin wow fadeInUp" method="post" action="{{url('')}}/admin/signin/valid">
                 <div class="col-lg-12 text-center "><h3>ADMIN</h3></div>
                 <div class="login-wrap">

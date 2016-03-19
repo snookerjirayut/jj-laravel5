@@ -9,10 +9,10 @@
     <div class="breadcrumbs">
         <div class="container">
             <div class="row">
-                <div class="col-lg-5 col-sm-5">
+                <div class="col-lg-7 col-sm-7">
                     <h1>แจ้งโอนโดยหลักฐานการชำระเงิน แบบรายเดือน</h1>
                 </div>
-                <div class="col-lg-7 col-sm-7">
+                <div class="col-lg-5 col-sm-5">
                     <ol class="breadcrumb pull-right">
                         <li><a href="{{ url('/') }}">หน้าหลัก</a></li>
                         <li class="active">แจ้งโอน แบบรายเดือน</li>

@@ -6,7 +6,7 @@
 
         <div class="row">
             <div class="col-lg-6 col-sm-6 text-center wow fadeInLeft">
-                <img src="img/tab1.png" alt="">
+                <img src="img/tab1.png" alt="" class="img-resposive max-width">
             </div> <!--class="col-lg-6 col-sm-6 text-center wow fadeInLeft" end-->
 
             <div class="col-lg-6 col-sm-6 wow fadeInRight">
