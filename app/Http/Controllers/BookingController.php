@@ -243,6 +243,7 @@ class BookingController extends Controller
         if ($validator->fails()) return response()->json(array('result' => false, 'message' => 'invalid input field.'));
 
         $user = Auth::user();
+        $date = $request->input('date');
 
         $booking_count = Booking::where('sale_at', $request->input('date'))->where('userID', $user->id)->count();
         if ($booking_count > 0) {
@@ -254,7 +255,13 @@ class BookingController extends Controller
             ->where('opened_at', $request->input('date'))
             ->where('name', $request->input('zoneName'))->groupBy('code')->get();
 
-        return response()->json(array('result' => true, 'message' => 'success.', 'data' => $block));
+        $date_format = date("Y-m", strtotime($date));
+
+        $where = "active = 1 and date_format(opened_at , '%Y-%m') = '".$date_format."'";
+        //dd($where);
+        $open_in_month = Calendar::whereRaw($where)->groupBy('opened_at')->get();
+
+        return response()->json(['result' => true, 'message' => 'success.', 'data' => $block , 'count' => count($open_in_month)]);
     }
 
     public function searchByAdmin(Request $request)

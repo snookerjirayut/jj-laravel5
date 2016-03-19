@@ -105,7 +105,7 @@
                             ยอดชำระ
                         </div>
                         <div class="col-sm-7 text-right text-bold">
-                            <% input.totalPrice | number:2 %>
+                            <% (input.totalPrice*input.count) | number:2 %>
                             <small>บาท</small>
                         </div>
                     </div>
@@ -356,8 +356,9 @@
 
 
                         $http.post('/booking/search', $scope.input).success(function (d) {
-                            //console.log(d);
+                            console.log(d);
                             if (d.result) {
+                                $scope.input.count = d.count;
                                 $scope.ui.panalPrice = true;
                                 $scope.list.zoneCode = d.data;
                                 //console.log('first zoneCode' ,  d.data);
