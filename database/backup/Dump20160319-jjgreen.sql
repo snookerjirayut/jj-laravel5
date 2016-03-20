@@ -416,7 +416,7 @@ UNLOCK TABLES;
 /*!50001 SET character_set_results     = utf8 */;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+
 /*!50001 VIEW `v_booking_and_detail` AS select `book`.`id` AS `id`,`book`.`code` AS `code`,`book`.`productName` AS `productName`,`book`.`userID` AS `userID`,`book`.`userCode` AS `userCode`,`book`.`quantity` AS `quantity`,`book`.`totalPrice` AS `totalPrice`,`book`.`status` AS `status`,`book`.`created_at` AS `created_at`,`book`.`updated_at` AS `updated_at`,`book`.`checkin_at` AS `checkin_at`,`book`.`sale_at` AS `sale_at`,`book`.`payment` AS `payment`,`book`.`picture` AS `picture`,`book`.`type` AS `type`,`book`.`verify` AS `verify`,`book`.`active` AS `active`,`book`.`payment_type` AS `payment_type`,`detail`.`zoneID` AS `zoneID`,`detail`.`zoneCode` AS `zoneCode`,`detail`.`zoneNumber` AS `zoneNumber` from (`booking` `book` join `bookingdetail` `detail`) where (`book`.`id` = `detail`.`bookingID`) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
@@ -434,7 +434,7 @@ UNLOCK TABLES;
 /*!50001 SET character_set_results     = utf8 */;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+
 /*!50001 VIEW `v_booking_and_detail_group_zoneid` AS select `book`.`id` AS `id`,`book`.`code` AS `code`,`book`.`productName` AS `productName`,`book`.`userID` AS `userID`,`book`.`userCode` AS `userCode`,`book`.`quantity` AS `quantity`,`book`.`totalPrice` AS `totalPrice`,`book`.`status` AS `status`,`book`.`created_at` AS `created_at`,`book`.`updated_at` AS `updated_at`,`book`.`checkin_at` AS `checkin_at`,`book`.`sale_at` AS `sale_at`,`book`.`payment` AS `payment`,`book`.`picture` AS `picture`,`book`.`type` AS `type`,`book`.`payment_type` AS `payment_type`,`detail`.`zoneID` AS `zoneID`,`detail`.`zoneCode` AS `zoneCode`,`detail`.`zoneNumber` AS `zoneNumber` from (`booking` `book` join `bookingdetail` `detail`) where (`book`.`id` = `detail`.`bookingID`) group by `detail`.`zoneID`,`book`.`code` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
@@ -452,7 +452,7 @@ UNLOCK TABLES;
 /*!50001 SET character_set_results     = utf8 */;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+
 /*!50001 VIEW `v_zipcode` AS select `d`.`DISTRICT_NAME` AS `DISTRICT_NAME`,`am`.`AMPHUR_NAME` AS `AMPHUR_NAME`,`p`.`PROVINCE_NAME` AS `PROVINCE_NAME`,`m`.`ZIPCODE_ID` AS `ZIPCODE_ID`,`m`.`DISTRICT_CODE` AS `DISTRICT_CODE`,`m`.`PROVINCE_ID` AS `PROVINCE_ID`,`m`.`AMPHUR_ID` AS `AMPHUR_ID`,`m`.`DISTRICT_ID` AS `DISTRICT_ID`,`m`.`ZIPCODE` AS `ZIPCODE` from (((`zipcode` `m` left join `province` `p` on((`p`.`PROVINCE_ID` = `m`.`PROVINCE_ID`))) left join `amphur` `am` on((`am`.`AMPHUR_ID` = `m`.`AMPHUR_ID`))) left join `district` `d` on((`d`.`DISTRICT_ID` = `m`.`DISTRICT_ID`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;

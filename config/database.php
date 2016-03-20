@@ -55,9 +55,9 @@ return [
         'mysql' => [
             'driver'    => 'mysql',
             'host'      => env('DB_HOST', '127.0.0.1'),
-            'database'  => env('DB_DATABASE', 'jjgreen'),
-            'username'  => env('DB_USERNAME', 'root'),
-            'password'  => env('DB_PASSWORD', ''),
+            'database'  => env('DB_DATABASE', 'jjgreen'),//sosecret_jjgreen
+            'username'  => env('DB_USERNAME', 'root'),//sosecret_jjgreen
+            'password'  => env('DB_PASSWORD', ''),//1qaz2wsx3edc
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',
