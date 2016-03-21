@@ -2023,7 +2023,7 @@ ul#filters > .active > span {
     border-radius: 3px;
 }
 
-.form-wrapper { padding-bottom: 70px }
+/*.form-wrapper { padding-bottom: 70px }*/
 .login-bg {
     margin-top: -40px;
     margin-bottom: -50px;
@@ -2850,7 +2850,7 @@ p { text-align: left }
     -o-transform: translateY(100px);
     -ms-transform: translateY(100px);
     transform: translateY(100px);
-    -webkit-transition: all 0.3s ease-in-out 0.1s;
+    -webkit-transition: all 0.1s ease-in-out 0.1s;
     -moz-transition: all 0.3s ease-in-out 0.1s;
     -o-transition: all 0.3s ease-in-out 0.1s;
     -ms-transition: all 0.3s ease-in-out 0.1s;
@@ -3100,7 +3100,7 @@ div.header h3{
 
 .userSection {
   float: right;
-  padding-top: 55px;
+  padding-top: 25px;
   width: 90px;
   cursor: pointer;
 }
@@ -3134,7 +3134,7 @@ div.header h3{
   width: 200px;
   float: right;
   position: absolute;
-  top: 106px;
+  top: 78px;
   right: -25px;
   padding: 10px;
   list-style: none;
