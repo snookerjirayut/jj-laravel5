@@ -60,7 +60,7 @@
                     </div>
                     <div class="controls col-lg-3 col-sm-3  ">
                         <div class="controls col-lg-6 col-sm-6 form-group has-success">
-                            <label>จำนวนล็อค</label>
+                            <label>จำนวนล็อก</label>
                             <select ng-options="number.id as number.name for number in list.numbers track by number.id"
                                     ng-model="input.number"
                                     class="form-control" ng-disabled="ui.number"></select>
@@ -88,11 +88,11 @@
                 </div>
                 <div class="col-sm-3 box-booking-summary" ng-show="input.checked != null" style="display: block;">
 
-                    <div class="text-center text-day">เช่าล็อคคของ <% input.date | date:'MMMM y' %></div>
+                    <div class="text-center text-day">เช่าล็อกเดือน <% input.label | date:'MMMM y' %></div>
                     <hr>
                     <div class="col-sm-12 box-booking-item" ng-repeat="item in list.item">
                         <div class="col-sm-12 text-center">
-                            ล็อค <% item.name %>
+                            ล็อก <% item.name %>
                         </div>
                         <!-- <div class="col-sm-6 text-right"><% item.price | number:2 %>
                             <small>บาท</small>
@@ -111,6 +111,7 @@
                     </div>
 
                     <div class="col-sm-12">
+                        <br><br>
                         <div class="text-center text-pay">วิธีการชำระเงิน</div>
 
                         <label class="checkbox">
@@ -354,6 +355,10 @@
                         $scope.input.checked = {};
                         $scope.list.item = [];
 
+                        var tempdate = $scope.input.date;
+                        var mydate = new Date(tempdate);
+                        mydate.setFullYear(mydate.getFullYear() + 543);
+                        $scope.input.label = mydate.getTime();
 
                         $http.post('/booking/search', $scope.input).success(function (d) {
                             console.log(d);

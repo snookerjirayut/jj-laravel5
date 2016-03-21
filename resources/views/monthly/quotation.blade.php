@@ -84,7 +84,7 @@
                         <th class="text-center">วันที่</th>
                         <th class="text-center">โซน</th>
                         <th></th>
-                        <th class="text-center">ราคา/ล็อค</th>
+                        <th class="text-center">ราคา/ล็อก</th>
                         <th class="text-center">ราคา</th>
                     </tr>
                     <?php $index = 1 ; ?>

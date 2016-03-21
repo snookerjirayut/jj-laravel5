@@ -85,7 +85,7 @@
 			</div>
 			<div class="col-sm-3 box-booking-summary" ng-show="input.checked != null">
 
-				<div class="text-center text-day">เช่าล็อคคของ <% input.date  | date:'EEEE dd MMMM y' %></div>
+				<div class="text-center text-day">เช่าล็อคคของ <% input.label  | date:'EEEE dd MMMM y' %></div>
 				<hr>
 				<div class="col-sm-12 box-booking-item" ng-repeat="item in list.item" >
 					<div class="col-sm-6 text-left">
@@ -302,7 +302,11 @@
 						$scope.input.checked = {};
 						$scope.list.item = [];
 
-
+						var tempdate = $scope.input.date;
+                        var mydate = new Date(tempdate);
+                        mydate.setFullYear(mydate.getFullYear() + 543);
+                        $scope.input.label = mydate.getTime();
+                        
 						$http.post('/booking/search' , $scope.input).success(function(d){
 							//console.log(d);
 							if(d.result){

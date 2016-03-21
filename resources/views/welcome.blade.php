@@ -63,7 +63,7 @@
             <div class="navbar-collapse collapse">
                 <div class="col-lg-11 col-sm-11">
                     <div class="navbar-collapse collapse">
-                        <br><br>
+                        
                         <ul class="nav navbar-nav">
                         @if(\Auth::check())
                             <li><a href="/checkin">เช็คอิน</a></li>
@@ -143,7 +143,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="copyright">
-                        <p>&copy; Copyright - 13540189.ICT@SU</p>
+                        <p>&copy;  2558 - 13540189 - ICT - SILPAKORN</p>
                     </div>
                 </div>
             </div>

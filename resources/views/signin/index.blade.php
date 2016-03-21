@@ -11,7 +11,6 @@
 
             <div class="col-lg-6 col-sm-6 wow fadeInRight">
                 <!--container start-->
-                <div class="container">
                     <div class="form-wrapper">
                         <form class="form-signin wow fadeInUp" action="/signin/valid" method="post">
 
@@ -45,7 +44,7 @@
                                 
                                 <div class="form-group has-success">
                                     หากคุณยังไม่มีบัญชีผู้ใช้&nbsp;&nbsp;<a class="" href="/register">
-                                        ลงทะเบียนเดี๋ยวนี้
+                                        กรุณาลงทะเบียนที่นี่
                                     </a>
                                 </div>
                                 
@@ -53,7 +52,7 @@
                         </form>
 
                     </div> <!--class="form-wrapper" end -->
-                </div> <!-- class="container" end -->
+                
                 <!--container start end-->
             </div> <!-- class="col-lg-6 col-sm-6 wow fadeInRight" end -->
 
