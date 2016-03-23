@@ -31,19 +31,6 @@ class BookingController extends Controller
         return view('booking.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function createByAdmin()
-    {
-        if(!session()->has('member')) return response()->json(['message'=>'member not found.']);
-        //var_dump(Auth::user()->role);
-        if(Auth::user()->role != 99) return response()->json(['message'=>'permission denied']);
-        return view('booking.byadmin' , ['user' => session()->get('member')]);
-    }
-
     public function summary($id)
     {
         //if($id == null){ return redirect()->intended('/'); }
@@ -115,84 +102,6 @@ class BookingController extends Controller
         ]);
 
         if ($booking == null) return response()->json(array('result' => false, 'message' => 'booking create fails.'));
-
-        //$open = (object) $arr[$i];
-        $products_arr = $request->input('products');
-        $count = 0;
-        $detail_result = [];
-        foreach ($products_arr as $key => $product_arr) {
-            # code...
-            $product = (object)$product_arr;
-
-            $calendar = Calendar::where('opened_at', $request->input('date'))->where('code', $product->code)->get()->first();
-
-            $detail = BookingDetail::create([
-                'code' => $date->format('Ymd-His') . '-' . $user->id . '-' . ($count + 1),
-                'bookingID' => $booking->id,
-                'bookingCode' => $booking->code,
-                'zoneID' => $calendar->zoneID,
-                'zoneCode' => $calendar->code,
-                'zoneNumber' => $product->name,
-                'price' => $product->price,
-                'status' => 'BK',
-                'sale_at' => $request->input('date')
-            ]);
-
-            if ($detail != null) {
-                array_push($detail_result, $detail->id);
-                $count++;
-            }
-        }//end foreach
-
-        if ($count == count($products_arr)) {
-            return response()->json(array('result' => true, 'message' => 'success'
-            , 'bookingCode' => $booking->code, 'detail' => $detail_result
-            ));
-        }
-        return response()->json(array('result' => false, 'message' => 'booking create fails.'));
-
-    }
-
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function storeByAdmin(Request $request)
-    {
-        $date = new DateTime();
-        $date->setTimezone(new DateTimeZone('Asia/Bangkok'));
-
-        $rules = array(
-            'products' => 'required',
-            'date' => 'required',
-            'productName' => 'required',
-            'totalPrice' => 'required|integer',
-            'number' => 'required|integer',
-
-        );
-        $validator = Validator::make($request->all(), $rules);
-        if ($validator->fails()) return response()->json(['result' => false, 'message' => 'invalid input field.']);
-
-        $user = session()->get('member');
-        if ($user == null) return response()->json(['result' => false, 'message' => 'user is not define.']);
-        
-        $booking = Booking::create([
-            'sale_at' => $request->input('date'),
-            'userID' => $user->id,
-            'userCode' => $user->code,
-            'quantity' => $request->input('number'),
-            'totalPrice' => $request->input('totalPrice'),
-            'code' => $date->format('Ymd-His') . '' . $user->id,
-            'productName' => $request->input('productName'),
-            'status' => 'BK',
-            'type' => $request->input('type'),
-            'payment_type' => 1
-        ]);
-
-        if ($booking == null) return response()->json(['result' => false, 'message' => 'booking create fails.']);
 
         //$open = (object) $arr[$i];
         $products_arr = $request->input('products');

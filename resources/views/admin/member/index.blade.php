@@ -131,7 +131,7 @@
 			</div>
 			<div class="panel-footer">
 				<button class="btn btn-success" ng-click="update()">อัพเดต</button>
-				<button class="btn btn-info" ng-click="booking()">จอง</button>
+				<button class="btn btn-info" ng-click="booking()" ng-show="detail.role == 2">จอง</button>
 			</div>
 		</div>
 	</div>

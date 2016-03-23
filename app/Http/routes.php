@@ -50,9 +50,13 @@ Route::group(['middleware' => 'auth'] , function(){
 	Route::put('/booking/update', 'BookingController@update');
 	Route::delete('/booking/destroy', 'BookingController@destroy');
 
-	Route::get('/booking/createByAdmin', 'BookingController@createByAdmin')->name('/booking/createByAdmin');
-	Route::post('/booking/create/admin', 'BookingController@storeByAdmin');
-	Route::post('/booking/search/admin', 'BookingController@searchByAdmin');
+	Route::get('/booking/createByAdmin', 'AdminBookingController@index')->name('/booking/createByAdmin');
+	Route::post('/booking/create/admin', 'AdminBookingController@store');
+	Route::post('/booking/search/admin', 'AdminBookingController@search');
+	Route::post('/booking/save/admin', 'AdminBookingController@save');
+	Route::get('/booking/destroy/admin', 'AdminBookingController@destroy');
+
+
 	Route::get('/summary/admin/{id?}', 'BookingController@summaryByAdmin');
 	Route::get('/booking/session/clear' , function(){
 		session()->forget('member');
