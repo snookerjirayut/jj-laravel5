@@ -82,6 +82,9 @@ Route::group(['middleware' => 'auth'] , function(){
 	Route::put('/inform/monthly/update/{id}', 'InformController@updateMonthly');
 
 
+	Route::get('/history', 'HistoryController@index');
+	Route::post('/history/get', 'HistoryController@show');
+	Route::get('/history/detail/{id}', 'HistoryController@edit');
 
 });
 
