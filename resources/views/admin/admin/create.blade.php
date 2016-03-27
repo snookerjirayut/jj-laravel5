@@ -100,8 +100,8 @@
 		  <label class="col-md-4 control-label" for="role">Role</label>
 		  <div class="col-md-4">
 		    <select id="role" name="role" class="form-control" multiple="multiple">
-		      <option value="99">Admin</option>
-		      <option value="98">Observer</option>
+		      <!-- <option value="99">Admin</option> -->
+		      <option value="98" selected="">ผู้ตรวจสอบ</option>
 		    </select>
 		  </div>
 		</div>
