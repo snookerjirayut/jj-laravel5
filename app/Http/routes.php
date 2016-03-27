@@ -119,7 +119,7 @@ Route::get('/admin/get/calendar/{date}', function($date){
 Route::post('/admin/signin/valid', 'Backend\HomeController@check');
 
 
-Route::group(['middleware' => 'role:admin' , 'middleware' => 'role:observer'] , function(){
+Route::group(['middleware' => 'auth']  , function(){
 
 	Route::get('/admin/account', 'Backend\AdminController@index');
 	Route::get('/admin/account/create', 'Backend\AdminController@create');
