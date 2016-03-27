@@ -81,7 +81,7 @@
 			</div>
 			<div class="col-sm-3 box-booking-summary" ng-show="input.checked != null">
 
-				<div class="text-center text-day">เช่าล็อก <% input.label  | date:'EEEE dd MMMM' %> <% input.year %></div>
+				<div class="text-center text-day">เช่าล็อก <% input.date  | date:'EEEE dd MMMM' %> <% input.year %></div>
 				<hr>
 				<div class="col-sm-12 box-booking-item" ng-repeat="item in list.item" >
 					<div class="col-sm-6 text-left">
