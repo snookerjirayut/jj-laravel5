@@ -30,6 +30,8 @@ class RoleMiddleware
         if($this->user != null){
             if($this->user->role == 99){
                 $this->user->role = "admin";
+            }if($this->user->role == 98){
+                $this->user->role = "observer";
             }else if($this->user->role== 1){
                 $this->user->role = 'new' ;
             }else if($this->user->role == 2){

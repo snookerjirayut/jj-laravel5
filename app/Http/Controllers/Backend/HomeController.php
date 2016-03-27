@@ -56,10 +56,14 @@ class HomeController extends Controller
         $password = $request->input('password');
         
        if(Auth::attempt(['email' => $email, 'password' => $password, 'active' => 1, 'isAdmin' => 1 ] )){
-            //var_dump('role', Auth::user());
-            return redirect()->intended('/admin/');
+           
+            $role = Auth::user()->role;
+            //dd($role);
+            if($role == 98){
+                return redirect()->intended('/admin/verify?role=observer');
+            }
+            return redirect()->intended('/admin/calendar?role=admin');
         }
-       // var_dump(Auth::user());
        return redirect()->intended('/admin/signin?e')->withErrors('อีเมลหรือพาสเวิร์ดไม่ถูกต้อง');
     }
 
