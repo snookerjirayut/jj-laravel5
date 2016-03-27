@@ -42,7 +42,7 @@
                     <tbody>
                         <tr ng-repeat="obj in table">
                             <td><% $index+1 %></td>
-                            <td><% obj.opened_at %></td>
+                            <td><% obj.datename | date:'EEEE dd MMMM y' %></td>
                             <td class="text-center"><% obj.booking %></td>
                             <td class="text-center"><% obj.checkin %></td>
                             <td class="text-center"><% obj.undefine %> &nbsp;&nbsp;&nbsp;&nbsp;<button ng-click="clear(obj.opened_at)"><i class="glyphicon glyphicon-trash"></i> </button></td>
@@ -90,6 +90,12 @@
                         console.log(d);
                         $scope.input.total = d.total;
                         $scope.table = d.data;
+
+                        $scope.table.forEach(function(element){
+                            var mydate = new Date(element.miliseconds);
+                            mydate.setFullYear( mydate.getFullYear() + 543 );
+                            element.datename = mydate.getTime();
+                        });
                     }
                 });
             }
