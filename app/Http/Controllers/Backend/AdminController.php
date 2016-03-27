@@ -100,7 +100,7 @@ class AdminController extends Controller
         $tel = $request->input('tel');
 
         $count = User::where('email' , $email)->count();
-        if($count > 0)  return redirect('/admin/create')->withErrors(['email' => 'email is already existed.']);
+        if($count > 0)  return redirect('/admin/account/create')->withErrors(['email' => 'email is already existed.']);
 
         $result = \DB::table('users')->insert([
             'name' =>  $email ,
@@ -117,9 +117,9 @@ class AdminController extends Controller
         ]);
 
         if($result)
-            return redirect('/admin/create')->with('status' , 'success');
+            return redirect('/admin/account/create')->with('status' , 'success');
         
-        return redirect('/admin/create')->with('status', 'fail');
+        return redirect('/admin/account/create')->with('status', 'fail');
     }
 
     /**
