@@ -36,12 +36,8 @@
 
 				<div class="controls col-lg-3 col-sm-3 form-group has-success">
 					<label>วันที่จอง</label>
-					@if(\Auth::user()->role == 2)
-						<select ng-options="day.opened_at as day.name | date:'EEEE dd MMMM y'
-                    for day in list.days track by day.opened_at" ng-model="input.date"
-								class="form-control" ng-change="getZone()"></select>
-					@elseif(\Auth::user()->role == 1)
-						<select ng-options="day.opened_at as day.name | date:'EEEE dd MMMM y'
+					@if(\Auth::user()->role == 1)
+						<select ng-options="day.opened_at as (day.opened_at | date:'EEEE dd MMMM')+' '+(day.year)
                     for day in list.days_guest track by day.opened_at" ng-model="input.date"
 								class="form-control" ng-change="getZone()"></select>
 					@endif
@@ -85,7 +81,7 @@
 			</div>
 			<div class="col-sm-3 box-booking-summary" ng-show="input.checked != null">
 
-				<div class="text-center text-day">เช่าล็อก <% input.label  | date:'EEEE dd MMMM y' %></div>
+				<div class="text-center text-day">เช่าล็อก <% input.label  | date:'EEEE dd MMMM' %> <% input.year %></div>
 				<hr>
 				<div class="col-sm-12 box-booking-item" ng-repeat="item in list.item" >
 					<div class="col-sm-6 text-left">
@@ -271,16 +267,17 @@
 							$scope.list.days.forEach(function(element){
 								var mydate = new Date(element.name);
 								mydate.setFullYear( mydate.getFullYear() + 543 );
-								element.name = mydate.getTime();
+								element.year = mydate.getFullYear();
 							});
+
 							$scope.list.days_guest = [{miliseconds: {{ $milliseconds }} , name: {{ $milliseconds }}
 								,opened_at: '{{ date('Y-m-d') }}' }];
+
 							$scope.list.days_guest.forEach(function(element){
 								var mydate = new Date(element.name);
 								mydate.setFullYear( mydate.getFullYear() + 543 );
-								element.name = mydate.getTime();
+								element.year = mydate.getFullYear();
 							});
-							//console.log($scope.list.days_guest);
 						});
 					}
 
@@ -305,7 +302,7 @@
 						var tempdate = $scope.input.date;
                         var mydate = new Date(tempdate);
                         mydate.setFullYear(mydate.getFullYear() + 543);
-                        $scope.input.label = mydate.getTime();
+                        $scope.input.year = mydate.getFullYear();
                         
 						$http.post('/booking/search' , $scope.input).success(function(d){
 							//console.log(d);

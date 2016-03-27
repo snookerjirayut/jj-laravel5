@@ -42,7 +42,7 @@
 
 			  <div class="media-body">
 			    <h5 class="media-heading"><strong>รหัสจอง :</strong> <% booking.code %></h5>
-			    <h5><strong>วันที่ขาย : </strong><% booking.miliseconds | date:'EEEE dd MMMM yyyy' %></h5>
+			    <h5><strong>วันที่ขาย : </strong><% booking.miliseconds | date:'EEEE dd MMMM' %> <% booking.year %></h5>
 			    
 			    <div ng-repeat="detail in booking.bookingDetail" id="box-number-<% $index  %>" >
 			    	<div class="col-sm-1 box-child">
@@ -100,8 +100,8 @@
 						var mydate = new Date(element.miliseconds);
 						//console.log(mydate);
 						mydate.setFullYear(mydate.getFullYear() + 543);
-						//console.log('full year >> ', mydate);
-						element.miliseconds = mydate.getTime();
+						//console.log('full year >> ', mydate.getFullYear());
+						element.year = mydate.getFullYear();
 					});
 					$scope.input.total = d.total;
 				}
