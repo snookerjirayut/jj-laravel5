@@ -26,47 +26,43 @@
     <div ng-controller="PaymentController" ng-init="init()">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <div class="row" style="margin: 20px 0;">
-                    <div class="col-sm-12">
-                        <div  class="form-inline">
-                            <div class="form-group">
-                                <label>วันที่</label><br>
-                                <select ng-options="day.opened_at as day.opened_at | date:'EEEE dd MMMM y'
+                <div  class="form-inline">
+                    <div class="form-group">
+                        <label>วันที่</label><br>
+                            <select ng-options="day.opened_at as day.opened_at | date:'EEEE dd MMMM y'
 								for day in list.days track by day.opened_at" ng-model="input.date"  ng-disabled="ui.date"
                                         class="form-control select-booking-date"  ng-change="getZone()"></select>
-                            </div>
-
-                            <div class="form-group">
-                                <label>โซน</label><br>
-                                <select ng-options="zone.id as zone.code +' - '+zone.name
-								for zone in list.zones" ng-model="input.zone"  ng-disabled="ui.zone"
-                                        class="form-control select-booking-date" ng-change="ui.type = false" ></select>
-                            </div>
-
-                            <div class="form-group">
-                                <label>การชำระ</label><br>
-                                <select ng-options="type.id as type.name
-								for type in list.types" ng-model="input.type"  ng-disabled="ui.type"
-                                        class="form-control select-booking-date"  ng-change="ui.status = false"></select>
-                            </div>
-
-
-                            <div class="form-group">
-                                <label>สถานะ</label><br>
-                                <select ng-options="status.id as status.name
-								for status in list.status" ng-model="input.status"  ng-disabled="ui.status"
-                                        class="form-control select-booking-date"  ></select>
-                            </div>
-                            <div class="form-group">
-                                <label>&nbsp;</label><br>
-                                <button class="btn btn-info" ng-click="search()" >ตกลง</button>
-                            </div>
-                        </div>
                     </div>
 
-                </div>
+                    <div class="form-group">
+                        <label>โซน</label><br>
+                            <select ng-options="zone.id as zone.code +' - '+zone.name
+								for zone in list.zones" ng-model="input.zone"  ng-disabled="ui.zone"
+                                        class="form-control select-booking-date" ng-change="ui.type = false" ></select>
+                    </div>
 
+                    <div class="form-group">
+                        <label>การชำระ</label><br>
+                            <select ng-options="type.id as type.name
+								for type in list.types" ng-model="input.type"  ng-disabled="ui.type"
+                                        class="form-control select-booking-date"  ng-change="ui.status = false"></select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>สถานะ</label><br>
+                            <select ng-options="status.id as status.name
+								for status in list.status" ng-model="input.status"  ng-disabled="ui.status"
+                                        class="form-control select-booking-date"  ></select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>&nbsp;</label><br>
+                            <button class="btn btn-info" ng-click="search()" >ตกลง</button>
+                    </div>
+                </div>
             </div>
+            
             <div class="panel-body">
 
                 <div class="row">

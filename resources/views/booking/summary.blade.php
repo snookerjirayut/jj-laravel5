@@ -68,7 +68,7 @@
         <div class="col-lg-12 col-sm-12" ng-controller="SummaryController">
             <div class="row">
                 <div class="col-sm-12 left">
-                    <p><strong>จองล็อคของวันที่ : </strong>
+                    <p><strong>จองล็อกของวันที่ : </strong>
                         <% date | date:'EEEE dd MMMM y' %>
                     </p>
                 </div>
@@ -106,7 +106,7 @@
                         </div>
                     
                         <div class="col-lg-3 col-sm-3">
-                            <h1><strong>{{ count($detail) }}</strong>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ล็อค</h1>
+                            <h1><strong>{{ count($detail) }}</strong>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ล็อก</h1>
                         </div>
                     </div>
 

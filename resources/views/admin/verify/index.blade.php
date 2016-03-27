@@ -61,7 +61,7 @@
 	  		</div>
 			<div class="form-group">
 				<label>&nbsp;</label><br>
-	  			<button type="buttton" class="btn btn-info" ng-click="search()">Search</button>
+	  			<button type="buttton" class="btn btn-info" ng-click="search()">ค้นหา</button>
 	  		</div>
 	  	</div>
 	  </div>
@@ -71,10 +71,10 @@
 	   				<thead>
 	   					<tr class="text-center">
 	   						<td  width="2%">ลำดับ</td>
-	   						<td  width="10%">Username</td>
-	   						<td  width="12%">ล็อคที่จอง</td>
+	   						<td  width="10%">ชื่อผู้ใช้</td>
+	   						<td  width="12%">ล็อกที่จอง</td>
 	   						<td  width="5%" class="text-center">เช็คอิน</td>
-	   						<td  width="5%" class="text-center">การชำระ</td>
+	   						<td  width="5%" class="text-center">วิธีชำระ</td>
 	   						<td  width="10%" class="text-center">สถานะการชำระ</td>
 	   						<td  width="10%" class="text-center">สถานะตรวจสอบ</td>
 	   						<td  width="8%" class="text-center">ตรวจสอบ</td>
@@ -174,7 +174,7 @@
 				$scope.input.bookingid = id;
 				$http.post("{{url('/admin/payment/update')}}", $scope.input ).success(function(d){
 					if(d.result){
-						alert('Booking ID '+id+' ตรวจสอบเรียบร้อย');
+						alert('รหัสจอง '+id+' ตรวจสอบเรียบร้อย');
 						$scope.search();
 					}else alert(d.message);
 				})
@@ -187,7 +187,7 @@
 					console.log(d)
 					if(d.result){
 						$scope.list.table[index] = d.data[0];
-						alert("Verified");
+						alert("ตรวจสอบเรียบร้อย");
 					}else alert(d.message);
 				});
 			}

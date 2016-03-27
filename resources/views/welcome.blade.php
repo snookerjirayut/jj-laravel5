@@ -107,7 +107,7 @@
                         <ul class="userSection__userMenu">
                             <li class="userSection__userMenu__menuName ">  {{ \Auth::user()->name }}</li> 
                             <li class="userSection__userMenu__menuItem glyphicon glyphicon-th-list"><a href="/history">ประวัติการจอง</a></li>
-                            <li class="userSection__userMenu__menuItem glyphicon glyphicon-edit"><a href="#">แก้ไขข้อมูล</a></li>
+                            {{-- <li class="userSection__userMenu__menuItem glyphicon glyphicon-edit"><a href="#">แก้ไขข้อมูล</a></li> --}}
                             <li class="userSection__userMenu__menuItem glyphicon glyphicon-log-out"><a href="/signout">ออกจากระบบ</a></li>
                         </ul>
                     </div>

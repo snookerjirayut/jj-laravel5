@@ -26,48 +26,47 @@
 <div ng-controller="PaymentController" ng-init="init()">
 	<div class="panel panel-default">
 	  <div class="panel-heading">
-	  	<div class="row" style="margin: 20px 0;">
-					<div class="col-sm-12">
-						<div  class="form-inline">
-							<div class="form-group">
-								<label>วันที่</label><br>
-								<select ng-options="day.opened_at as day.opened_at | date:'EEEE dd MMMM y' 
-								for day in list.days track by day.opened_at" ng-model="input.date"  ng-disabled="ui.date"
-								class="form-control select-booking-date"  ng-change="getZone()"></select>
-							</div>
+	  	<div  class="form-inline">
+			<div class="form-group">
+				<label>วันที่</label><br>
+				<select ng-options="day.opened_at as day.opened_at | date:'EEEE dd MMMM y' 
+				for day in list.days track by day.opened_at" ng-model="input.date"  ng-disabled="ui.date"
+				class="form-control select-booking-date"  ng-change="getZone()"></select>
+			</div>
 
-							<div class="form-group">
-								<label>โซน</label><br>
-								<select ng-options="zone.id as zone.code +' - '+zone.name
-								for zone in list.zones" ng-model="input.zone"  ng-disabled="ui.zone"
-								class="form-control select-booking-date" ng-change="ui.type = false" ></select>
-							</div>
+			<div class="form-group">
+				<label>โซน</label><br>
+				<select ng-options="zone.id as zone.code +' - '+zone.name
+				for zone in list.zones" ng-model="input.zone"  ng-disabled="ui.zone"
+				class="form-control select-booking-date" ng-change="ui.type = false" ></select>
+			</div>
 
-							<div class="form-group">
-								<label>การชำระ</label><br>
-								<select ng-options="type.id as type.name
-								for type in list.types" ng-model="input.type"  ng-disabled="ui.type"
-								class="form-control select-booking-date"  ng-change="ui.status = false"></select>
-							</div>
+			<div class="form-group">
+				<label>วิธีชำระ</label><br>
+				<select ng-options="type.id as type.name
+				for type in list.types" ng-model="input.type"  ng-disabled="ui.type"
+				class="form-control select-booking-date"  ng-change="ui.status = false"></select>
+			</div>
 
 
-							<div class="form-group">
-								<label>สถานะ</label><br>
-								<select ng-options="status.id as status.name
-								for status in list.status" ng-model="input.status"  ng-disabled="ui.status"
-								class="form-control select-booking-date"  ></select>
-							</div>
-							<div class="form-group">
-								<label>&nbsp;</label><br>
-								<button class="btn btn-info" ng-click="search()" >ตกลง</button>
-							</div>
-						</div>
-					</div>
+			<div class="form-group">
+				<label>สถานะ</label><br>
+					<select ng-options="status.id as status.name
+					for status in list.status" ng-model="input.status"  ng-disabled="ui.status"
+					class="form-control select-booking-date"  ></select>
+			</div>
+							
+			<div class="form-group">
+				<label>&nbsp;</label><br>
+					<button class="btn btn-info" ng-click="search()" >ตกลง</button>
+			</div>
+			
 
-				</div>
+		</div>
 
-	  </div>
-	  <div class="panel-body">
+	</div>
+
+	<div class="panel-body">
 	   		
 				<div class="row">
 					<div class="col-sm-12">
@@ -81,7 +80,7 @@
 									<td>จำนวน</td>
 									<td>ราคา</td>
 									<td>สถานะการจอง</td>
-									<td>การชำระเงิน</td>
+									<td>วิธีชำระ</td>
 									<td>สถานะการชำระ</td>
 									<td>วันที่จอง</td>
 									<td>รายละเอียด</td>
@@ -240,9 +239,9 @@
 			$scope.table = {};
 
 			$scope.list = {};
-			$scope.list.status = [{id:99 , name:'ALL - ทั้งหมด'} ,{id:0 , name: 'จองพื้นที่'} , {id:1 , name: 'อัพโหลดหลักฐานการโอนแล้ว'}
+			$scope.list.status = [{id:99 , name:'ทั้งหมด'} ,{id:0 , name: 'จองพื้นที่'} , {id:1 , name: 'อัพโหลดหลักฐานการโอนแล้ว'}
 			, {id:2 , name: 'ตรวจสอบแล้ว'}];
-			$scope.list.types = [{id:99 , name:'ALL - ทั้งหมด'} ,{id:1 , name: 'โอนเงิน'} , {id:2 , name: 'ชำระ ณ วันขาย'}];
+			$scope.list.types = [{id:99 , name:'ทั้งหมด'} ,{id:1 , name: 'โอนเงิน'} , {id:2 , name: 'ชำระ ณ วันขาย'}];
 
 			$scope.modal = {};
 
@@ -253,7 +252,7 @@
 				if(!confirm('ตรวจสอบการจองของ ID '+data)) return;
 				$http.post("{{url('/admin/payment/update')}}", $scope.input).success(function(d){
 					if(d.result){
-						alert('Booking ID '+data+' ตรวจสอบเรียบร้อย');
+						alert('รหัสจอง '+data+' ตรวจสอบเรียบร้อย');
 						$scope.pageChanged();
 					}else alert(d.message);
 				})

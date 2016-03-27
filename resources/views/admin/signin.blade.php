@@ -16,7 +16,7 @@
     <div class="login-wrap">
         <div class="col-lg-12">
             <form class="form-signin wow fadeInUp" method="post" action="{{url('')}}/admin/signin/valid">
-                <div class="col-lg-12 text-center "><h3>ADMIN</h3></div>
+                <div class="col-lg-12 text-center "><h3>ผู้ดูแลระบบ</h3></div>
                 <div class="login-wrap">
                      @if (count($errors) > 0)
                 <div class="alert alert-danger">
@@ -26,10 +26,10 @@
                 </div>
             @endif
                     <div class="form-group has-success">
-                        <input type="text" name="email" placeholder="Email" class="form-control">
+                        <input type="text" name="email" placeholder="อีเมล" class="form-control">
                     </div>
                     <div class="form-group has-success">
-                        <input type="password" name="password" placeholder="Password" class="form-control">
+                        <input type="password" name="password" placeholder="รหัสผ่าน" class="form-control">
                     </div>
                             
                     <button class="btn btn-jj btn-block " type="submit">

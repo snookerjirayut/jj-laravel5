@@ -58,7 +58,7 @@
 				</div>
 				<div class="controls col-lg-3 col-sm-3  ">
 					<div class="controls col-lg-6 col-sm-6 form-group has-success">
-						<label>จำนวนล็อค</label>
+						<label>จำนวนล็อก</label>
 						<select ng-options="number.id as number.name for number in list.numbers track by number.id" ng-model="input.number"
 								class="form-control" ng-disabled="ui.number"></select>
 					</div>
@@ -85,7 +85,7 @@
 			</div>
 			<div class="col-sm-3 box-booking-summary" ng-show="input.checked != null">
 
-				<div class="text-center text-day">เช่าล็อคคของ <% input.label  | date:'EEEE dd MMMM y' %></div>
+				<div class="text-center text-day">เช่าล็อก <% input.label  | date:'EEEE dd MMMM y' %></div>
 				<hr>
 				<div class="col-sm-12 box-booking-item" ng-repeat="item in list.item" >
 					<div class="col-sm-6 text-left">

@@ -33,8 +33,8 @@
 			</div>
 
 			<div class="form-group">
-				<label>Email</label><br>
-				<input width="8%"class="form-control" ng-model="input.email"  placeholder="user email">
+				<label>อีเมล</label><br>
+				<input width="8%"class="form-control" ng-model="input.email"  placeholder="">
 			</div>
 			<div class="form-group">
 				<label>&nbsp;</label><br>
@@ -49,9 +49,9 @@
 	  				<thead>
 	  					<tr class="text-center">
 	  						<td>ลำดับ</td>
-	  						<td>ประเภทผู้ค้า</td>
-	  						<td>Username</td>
-	  						<td>Email</td>
+	  						<td>ประเภท</td>
+	  						{{-- <td>ชื่อผู้ใช้</td> --}}
+	  						<td>อีเมล</td>
 	  						<td>ชื่อ-นามสกุล</td>
 	  						<td>เบอร์โทร</td>
 	  						<td>วันที่ลงทะเบียน</td>
@@ -62,12 +62,12 @@
 	  					<tr ng-repeat="obj in table.member">
 	  						<td><% obj.id %></td>
 	  						<td><% memberRole(obj.role) %></td>
-	  						<td><% obj.name %></td>
+	  						{{-- <td><% obj.name %></td> --}}
 	  						<td><% obj.email %></td>
 	  						<td><% obj.firstName+' '+obj.lastName %></td>
 	  						<td><% obj.phone %></td>
 	  						<td><% obj.created_at %></td>
-	  						<td><a href="#detail" ng-click="showDetail($index)"><i class="glyphicon glyphicon-search"></i></a></td>
+	  						<td class="text-center"><a href="#detail" ng-click="showDetail($index)"><i class="glyphicon glyphicon-search"></i></a></td>
 	  					</tr>
 	  				</tbody>
 	  			</table>
@@ -92,7 +92,7 @@
 			<div class="panel-body">
 				<div class="row">
 					<div class="col-sm-3">
-						<label>Email</label>
+						<label>อีเมล</label>
 						<input class="form-control" ng-model="detail.email"  readonly>
 					</div>
 

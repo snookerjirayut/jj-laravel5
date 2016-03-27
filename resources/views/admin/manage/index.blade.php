@@ -23,11 +23,9 @@
 @section('content')
 
     <section ng-controller="ManageController" ng-init="init()">
-
+        
+        <h3>จัดการข้อมูล</h3>
         <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3>จัดการข้อมูล</h3>
-            </div>
             <div class="panel-body">
 
                 <table class="table table-striped table-bordered">
@@ -35,23 +33,23 @@
                         <tr class="text-center">
                             <td width=5% >ลำดับ</td>
                             <td width=15%>วันที่</td>
-                            <td width=25%>จำนวนการจอง</td>
-                            <td width=25%>จำนวนเช็คอิน</td>
-                            <td width=25%>จำนวนที่ยังไม่เช็คอิน</td>
-                            <td></td>
+                            <td width=20%>จำนวนการจอง</td>
+                            <td width=20%>จำนวนเช็คอิน</td>
+                            <td width=20%>จำนวนที่ยังไม่เช็คอิน</td>
+                            {{-- <td width=20%>ลบจำนวนที่ยังไม่เช็คอิน</td> --}}
                         </tr>
                     </thead>
                     <tbody>
                         <tr ng-repeat="obj in table">
                             <td><% $index+1 %></td>
                             <td><% obj.opened_at %></td>
-                            <td><% obj.booking %></td>
-                            <td><% obj.checkin %></td>
-                            <td><% obj.undefine %></td>
-                            <td>
+                            <td class="text-center"><% obj.booking %></td>
+                            <td class="text-center"><% obj.checkin %></td>
+                            <td class="text-center"><% obj.undefine %> &nbsp;&nbsp;&nbsp;&nbsp;<button ng-click="clear(obj.opened_at)"><i class="glyphicon glyphicon-trash"></i> </button></td>
+                            {{-- <td class="text-center">
                                 
                                 <button ng-click="clear(obj.opened_at)"><i class="glyphicon glyphicon-trash"></i> </button>
-                            </td>
+                            </td> --}}
                         </tr>
                     </tbody>
                 </table>
